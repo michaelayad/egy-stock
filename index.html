@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل الأسهم المصرية - 9 أبريل 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f5f5f0; color: #1a1a1a; line-height: 1.7; font-size: 15px; }
+  .header { background: linear-gradient(135deg, #1a3a5c 0%, #0d6e56 100%); color: #fff; padding: 2rem 2.5rem; }
+  .header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+  .header p { font-size: 14px; opacity: 0.85; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .toc { background: #fff; border-radius: 12px; border: 1px solid #e0ddd5; padding: 1.5rem; margin-bottom: 2rem; }
+  .toc h2 { font-size: 16px; font-weight: 600; margin-bottom: 1rem; color: #1a3a5c; }
+  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .toc-item { padding: 8px 12px; background: #f0f4f8; border-radius: 8px; font-size: 13px; cursor: pointer; border: 1px solid #dce4ee; transition: background 0.2s; }
+  .toc-item:hover { background: #dce4ee; }
+  .toc-item a { text-decoration: none; color: #1a3a5c; font-weight: 500; }
+  .war-banner { background: #fff8e1; border: 1px solid #f9c74f; border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 2rem; }
+  .war-banner h2 { font-size: 16px; color: #7b4f00; margin-bottom: 8px; }
+  .war-banner p { font-size: 14px; color: #5a3a00; line-height: 1.6; }
+  .stock-card { background: #fff; border-radius: 14px; border: 1px solid #e0ddd5; margin-bottom: 2.5rem; overflow: hidden; page-break-inside: avoid; }
+  .stock-header { padding: 1.2rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e8e5de; }
+  .stock-name-block { display: flex; align-items: center; gap: 12px; }
+  .stock-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #fff; }
+  .ic-cement { background: #4a7c59; }
+  .ic-bank { background: #1a5276; }
+  .ic-telecom { background: #2e4057; }
+  .ic-real { background: #8e4a2e; }
+  .ic-alum { background: #5b4a8c; }
+  .ic-chem { background: #2d7d5a; }
+  .ic-pay { background: #d4622a; }
+  .ic-hdb { background: #1a6b6b; }
+  .stock-title { font-size: 18px; font-weight: 700; color: #1a1a1a; }
+  .stock-symbol { font-size: 13px; color: #888; background: #f0f0ec; padding: 2px 8px; border-radius: 5px; }
+  .price-block { text-align: left; }
+  .price-main { font-size: 22px; font-weight: 700; color: #1a3a5c; }
+  .price-change { font-size: 13px; font-weight: 600; padding: 2px 8px; border-radius: 5px; }
+  .up { background: #e8f5e9; color: #2e7d32; }
+  .dn { background: #ffebee; color: #c62828; }
+  .ntrl { background: #f3f3f3; color: #666; }
+  .stock-body { padding: 1.5rem; }
+  .section { margin-bottom: 1.5rem; }
+  .section-title { font-size: 15px; font-weight: 700; color: #1a3a5c; border-right: 4px solid #0d6e56; padding-right: 10px; margin-bottom: 10px; }
+  .metric-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+  .metric-card { background: #f8f7f3; border-radius: 8px; padding: 10px 12px; }
+  .metric-label { font-size: 11px; color: #888; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .metric-val { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+  .metric-sub { font-size: 11px; color: #999; margin-top: 2px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  table.data-table th { background: #f0f4f8; padding: 8px 10px; text-align: right; font-weight: 600; color: #1a3a5c; border-bottom: 2px solid #dce4ee; }
+  table.data-table td { padding: 8px 10px; border-bottom: 1px solid #f0efeb; }
+  table.data-table tr:last-child td { border-bottom: none; }
+  .rec-box { border-radius: 10px; padding: 14px 18px; margin-top: 10px; }
+  .rec-buy { background: #e8f5e9; border: 1px solid #a5d6a7; }
+  .rec-strong-buy { background: #c8e6c9; border: 2px solid #4caf50; }
+  .rec-neutral { background: #fff8e1; border: 1px solid #ffe082; }
+  .rec-sell { background: #ffebee; border: 1px solid #ef9a9a; }
+  .rec-label { font-size: 13px; font-weight: 700; }
+  .rec-text { font-size: 13px; color: #333; margin-top: 6px; line-height: 1.6; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-left: 6px; }
+  .b-spec { background: #fff3e0; color: #e65100; }
+  .b-inv { background: #e8eaf6; color: #3949ab; }
+  .b-mixed { background: #fce4ec; color: #880e4f; }
+  .timeline { display: flex; gap: 10px; margin-top: 10px; }
+  .timeline-item { flex: 1; background: #f8f7f3; border-radius: 8px; padding: 10px 12px; text-align: center; }
+  .timeline-item .tl-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+  .timeline-item .tl-val { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+  .timeline-item .tl-val.pos { color: #2e7d32; }
+  .timeline-item .tl-val.neg { color: #c62828; }
+  .entry-box { background: #f0faf5; border-radius: 10px; padding: 14px; border: 1px solid #a5d6a7; margin-top: 8px; }
+  .target-box { background: #f0f4ff; border-radius: 10px; padding: 14px; border: 1px solid #9fa8da; margin-top: 8px; }
+  .sl-box { background: #fff3f3; border-radius: 10px; padding: 14px; border: 1px solid #ef9a9a; margin-top: 8px; }
+  .trade-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .strength-list, .weakness-list { margin: 0; padding-right: 18px; }
+  .strength-list li { color: #2e7d32; font-size: 13px; margin-bottom: 5px; }
+  .weakness-list li { color: #c62828; font-size: 13px; margin-bottom: 5px; }
+  .war-effect { background: #fff3e0; border-radius: 10px; padding: 14px; border: 1px solid #ffcc80; margin-top: 10px; font-size: 13px; }
+  .divider { height: 1px; background: #ede9e0; margin: 1.2rem 0; }
+  .compare-section { background: #fff; border-radius: 14px; border: 1px solid #e0ddd5; margin-bottom: 2.5rem; padding: 1.5rem; overflow-x: auto; }
+  .compare-section h2 { font-size: 18px; font-weight: 700; color: #1a3a5c; margin-bottom: 1.2rem; }
+  table.compare { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
+  table.compare th { background: #1a3a5c; color: #fff; padding: 10px 8px; text-align: center; font-weight: 600; font-size: 12px; }
+  table.compare td { padding: 9px 8px; text-align: center; border-bottom: 1px solid #f0efeb; font-size: 12px; }
+  table.compare tr:hover td { background: #f8f7f3; }
+  table.compare tr:last-child td { border-bottom: none; }
+  .star { color: #f9a825; }
+  .disclaimer { background: #fff8e1; border: 1px solid #f9c74f; border-radius: 10px; padding: 1.2rem 1.5rem; font-size: 12.5px; color: #5a3a00; line-height: 1.7; margin-top: 2rem; }
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .scenario { border-radius: 10px; padding: 12px 14px; font-size: 13px; }
+  .sc-a { background: #e8f5e9; border: 1px solid #a5d6a7; }
+  .sc-b { background: #fff3e0; border: 1px solid #ffcc80; }
+  .sc-c { background: #ffebee; border: 1px solid #ef9a9a; }
+  .sc-title { font-weight: 700; font-size: 13px; margin-bottom: 5px; }
+  @media (max-width: 700px) {
+    .trade-grid, .scenario-grid, .timeline { flex-direction: column; grid-template-columns: 1fr; }
+    .stock-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .metric-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 تحليل شامل ومقارن للأسهم المصرية</h1>
+  <p>تاريخ التحليل: الخميس 9 أبريل 2026 &nbsp;|&nbsp; البورصة المصرية EGX &nbsp;|&nbsp; مصادر: TradingView · Investing.com · Mubasher · Bloomberg</p>
+</div>
+
+<div class="container">
+
+<!-- الملف السياقي العام -->
+<div class="war-banner">
+  <h2>⚡ السياق الجيوسياسي الراهن - الأهم لفهم حركة السوق اليوم</h2>
+  <p>أعلن الرئيس الأمريكي دونالد ترامب في 8 أبريل 2026 عن <strong>هدنة لمدة أسبوعين بين الولايات المتحدة وإيران</strong>، مما أدى إلى انخفاض حاد في أسعار النفط: خام برنت انهار بنسبة 13.6% ليصل إلى 94.43 دولار، وخام غرب تكساس تراجع 14.3%. مؤشر EGX30 حاليًا عند نحو 47,000 نقطة، يعاني من حركة عرضية في ظل عدم اليقين. هذا التقرير يأخذ في الاعتبار جميع سيناريوهات الهدنة وتداعياتها على كل سهم.</p>
+</div>
+
+<!-- فهرس الأسهم -->
+<div class="toc">
+  <h2>فهرس الأسهم المحللة</h2>
+  <div class="toc-grid">
+    <div class="toc-item"><a href="#mcqe">🏗️ مصر للاسمنت قنا (MCQE)</a></div>
+    <div class="toc-item"><a href="#adib">🏦 بنك أبو ظبي الإسلامي (ADIB)</a></div>
+    <div class="toc-item"><a href="#etel">📡 المصرية للاتصالات (ETEL)</a></div>
+    <div class="toc-item"><a href="#tmgh">🏘️ طلعت مصطفى (TMGH)</a></div>
+    <div class="toc-item"><a href="#egal">⚙️ مصر للألومنيوم (EGAL)</a></div>
+    <div class="toc-item"><a href="#ferc">🌿 فيركيم للأسمدة (FERC)</a></div>
+    <div class="toc-item"><a href="#fwry">💳 فوري للمدفوعات (FWRY)</a></div>
+    <div class="toc-item"><a href="#hdbk">🏠 بنك التعمير والإسكان (HDBK)</a></div>
+    <div class="toc-item"><a href="#compare">📊 المقارنة الشاملة</a></div>
+    <div class="toc-item"><a href="#recommended">💡 أسهم مقترحة إضافية</a></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 1: MCQE -->
+<!-- ============================================================ -->
+<div class="stock-card" id="mcqe">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-cement">سم</div>
+      <div>
+        <div class="stock-title">مصر للاسمنت - قنا</div>
+        <span class="stock-symbol">MCQE</span> <span class="badge b-mixed">مضاربي/استثماري</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">~185–190 جنيه</div>
+      <span class="price-change dn">تراجع مؤخرًا من القمة</span>
+    </div>
+  </div>
+
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">التحليل الكمي</div>
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-label">السعر التقريبي</div>
+          <div class="metric-val">185–190 ج</div>
+          <div class="metric-sub">تراجع 1.26% آخر جلسة</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">أعلى 52 أسبوع</div>
+          <div class="metric-val">185.70 ج</div>
+          <div class="metric-sub">يناير 2026 (قمة تاريخية)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">أدنى 52 أسبوع</div>
+          <div class="metric-val">23.03 ج</div>
+          <div class="metric-sub">طفرة خلال 2025</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">التقلب (Beta)</div>
+          <div class="metric-val">−0.17</div>
+          <div class="metric-sub">12.06% volatility</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">مضاعف الربحية P/E</div>
+          <div class="metric-val">4.83</div>
+          <div class="metric-sub">جذاب جداً</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">عائد التوزيعات</div>
+          <div class="metric-val">4.42%</div>
+          <div class="metric-sub">كوبون نقدي</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:6px;"><strong>السيولة:</strong> التداول اليومي متوسط إلى جيد. السهم شهد إيقافاً لمدة 10 دقائق في نوفمبر 2025 لتجاوزه 10% في جلسة واحدة، مما يعكس تذبذبًا عاليًا. الفترة الأخيرة شهدت تصريحًا للشركة عن نفي مفاوضات استحواذ كويتية.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">أبرز الأخبار الأخيرة</div>
+      <table class="data-table">
+        <tr><th>التاريخ</th><th>الخبر</th><th>التأثير</th></tr>
+        <tr><td>يناير 2026</td><td>أرباح 9 أشهر تقفز لـ 1.7 مليار جنيه</td><td><span class="price-change up">إيجابي</span></td></tr>
+        <tr><td>فبراير 2026</td><td>نفي مفاوضات استحواذ كويتي بـ دولار/سهم</td><td><span class="price-change ntrl">محايد</span></td></tr>
+        <tr><td>ديسمبر 2025</td><td>الجمعية العامة تقر تعديلات النظام الأساسي</td><td><span class="price-change ntrl">محايد</span></td></tr>
+        <tr><td>2026</td><td>الشركة تسعى للدخول لأسواق أوروبا وأمريكا 2027</td><td><span class="price-change up">إيجابي طويل الأمد</span></td></tr>
+        <tr><td>نوفمبر 2025</td><td>إيقاف السهم 10 دقائق بعد صعود 10%</td><td><span class="price-change ntrl">مؤشر نشاط</span></td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">الوضع المالي للشركة</div>
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-label">صافي ربح Q3 2025</div>
+          <div class="metric-val">728.5 م.ج</div>
+          <div class="metric-sub">مقابل 361.7 في Q2</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">أرباح 9 أشهر 2025</div>
+          <div class="metric-val">1.7 مليار</div>
+          <div class="metric-sub">نمو قوي YoY</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">P/E</div>
+          <div class="metric-val">4.83x</div>
+          <div class="metric-sub">أرخص من قطاع الأسمنت</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">عائد التوزيعات</div>
+          <div class="metric-val">4.42%</div>
+          <div class="metric-sub">نسبة توزيع 40.39%</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:8px;"><strong>تقييم الوضع المالي: قوي.</strong> الشركة تحقق أرباحًا متنامية بشكل لافت، وP/E عند 4.83 يعد جذابًا للغاية للقطاع الصناعي. الهامش الربحي يتحسن مع ارتفاع أسعار الأسمنت في السوق المصري.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول المقترحة</div>
+      <div class="trade-grid">
+        <div class="entry-box">
+          <strong style="color:#2e7d32;">نقاط الدخول (الشراء)</strong>
+          <p style="font-size:13px;margin-top:6px;">📌 <strong>شراء أول: 175–178 ج</strong> — عند تراجع لمنطقة دعم 20 يوم خلال الأسبوع القادم</p>
+          <p style="font-size:13px;margin-top:5px;">📌 <strong>شراء ثانٍ: 160–165 ج</strong> — عند تصحيح عميق أو في حالة تصعيد جيوسياسي جديد</p>
+        </div>
+        <div class="target-box">
+          <strong style="color:#1a5276;">المستهدفات (البيع)</strong>
+          <p style="font-size:13px;margin-top:6px;">🎯 <strong>هدف 1: 195–200 ج</strong> — خلال 2-3 أسابيع بعد تثبيت القمة</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 2: 210 ج</strong> — بعد أرباح Q4 المتوقعة في مارس 2026</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف استثماري: 230–250 ج</strong> — مدى 6-9 أشهر مع التوسع التصديري</p>
+        </div>
+        <div class="sl-box">
+          <strong style="color:#c62828;">وقف الخسارة</strong>
+          <p style="font-size:13px;margin-top:6px;">🛑 <strong>155 جنيه</strong> (إغلاق يومي تحت هذا المستوى)</p>
+          <p style="font-size:13px;margin-top:5px;">السبب: يمثل كسر دعم الموجة الصاعدة الرئيسية وتأكيد البيع المؤسسي</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">النظرة الاستثمارية</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="tl-label">قصير المدى (مضاربة)</div>
+          <div class="tl-val pos">ممتاز</div>
+          <p style="font-size:11px;color:#555;margin-top:4px;">تذبذب عالٍ وحجم تداول يوفر فرص دخول وخروج سريع</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">متوسط المدى (3-6 أشهر)</div>
+          <div class="tl-val pos">جيد جداً</div>
+          <p style="font-size:11px;color:#555;margin-top:4px;">مع تطبيع أسعار الأسمنت وتوسع التصدير</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label">طويل المدى (سنة+)</div>
+          <div class="tl-val pos">قوي</div>
+          <p style="font-size:11px;color:#555;margin-top:4px;">توزيعات ثابتة + طموح أسواق جديدة + P/E منخفض</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">التوصية العامة</div>
+      <div class="rec-box rec-buy">
+        <span class="rec-label">🟢 شراء معتدل على التراجعات | تقييم السهم: 60% مضاربي، 40% استثماري</span>
+        <div class="rec-text">السهم ارتفع كثيرًا في وقت قصير (من ~23 ج إلى ~190 ج خلال عام). على المضارب الانتظار في منطقة 175-178 ج. على المستثمر طويل الأمد الدخول بثلث رأس المال الآن والباقي على التراجع. P/E عند 4.83 هو الأرخص في القطاع.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:6px;">نقاط القوة ✅</p>
+          <ol class="strength-list">
+            <li>P/E منخفض جداً (4.83) مقارنة بالقطاع</li>
+            <li>نمو أرباح قوي: +100% تقريبًا نصف سنوي</li>
+            <li>توزيعات نقدية ثابتة (عائد 4.42%)</li>
+            <li>توجه تصديري إلى أوروبا وأمريكا 2027</li>
+            <li>سهم من عداد EGX100 يجذب مؤسسات</li>
+          </ol>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:6px;">نقاط الضعف ⚠️</p>
+          <ol class="weakness-list">
+            <li>ارتفع بنسبة 700%+ خلال عام (مبالغ في تسعيره قصيرًا)</li>
+            <li>تذبذب عالٍ (12.06%) يرفع المخاطر</li>
+            <li>حساسية عالية لأسعار الطاقة (المازوت/الغاز)</li>
+            <li>إشاعات الاستحواذ قد تؤدي لتلاعب</li>
+            <li>السوق العقاري هو محرك الطلب الأساسي - حساسية لتباطؤ البناء</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة وأسعار البترول واليوريا</div>
+      <div class="war-effect">
+        <p>⛽ <strong>تأثير الحرب الأمريكية-الإيرانية (+سلبي على المدى القصير):</strong> رفعت الحرب أسعار الطاقة (المازوت والغاز) بشكل كبير، مما ضغط على هامش الربح لمصر للاسمنت. تكاليف الإنتاج ارتفعت.</p>
+        <p style="margin-top:8px;">🕊️ <strong>تأثير الهدنة (+إيجابي):</strong> انخفاض النفط إلى 94 دولار يعني تراجع تكلفة الطاقة، مما سيحسن الهامش في الأرباح القادمة (Q4 2025 / Q1 2026).</p>
+        <p style="margin-top:8px;">🧱 <strong>اليوريا وأسعار المواد الخام:</strong> الأسمنت لا يعتمد مباشرة على اليوريا، لكن ارتفاع أسعار الأسمدة يرفع تكاليف الزراعة ويضغط على الإنفاق الحكومي، مما قد يؤخر مشاريع بنية تحتية.</p>
+        <div class="scenario-grid" style="margin-top:10px;">
+          <div class="scenario sc-a"><div class="sc-title">سيناريو A: تثبيت الهدنة</div>أسعار طاقة منخفضة → هوامش أعلى → توقع وصول 200-210 ج في 3 أشهر ✅</div>
+          <div class="scenario sc-b"><div class="sc-title">سيناريو B: انتهاء الهدنة بلا اتفاق</div>عودة التوترات → طاقة غالية → تراجع للـ 165-170 ج 🔶</div>
+          <div class="scenario sc-c"><div class="sc-title">سيناريو C: اتفاق دائم</div>استقرار إقليمي تام → تدفق استثمارات → قد يصل 220-250 ج خلال 6 أشهر 🎯</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 2: ADIB -->
+<!-- ============================================================ -->
+<div class="stock-card" id="adib">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-bank">بك</div>
+      <div>
+        <div class="stock-title">مصرف أبو ظبي الإسلامي - مصر</div>
+        <span class="stock-symbol">ADIB</span> <span class="badge b-inv">استثماري بامتياز</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">~37–40 جنيه</div>
+      <span class="price-change dn">تراجع من قمة 44.97 ج</span>
+    </div>
+  </div>
+
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">التحليل الكمي</div>
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-label">السعر (مارس 9)</div>
+          <div class="metric-val">36.78 ج</div>
+          <div class="metric-sub">تراجع 1.5% أسبوعياً</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">قمة تاريخية</div>
+          <div class="metric-val">44.97 ج</div>
+          <div class="metric-sub">19 فبراير 2026</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">أدنى 52 أسبوع</div>
+          <div class="metric-val">19.27 ج</div>
+          <div class="metric-sub">نمو 105.58% سنوياً!</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Beta (تقلب)</div>
+          <div class="metric-val">1.14</div>
+          <div class="metric-sub">أعلى من السوق</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">هدف المحللين (متوسط)</div>
+          <div class="metric-val">50.08 ج</div>
+          <div class="metric-sub">أعلى تقدير 70.5 ج</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">إمكانية الارتفاع</div>
+          <div class="metric-val">+36%</div>
+          <div class="metric-sub">من مستوى مارس</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">أبرز الأخبار الأخيرة</div>
+      <table class="data-table">
+        <tr><th>التاريخ</th><th>الخبر</th><th>التأثير</th></tr>
+        <tr><td>2024</td><td>أرباح 2024 ترتفع 93% إلى 9.01 مليار جنيه</td><td><span class="price-change up">إيجابي قوي</span></td></tr>
+        <tr><td>2024</td><td>أصبح أكبر بنك إسلامي في مصر - أصول 260 مليار ج</td><td><span class="price-change up">إيجابي</span></td></tr>
+        <tr><td>2025</td><td>الجمعية العامة تقر زيادة رأس المال عبر اكتتاب</td><td><span class="price-change ntrl">إضافة أسهم - مخفف محتمل</span></td></tr>
+        <tr><td>فبراير 2026</td><td>الرئيس التنفيذي يتوقع تراجع التضخم لـ 14-15%</td><td><span class="price-change up">إيجابي - تحسن بيئة الفائدة</span></td></tr>
+        <tr><td>2026</td><td>تكريم الرئيس التنفيذي كأبرز قادة الاستدامة</td><td><span class="price-change up">يعزز السمعة</span></td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">الوضع المالي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">صافي ربح 2024</div><div class="metric-val">9.01 مليار ج</div><div class="metric-sub">+93% YoY 🔥</div></div>
+        <div class="metric-card"><div class="metric-label">إجمالي الأصول</div><div class="metric-val">260 مليار ج</div><div class="metric-sub">أكبر بنك إسلامي مصر</div></div>
+        <div class="metric-card"><div class="metric-label">عدد الموظفين</div><div class="metric-val">2,694</div><div class="metric-sub">شبكة متنامية</div></div>
+        <div class="metric-card"><div class="metric-label">توقع التضخم</div><div class="metric-val">14-15%</div><div class="metric-sub">نهاية فبراير 2026</div></div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:8px;"><strong>تقييم الوضع المالي: ممتاز.</strong> نمو 93% في الأرباح خلال عام واحد استثنائي. البنك في مرحلة تحول نوعي ليصبح الرائد في الخدمات الإسلامية بمصر. خفض الفائدة المتوقع سيرفع محفظة القروض وهوامش الربح.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول</div>
+      <div class="trade-grid">
+        <div class="entry-box">
+          <strong style="color:#2e7d32;">نقاط الدخول</strong>
+          <p style="font-size:13px;margin-top:6px;">📌 <strong>شراء أول: 35–37 ج</strong> — في المستوى الحالي، خاصة بعد التراجع من القمة</p>
+          <p style="font-size:13px;margin-top:5px;">📌 <strong>شراء ثانٍ: 30–32 ج</strong> — على تراجع إضافي في حالة عودة التوترات</p>
+        </div>
+        <div class="target-box">
+          <strong style="color:#1a5276;">المستهدفات</strong>
+          <p style="font-size:13px;margin-top:6px;">🎯 <strong>هدف 1: 42–44 ج</strong> — خلال شهر (محاولة القمة السابقة)</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 2: 50 ج</strong> — متوسط هدف المحللين، 2-3 أشهر</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف استثماري: 60–65 ج</strong> — بعد 9-12 شهراً مع خفض الفائدة</p>
+        </div>
+        <div class="sl-box">
+          <strong style="color:#c62828;">وقف الخسارة</strong>
+          <p style="font-size:13px;margin-top:6px;">🛑 <strong>28 جنيه</strong> إغلاق يومي</p>
+          <p style="font-size:13px;margin-top:5px;">أدنى من الدعم الرئيسي للموجة الصاعدة الكبيرة</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">التوصية</div>
+      <div class="rec-box rec-strong-buy">
+        <span class="rec-label">🌟 شراء قوي | 30% مضاربي، 70% استثماري</span>
+        <div class="rec-text">أفضل سهم بنكي إسلامي في مصر. نمو أرباح 93% في عام واحد، مدعوم بخفض الفائدة المتوقع. السهم تراجع ~20% من قمته مما يوفر فرصة دخول ممتازة. مناسب للمستثمر طويل الأمد بامتياز. القيمة العادلة: 55-65 ج.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:6px;">نقاط القوة ✅</p>
+          <ol class="strength-list">
+            <li>أرباح 2024 ترتفع 93% - نمو استثنائي</li>
+            <li>أكبر بنك إسلامي في مصر (260 مليار أصول)</li>
+            <li>بيئة تخفيض الفائدة ستزيد الإقراض</li>
+            <li>5 محللين يوصون بالشراء - لا أحد بالبيع</li>
+            <li>عمق المصرفية الإسلامية في السوق المصري</li>
+          </ol>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:6px;">نقاط الضعف ⚠️</p>
+          <ol class="weakness-list">
+            <li>زيادة رأس المال قد يخفف قيمة الأسهم</li>
+            <li>تراجع من قمته 44.97 → 36.78 (−18.2%)</li>
+            <li>حساسية لأي تصعيد جيوسياسي</li>
+            <li>ارتفع 105% خلال عام - التقييم مرتفع نسبياً</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة</div>
+      <div class="war-effect">
+        <p>🏦 البنوك عمومًا تتأثر بالتوترات الجيوسياسية من خلال تدفقات رأس المال الأجنبي. <strong>أثناء الحرب:</strong> خروج رأس مال أجنبي → ضغط على السهم. <strong>بعد الهدنة:</strong> عودة الاستثمارات الخليجية + تحويلات المصريين بالخارج تزداد → صعود البنوك القوية. ADIB تحديداً يستفيد من الأموال الخليجية الإسلامية. خفض الفائدة المرتقب (إذا استقرت الأوضاع) = محرك صعود قوي.
+        <br><br>🎯 <strong>الهدنة لأسبوعين:</strong> توقع ارتفاع السهم نحو 40-42 ج. <strong>اتفاق دائم:</strong> استهداف 50-60 ج خلال 6 أشهر.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 3: ETEL -->
+<!-- ============================================================ -->
+<div class="stock-card" id="etel">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-telecom">تل</div>
+      <div>
+        <div class="stock-title">المصرية للاتصالات</div>
+        <span class="stock-symbol">ETEL</span> <span class="badge b-inv">استثماري / دفاعي</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">~82–86 جنيه</div>
+      <span class="price-change dn">تراجع من قمة 112.98 ج</span>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">التحليل الكمي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">السعر (مارس 21)</div><div class="metric-val">84.39 ج</div><div class="metric-sub">+2.54% في تلك الجلسة</div></div>
+        <div class="metric-card"><div class="metric-label">قمة تاريخية</div><div class="metric-val">112.98 ج</div><div class="metric-sub">16 فبراير 2026</div></div>
+        <div class="metric-card"><div class="metric-label">أدنى 52 أسبوع</div><div class="metric-val">33.21 ج</div><div class="metric-sub">صعود ضخم 2025</div></div>
+        <div class="metric-card"><div class="metric-label">Beta</div><div class="metric-val">0.88</div><div class="metric-sub">تذبذب 1.98% - منخفض</div></div>
+        <div class="metric-card"><div class="metric-label">هدف المحللين</div><div class="metric-val">105.84 ج</div><div class="metric-sub">3 محللين شراء</div></div>
+        <div class="metric-card"><div class="metric-label">إمكانية الارتفاع</div><div class="metric-val">+25%</div><div class="metric-sub">من مستوى مارس</div></div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:6px;"><strong>السيولة:</strong> ممتازة - من أكثر الأسهم تداولاً في EGX30. القيمة السوقية 142.54 مليار جنيه. نشاط مؤسسي ملحوظ.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">أبرز الأخبار</div>
+      <table class="data-table">
+        <tr><th>التاريخ</th><th>الخبر</th><th>التأثير</th></tr>
+        <tr><td>2026</td><td>توجيهات مالية 2026: نمو إيرادات بأرقام فردية مرتفعة</td><td><span class="price-change up">إيجابي</span></td></tr>
+        <tr><td>2026</td><td>إعلان توزيع أرباح للمساهمين</td><td><span class="price-change up">إيجابي</span></td></tr>
+        <tr><td>2025</td><td>إنجاز كابل "Coral Bridge" البحري مع NaiTel</td><td><span class="price-change up">استراتيجي</span></td></tr>
+        <tr><td>2025</td><td>شراكة مع China Mobile International</td><td><span class="price-change up">توسع دولي</span></td></tr>
+        <tr><td>متوقع</td><td>بيع حصة فودافون مصر المحتملة</td><td><span class="price-change up">محفز صعود ضخم</span></td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">الوضع المالي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">صافي ربح Q3 2025</div><div class="metric-val">5.59 مليار ج</div><div class="metric-sub">تراجع طفيف من 6.46 مليار</div></div>
+        <div class="metric-card"><div class="metric-label">القيمة السوقية</div><div class="metric-val">142.5 مليار ج</div><div class="metric-sub">شركة ضخمة دفاعية</div></div>
+        <div class="metric-card"><div class="metric-label">توزيعات أرباح</div><div class="metric-val">منتظمة</div><div class="metric-sub">تاريخ ثابت في التوزيع</div></div>
+        <div class="metric-card"><div class="metric-label">نشأة الشركة</div><div class="metric-val">1854</div><div class="metric-sub">أعمق مؤسسة في السوق</div></div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:8px;"><strong>تقييم الوضع المالي: قوي جداً.</strong> الشركة مزود الاتصالات الأساسي في مصر. الإيرادات متنوعة (خطوط ثابتة، إنترنت، كابلات دولية). نمو مدعوم ببنية تحتية رقمية طموحة.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول</div>
+      <div class="trade-grid">
+        <div class="entry-box">
+          <strong style="color:#2e7d32;">نقاط الدخول</strong>
+          <p style="font-size:13px;margin-top:6px;">📌 <strong>شراء أول: 80–84 ج</strong> — المستوى الحالي جذاب</p>
+          <p style="font-size:13px;margin-top:5px;">📌 <strong>شراء ثانٍ: 72–75 ج</strong> — على تراجع إضافي</p>
+        </div>
+        <div class="target-box">
+          <strong style="color:#1a5276;">المستهدفات</strong>
+          <p style="font-size:13px;margin-top:6px;">🎯 <strong>هدف 1: 95 ج</strong> — 3 أسابيع (بعد استقرار إقليمي)</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 2: 106 ج</strong> — متوسط هدف المحللين</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 3: 120-130 ج</strong> — إذا تأكدت صفقة فودافون</p>
+        </div>
+        <div class="sl-box">
+          <strong style="color:#c62828;">وقف الخسارة</strong>
+          <p style="font-size:13px;margin-top:6px;">🛑 <strong>70 جنيه</strong> إغلاق يومي</p>
+          <p style="font-size:13px;margin-top:5px;">كسر المتوسط المتحرك 200 يوم يعني مراجعة المركز</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">التوصية</div>
+      <div class="rec-box rec-strong-buy">
+        <span class="rec-label">🌟 شراء قوي | 20% مضاربي، 80% استثماري</span>
+        <div class="rec-text">ETEL هو السهم الدفاعي الأفضل في البورصة المصرية. تراجع ~25% من قمته يوفر فرصة تاريخية. بيع حصة فودافون إذا تأكد سيكون محفزاً ضخماً. مناسب للمستثمر المتحفظ والمضارب على حد سواء. القيمة العادلة: 100-110 ج.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:6px;">نقاط القوة ✅</p>
+          <ol class="strength-list">
+            <li>احتكار شبه تام في الخطوط الأرضية والفايبر</li>
+            <li>كابلات بحرية دولية - دخل دولاري مستدام</li>
+            <li>توزيعات أرباح منتظمة وتاريخ ثابت</li>
+            <li>محفز فودافون المحتمل (سيولة ضخمة)</li>
+            <li>بيتا 0.88 - أقل تذبذباً من السوق</li>
+          </ol>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:6px;">نقاط الضعف ⚠️</p>
+          <ol class="weakness-list">
+            <li>تراجع -25% من القمة - ضعف فني مؤقت</li>
+            <li>Q3 أرباح تراجعت طفيفاً من Q2</li>
+            <li>بيروقراطية القطاع الحكومي تبطئ القرارات</li>
+            <li>المنافسة من الشبكات الخلوية تأكل حصة السوق</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة</div>
+      <div class="war-effect">
+        <p>📡 قطاع الاتصالات دفاعي بطبيعته - الطلب لا يتراجع في أوقات الحرب بل يرتفع. <strong>أثناء الحرب:</strong> ضغط على السهم من خروج الأجانب، لكن الأعمال مستمرة. <strong>بعد الهدنة:</strong> أول القطاعات التي تعود إليها الاستثمارات. الكابلات البحرية الدولية كـ "Coral Bridge" تدر دولارات بغض النظر عن التوترات. <strong>توقع ارتفاع الـ 5-8% خلال أسبوع من إعلان الهدنة.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 4: TMGH -->
+<!-- ============================================================ -->
+<div class="stock-card" id="tmgh">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-real">عق</div>
+      <div>
+        <div class="stock-title">مجموعة طلعت مصطفى القابضة</div>
+        <span class="stock-symbol">TMGH</span> <span class="badge b-inv">استثماري / عقاري رائد</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">~78–81 جنيه</div>
+      <span class="price-change dn">تراجع من قمة 97.39 ج</span>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">التحليل الكمي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">السعر اليوم (تقديري)</div><div class="metric-val">78–81 ج</div><div class="metric-sub">نطاق اليوم 78.57-81.00</div></div>
+        <div class="metric-card"><div class="metric-label">قمة تاريخية</div><div class="metric-val">97.39 ج</div><div class="metric-sub">19 فبراير 2026</div></div>
+        <div class="metric-card"><div class="metric-label">أدنى 52 أسبوع</div><div class="metric-val">46.75 ج</div><div class="metric-sub">ارتفع 70%+ سنوياً</div></div>
+        <div class="metric-card"><div class="metric-label">Beta</div><div class="metric-val">1.40</div><div class="metric-sub">تذبذب 5.72%</div></div>
+        <div class="metric-card"><div class="metric-label">هدف المحللين</div><div class="metric-val">126.32 ج</div><div class="metric-sub">upside +61%!</div></div>
+        <div class="metric-card"><div class="metric-label">متوسط حجم يومي</div><div class="metric-val">2.47م سهم</div><div class="metric-sub">سيولة ممتازة</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">أبرز الأخبار</div>
+      <table class="data-table">
+        <tr><th>التاريخ</th><th>الخبر</th><th>التأثير</th></tr>
+        <tr><td>2025</td><td>مبيعات تعاقدية H1 2025: 51.35 مليار جنيه</td><td><span class="price-change up">قياسي</span></td></tr>
+        <tr><td>2025</td><td>إعلان مشروع سياحي خلف المتحف المصري الكبير</td><td><span class="price-change up">إيجابي</span></td></tr>
+        <tr><td>2025</td><td>تعاون مع "قطاع الأعمال" في مشروعات فندقية</td><td><span class="price-change up">توسع</span></td></tr>
+        <tr><td>2025</td><td>توزيع كوبون 12 بواقع 0.25 ج/سهم</td><td><span class="price-change up">إيجابي</span></td></tr>
+        <tr><td>2026</td><td>تراجع شهري -14.39% في مارس</td><td><span class="price-change dn">ضغط جيوسياسي</span></td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">الوضع المالي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">صافي ربح Q3 2025</div><div class="metric-val">3.91 مليار ج</div><div class="metric-sub">Q2: 4.07 مليار</div></div>
+        <div class="metric-card"><div class="metric-label">القيمة السوقية</div><div class="metric-val">160.7 مليار ج</div><div class="metric-sub">أكبر مطور عقاري</div></div>
+        <div class="metric-card"><div class="metric-label">مبيعات H1 تعاقدية</div><div class="metric-val">51.35 مليار ج</div><div class="metric-sub">رقم تاريخي</div></div>
+        <div class="metric-card"><div class="metric-label">عائد سنوي</div><div class="metric-val">+48.62%</div><div class="metric-sub">خلال 12 شهراً</div></div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:8px;"><strong>الوضع المالي: ممتاز جداً.</strong> طلعت مصطفى هو رقم 1 في العقارات بمصر. مبيعات H1 2025 بلغت 51 مليار تعكس طلباً هائلاً. مشروعات ضخمة لسنوات قادمة تضمن تدفقات نقدية مستدامة.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول</div>
+      <div class="trade-grid">
+        <div class="entry-box">
+          <strong style="color:#2e7d32;">نقاط الدخول</strong>
+          <p style="font-size:13px;margin-top:6px;">📌 <strong>شراء أول: 77–80 ج</strong> — على المستوى الحالي (دعم قوي)</p>
+          <p style="font-size:13px;margin-top:5px;">📌 <strong>شراء ثانٍ: 68–70 ج</strong> — على تراجع إضافي</p>
+        </div>
+        <div class="target-box">
+          <strong style="color:#1a5276;">المستهدفات</strong>
+          <p style="font-size:13px;margin-top:6px;">🎯 <strong>هدف 1: 90–95 ج</strong> — 4 أسابيع</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 2: 100–105 ج</strong> — 2-3 أشهر (فوق القمة)</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف استثماري: 120-130 ج</strong> — هدف المحللين، 6-9 شهور</p>
+        </div>
+        <div class="sl-box">
+          <strong style="color:#c62828;">وقف الخسارة</strong>
+          <p style="font-size:13px;margin-top:6px;">🛑 <strong>65 جنيه</strong></p>
+          <p style="font-size:13px;margin-top:5px;">كسر قاع الارتداد الأخير يعني ضعف هيكلي</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">التوصية</div>
+      <div class="rec-box rec-strong-buy">
+        <span class="rec-label">🌟 شراء قوي | 40% مضاربي، 60% استثماري</span>
+        <div class="rec-text">المحللون يستهدفون 126 جنيه (+61% من الحالي). التراجع -20% من القمة يجعله نقطة دخول ممتازة. مناسب للمضارب والمستثمر. الطلب العقاري في مصر لا يزال في مرحلة الطفرة. القيمة العادلة: 100-120 ج.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:6px;">نقاط القوة ✅</p>
+          <ol class="strength-list">
+            <li>الرقم 1 في التطوير العقاري بمصر</li>
+            <li>مبيعات H1 51 مليار جنيه (تاريخي)</li>
+            <li>محفظة مشروعات ضخمة لسنوات قادمة</li>
+            <li>مشروع المتحف السياحي - قيمة استراتيجية</li>
+            <li>أعلى upside بين الأسهم الكبيرة (+61%)</li>
+          </ol>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:6px;">نقاط الضعف ⚠️</p>
+          <ol class="weakness-list">
+            <li>Beta 1.40 - تذبذب عالٍ</li>
+            <li>حساسية للفائدة العالية (قطاع عقاري)</li>
+            <li>تراجع شهر مارس -14.39% حاد</li>
+            <li>الطلب مرتبط بالقدرة الشرائية المتأثرة بالتضخم</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة</div>
+      <div class="war-effect">
+        <p>🏘️ القطاع العقاري هو <strong>أكثر القطاعات استفادةً من الاستقرار.</strong> أثناء الحرب: تراجع ثقة المستثمرين → تأجيل قرارات الشراء. بعد الهدنة: عودة الثقة → موجة شراء عقاري. <strong>رؤوس الأموال الخليجية المعطلة ستبحث عن وجهات آمنة - ومصر في مقدمتها.</strong> الهدنة = محفز فوري لـ TMGH. كل استقرار جيوسياسي مدة أسبوعين سيدفع السهم نحو 90 ج على الأقل.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 5: EGAL -->
+<!-- ============================================================ -->
+<div class="stock-card" id="egal">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-alum">ألم</div>
+      <div>
+        <div class="stock-title">مصر للألومنيوم</div>
+        <span class="stock-symbol">EGAL</span> <span class="badge b-spec">مضاربي / صناعي</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">~280–300 جنيه</div>
+      <span class="price-change dn">تراجع من قمة 276+</span>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">التحليل الكمي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">السعر الأخير</div><div class="metric-val">~290-295 ج</div><div class="metric-sub">مصدر: ArabFinance 295.5</div></div>
+        <div class="metric-card"><div class="metric-label">قمة سجلها</div><div class="metric-val">276+ ج</div><div class="metric-sub">يناير 2026 (ثم تخطاها)</div></div>
+        <div class="metric-card"><div class="metric-label">أدنى 52 أسبوع</div><div class="metric-val">139.40 ج</div><div class="metric-sub">نمو +112% سنوياً</div></div>
+        <div class="metric-card"><div class="metric-label">Beta</div><div class="metric-val">0.45</div><div class="metric-sub">تذبذب 6.60% (عالي)</div></div>
+        <div class="metric-card"><div class="metric-label">هدف المحلل</div><div class="metric-val">361 ج</div><div class="metric-sub">upside 59%+</div></div>
+        <div class="metric-card"><div class="metric-label">القيمة السوقية</div><div class="metric-val">94.46 مليار ج</div><div class="metric-sub">عملاق صناعي</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">أبرز الأخبار</div>
+      <table class="data-table">
+        <tr><th>التاريخ</th><th>الخبر</th><th>التأثير</th></tr>
+        <tr><td>يناير 2026</td><td>سهم مصر للألومنيوم يحقق قمة تاريخية</td><td><span class="price-change up">زخم شرائي</span></td></tr>
+        <tr><td>فبراير 2026</td><td>بيان من الشركة (تفاصيل غير محددة علنياً)</td><td><span class="price-change ntrl">محايد</span></td></tr>
+        <tr><td>يناير 2026</td><td>قرارات مجلس إدارة الشركة</td><td><span class="price-change ntrl">متابعة مستمرة</span></td></tr>
+        <tr><td>مارس 2025</td><td>RSI شهري عند 85.03 - مؤشر تشبع شرائي</td><td><span class="price-change dn">تحذير تقني</span></td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">الوضع المالي والتقييم</div>
+      <p style="font-size:13px;color:#555;">مصر للألومنيوم هي شركة حكومية استراتيجية تعمل في تحويل الألومنيوم. تستفيد من ارتفاع أسعار المعادن عالمياً وزيادة الطلب على التصنيع المحلي. المحلل الوحيد المتابع يستهدف 361 جنيه (+59%). الشركة بطبيعتها أقل إفصاحاً من شركات القطاع الخاص.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول</div>
+      <div class="trade-grid">
+        <div class="entry-box">
+          <strong style="color:#2e7d32;">نقاط الدخول</strong>
+          <p style="font-size:13px;margin-top:6px;">📌 <strong>شراء أول: 270–280 ج</strong> — على التراجع لمنطقة دعم قوية</p>
+          <p style="font-size:13px;margin-top:5px;">📌 <strong>شراء ثانٍ: 250–260 ج</strong> — تصحيح أعمق</p>
+        </div>
+        <div class="target-box">
+          <strong style="color:#1a5276;">المستهدفات</strong>
+          <p style="font-size:13px;margin-top:6px;">🎯 <strong>هدف 1: 310–320 ج</strong> — قصير المدى</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 2: 340 ج</strong> — 3 أشهر</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف المحلل: 361 ج</strong> — 6-9 شهور</p>
+        </div>
+        <div class="sl-box">
+          <strong style="color:#c62828;">وقف الخسارة</strong>
+          <p style="font-size:13px;margin-top:6px;">🛑 <strong>235 جنيه</strong></p>
+          <p style="font-size:13px;margin-top:5px;">كسر هذا المستوى يعني خروج المؤسسات</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">التوصية</div>
+      <div class="rec-box rec-buy">
+        <span class="rec-label">🟢 شراء معتدل | 65% مضاربي، 35% استثماري</span>
+        <div class="rec-text">السهم ارتفع بنسبة 112% خلال عام واحد. RSI في التشبع الشرائي. المستثمر المحافظ ينتظر تصحيحاً للـ 250-260 ج. المضارب يمكنه الدخول الحالي مع وقف صارم. القيمة العادلة: 300-360 ج.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#2e7d32;margin-bottom:6px;">نقاط القوة ✅</p>
+          <ol class="strength-list">
+            <li>زيادة الطلب على الألومنيوم في التصنيع والبناء</li>
+            <li>شركة حكومية - حماية من الإفلاس</li>
+            <li>هدف محلل 361 ج (+59% upside)</li>
+            <li>أسعار الألومنيوم العالمية في صعود</li>
+          </ol>
+        </div>
+        <div>
+          <p style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:6px;">نقاط الضعف ⚠️</p>
+          <ol class="weakness-list">
+            <li>RSI شهري 85.03 - تشبع شرائي خطير</li>
+            <li>تكاليف طاقة عالية (كهرباء الصهر ضخمة)</li>
+            <li>إفصاح محدود مقارنة بشركات خاصة</li>
+            <li>ارتفع 112% خلال عام - مخاطر تصحيح</li>
+            <li>حساسية عالية لأسعار الطاقة العالمية</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة وأسعار البترول</div>
+      <div class="war-effect">
+        <p>⚙️ <strong>تأثير مزدوج وحاسم:</strong><br>
+        ⛽ الطاقة الكهربائية (الغاز) = 40-50% من تكلفة إنتاج الألومنيوم. ارتفاع أسعار الغاز أثناء الحرب = ضغط هائل على الهامش.<br>
+        🕊️ <strong>الهدنة = انخفاض الغاز = زيادة الهامش = صعود السهم.</strong><br>
+        🌍 أسعار الألومنيوم في LME تتأثر بالأوضاع الجيوسياسية. انخفاض التوترات قد يخفض أسعار المعادن قليلاً، لكن الطلب الهيكلي يبقى قوياً.<br>
+        📊 إجمالاً: الهدنة إيجابية لـ EGAL بشكل صافٍ من ناحية تكاليف الطاقة.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 6: FERC -->
+<!-- ============================================================ -->
+<div class="stock-card" id="ferc">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-chem">فر</div>
+      <div>
+        <div class="stock-title">فيركيم مصر للأسمدة والكيماويات</div>
+        <span class="stock-symbol">FERC</span> <span class="badge b-spec">مضاربي / صغير النطاق</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">سهم صغير - بورصة النيل</div>
+      <span class="price-change ntrl">إفصاح محدود</span>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">نبذة عن الشركة</div>
+      <p style="font-size:13px;color:#333;">تأسست عام 2001 برأسمال 35.1 مليون جنيه. مصانعها في مدينة السادات (المنوفية) على 33,000 م². طاقة إنتاجية 100,000 طن سنوياً من الأسمدة المخلوطة. شركة يولي سيرف الأجنبية تمتلك 60.9%. مقيدة في بورصة النيل (للشركات الصغيرة والمتوسطة).</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">أبرز الأخبار الحديثة</div>
+      <table class="data-table">
+        <tr><th>التاريخ</th><th>الخبر</th><th>التأثير</th></tr>
+        <tr><td>9 أبريل 2026</td><td>فيركيم مصر: تأسيس شركة جديدة بـ 400 مليون جنيه لإنتاج الأسمدة</td><td><span class="price-change up">إيجابي قوي جداً</span></td></tr>
+        <tr><td>2026</td><td>توقع اتفاقية مع وزارة البترول في مشروعات تصنيع الفوسفات</td><td><span class="price-change up">استراتيجي ضخم</span></td></tr>
+        <tr><td>يناير 2026</td><td>الجمعية العامة غير العادية تناقش جدول أعمال</td><td><span class="price-change ntrl">تتابع</span></td></tr>
+        <tr><td>2025</td><td>يولي سيرف تخفض حصتها من 60.9% (كانت أعلى)</td><td><span class="price-change ntrl">تغيير في هيكل الملكية</span></td></tr>
+        <tr><td>2025</td><td>توزيع كوبون نقدي</td><td><span class="price-change up">إيجابي</span></td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول (تحفظية لأسباب السيولة)</div>
+      <div class="rec-box rec-neutral">
+        <span class="rec-label">⚡ محتمل المضاربة | تحذير: بورصة النيل - سيولة منخفضة</span>
+        <div class="rec-text">
+          <strong>لماذا FERC مثير للاهتمام الآن؟</strong> خبر اليوم (9 أبريل 2026) عن تأسيس شركة جديدة بـ 400 مليون جنيه + اتفاقية محتملة مع البترول للفوسفات = محفزات حقيقية قوية.<br><br>
+          <strong>تحذير هام:</strong> بورصة النيل تعني سيولة منخفضة جداً وسهولة التلاعب. الدخول بمبالغ صغيرة فقط ولا تدخل بأكثر من 5% من محفظتك.<br><br>
+          📌 نقطة دخول: على أي تراجع بعد الخبر<br>
+          🎯 استهداف: 30-50% على نظرة 3-6 أشهر مع نجاح المشروع الجديد<br>
+          🛑 وقف خسارة: -15% من سعر الدخول بسبب التقلب الشديد
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة واليوريا والبترول</div>
+      <div class="war-effect">
+        <p>🌿 <strong>الأكثر تأثراً من بين الأسهم الثمانية:</strong><br>
+        📈 ارتفاع أسعار اليوريا والأسمدة عالمياً (نتيجة الحرب) = رفع أسعار بيع فيركيم = أرباح أعلى.<br>
+        ⛽ ارتفاع أسعار الغاز والطاقة = زيادة تكلفة الإنتاج (ضاغطة).<br>
+        🕊️ الهدنة = انخفاض أسعار الطاقة + استمرار ارتفاع أسعار الأسمدة = الوضع الأفضل لـ FERC.<br>
+        🇪🇬 مشروع الفوسفات مع وزارة البترول = دخل دولاري محتمل على المدى البعيد.<br>
+        <strong>المحصلة: الهدنة + اليوريا الغالية = مزيج مثالي لأسهم الأسمدة.</strong></p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <ol class="strength-list">
+            <li>محفزات حقيقية كبيرة (شركة جديدة + فوسفات)</li>
+            <li>الأسمدة قطاع استراتيجي حكومياً</li>
+            <li>توزيعات منتظمة</li>
+            <li>الطلب الزراعي المصري لا يتراجع</li>
+          </ol>
+        </div>
+        <div>
+          <ol class="weakness-list">
+            <li>بورصة النيل: سيولة منخفضة جداً</li>
+            <li>شركة صغيرة - مخاطر تركيز عالية</li>
+            <li>إفصاح مالي محدود للعام</li>
+            <li>يولي سيرف تخفض حصتها - ماذا تعرف؟</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 7: FWRY -->
+<!-- ============================================================ -->
+<div class="stock-card" id="fwry">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-pay">فو</div>
+      <div>
+        <div class="stock-title">فوري لتكنولوجيا البنوك والمدفوعات</div>
+        <span class="stock-symbol">FWRY</span> <span class="badge b-mixed">نمو / تكنولوجيا</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">~19–20 جنيه</div>
+      <span class="price-change up">ارتفع 14% من أبريل 3</span>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">التحليل الكمي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">السعر اليوم (9 أبريل)</div><div class="metric-val">19.57–19.95 ج</div><div class="metric-sub">Investing.com اليوم</div></div>
+        <div class="metric-card"><div class="metric-label">قمة 52 أسبوع</div><div class="metric-val">20.75 ج</div><div class="metric-sub">قريب من القمة!</div></div>
+        <div class="metric-card"><div class="metric-label">أدنى 52 أسبوع</div><div class="metric-val">7.92 ج</div><div class="metric-sub">ارتفع 152% سنوياً!</div></div>
+        <div class="metric-card"><div class="metric-label">Beta</div><div class="metric-val">0.98</div><div class="metric-sub">تذبذب 4.72%</div></div>
+        <div class="metric-card"><div class="metric-label">هدف المحللين</div><div class="metric-val">19.66 ج</div><div class="metric-sub">5 محللين شراء</div></div>
+        <div class="metric-card"><div class="metric-label">متوسط حجم يومي</div><div class="metric-val">3.34م سهم</div><div class="metric-sub">سيولة ممتازة</div></div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:6px;"><strong>ملاحظة ذهبية:</strong> السهم اليوم (19.57-19.95 ج) أعلى من هدف المحللين (19.66 ج) - أي أن المحللين لم يحدّثوا تقييماتهم بعد. التحليل الفني يعطي إشارة "شراء قوي" على أسبوع وشهر.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">أبرز الأخبار</div>
+      <table class="data-table">
+        <tr><th>التاريخ</th><th>الخبر</th><th>التأثير</th></tr>
+        <tr><td>2025</td><td>عودة الخدمات بعد حريق سنترال رمسيس</td><td><span class="price-change up">استعادة الثقة</span></td></tr>
+        <tr><td>2025</td><td>صفقة نقل ملكية بـ 302 ألف جنيه</td><td><span class="price-change ntrl">حركة داخلية</span></td></tr>
+        <tr><td>2025</td><td>نمو سنوي +103% في سعر السهم</td><td><span class="price-change up">أداء استثنائي</span></td></tr>
+        <tr><td>2026</td><td>ارتفاع +6% شهرياً + 5.54% أسبوعياً</td><td><span class="price-change up">زخم شرائي</span></td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">الوضع المالي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">القيمة السوقية</div><div class="metric-val">56.69 مليار ج</div><div class="metric-sub">+4.46% أسبوعياً</div></div>
+        <div class="metric-card"><div class="metric-label">نمو سعر السهم سنوي</div><div class="metric-val">+103%</div><div class="metric-sub">خلال 12 شهراً</div></div>
+        <div class="metric-card"><div class="metric-label">توقع أرباح</div><div class="metric-val">3 يونيو 2026</div><div class="metric-sub">إعلان قادم قريباً</div></div>
+        <div class="metric-card"><div class="metric-label">انقسامات الأسهم</div><div class="metric-val">مرتين</div><div class="metric-sub">تعكس توسع القاعدة</div></div>
+      </div>
+      <p style="font-size:13px;color:#555;margin-top:8px;"><strong>تقييم الوضع: ممتاز مع مخاطر.</strong> فوري هو الأرقام 1 في المدفوعات الإلكترونية بمصر. نمو قطاع الـ FinTech في مصر ضخم. لكن التقييم مرتفع بعد ارتفاع 152% خلال عام.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول</div>
+      <div class="trade-grid">
+        <div class="entry-box">
+          <strong style="color:#2e7d32;">نقاط الدخول</strong>
+          <p style="font-size:13px;margin-top:6px;">📌 <strong>شراء جزئي الآن: 19-20 ج</strong> — قرب القمة بزخم قوي</p>
+          <p style="font-size:13px;margin-top:5px;">📌 <strong>شراء أساسي: 17-18 ج</strong> — على تراجع مؤقت</p>
+        </div>
+        <div class="target-box">
+          <strong style="color:#1a5276;">المستهدفات</strong>
+          <p style="font-size:13px;margin-top:6px;">🎯 <strong>هدف 1: 21-22 ج</strong> — قمة جديدة خلال أسبوعين</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 2: 24-25 ج</strong> — بعد أرباح يونيو 2026</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف استثماري: 28-30 ج</strong> — 9-12 شهراً</p>
+        </div>
+        <div class="sl-box">
+          <strong style="color:#c62828;">وقف الخسارة</strong>
+          <p style="font-size:13px;margin-top:6px;">🛑 <strong>16 جنيه</strong></p>
+          <p style="font-size:13px;margin-top:5px;">كسر هذا المستوى = نهاية الاتجاه الصاعد</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">التوصية</div>
+      <div class="rec-box rec-buy">
+        <span class="rec-label">🟢 شراء على التراجعات | 50% مضاربي، 50% نمو طويل</span>
+        <div class="rec-text">فوري = أمازون Pay المصرية. النمو الهيكلي في المدفوعات الإلكترونية يضمن استدامة الأرباح. السهم قريب من قمته التاريخية - الأفضل الانتظار لتراجع 17-18 ج. أرباح يونيو 2026 قد تكون المحفز للقمة الجديدة. القيمة العادلة: 22-28 ج.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <ol class="strength-list">
+            <li>الأرقام 1 في المدفوعات الإلكترونية بمصر</li>
+            <li>نمو FinTech هيكلي لا يتوقف</li>
+            <li>5 محللين يوصون بالشراء</li>
+            <li>تغطية 70+ مليون مصري بالخدمة</li>
+            <li>حجم يومي 3.34 مليون سهم - سيولة ممتازة</li>
+          </ol>
+        </div>
+        <div>
+          <ol class="weakness-list">
+            <li>ارتفع 152% خلال عام - تقييم مرتفع</li>
+            <li>حريق سنترال رمسيس كشف نقطة ضعف تشغيلية</li>
+            <li>منافسة متزايدة من بنك مصر الرقمي</li>
+            <li>قرب من القمة التاريخية (20.75 ج)</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة</div>
+      <div class="war-effect">
+        <p>💳 قطاع المدفوعات الرقمية دفاعي نسبياً. الحرب لا تؤثر على حاجة الناس للمدفوعات اليومية. بل بالعكس: في أوقات الأزمات يزداد استخدام المدفوعات الرقمية. الهدنة ستعيد ثقة المستثمرين → صعود عام في البورصة → FWRY ترتفع. <strong>المحفز الأهم: أرباح 3 يونيو 2026.</strong> إذا جاءت إيجابية + استمرت الهدنة → توقع 22-24 ج.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- STOCK 8: HDBK -->
+<!-- ============================================================ -->
+<div class="stock-card" id="hdbk">
+  <div class="stock-header">
+    <div class="stock-name-block">
+      <div class="stock-icon ic-hdb">عم</div>
+      <div>
+        <div class="stock-title">بنك التعمير والإسكان</div>
+        <span class="stock-symbol">HDBK</span> <span class="badge b-inv">استثماري / عقاري بنكي</span>
+      </div>
+    </div>
+    <div class="price-block">
+      <div class="price-main">~110–115 جنيه</div>
+      <span class="price-change ntrl">قرب المقاومة التاريخية</span>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="section">
+      <div class="section-title">التحليل الكمي</div>
+      <div class="metric-row">
+        <div class="metric-card"><div class="metric-label">السعر (مارس 23)</div><div class="metric-val">114.49 ج</div><div class="metric-sub">+1.04% تلك الجلسة</div></div>
+        <div class="metric-card"><div class="metric-label">قمة تاريخية</div><div class="metric-val">119.50 ج</div><div class="metric-sub">قريب منها الآن</div></div>
+        <div class="metric-card"><div class="metric-label">أدنى 52 أسبوع</div><div class="metric-val">50.07 ج</div><div class="metric-sub">ارتفع 129% سنوياً!</div></div>
+        <div class="metric-card"><div class="metric-label">إشارة فنية</div><div class="metric-val">شراء قوي</div><div class="metric-sub">Strong Buy تقنياً</div></div>
+        <div class="metric-card"><div class="metric-label">هدف المحللين</div><div class="metric-val">121.56 ج</div><div class="metric-sub">4 محللين شراء</div></div>
+        <div class="metric-card"><div class="metric-label">أعلى تقدير</div><div class="metric-val">140 ج</div><div class="metric-sub">upside واعد</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">مميزات HDBK</div>
+      <p style="font-size:13px;color:#333;">بنك التعمير والإسكان هو البنك الوحيد المتخصص في التمويل العقاري في مصر. يستفيد مزدوجاً من: (1) طفرة القطاع العقاري، (2) برامج الإسكان الاجتماعي الحكومية. انقسم 8 مرات، مما يعكس نمواً تاريخياً ثابتاً. 3,269 موظف.</p>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">خطة التداول</div>
+      <div class="trade-grid">
+        <div class="entry-box">
+          <strong style="color:#2e7d32;">نقاط الدخول</strong>
+          <p style="font-size:13px;margin-top:6px;">📌 <strong>شراء أول: 108–112 ج</strong> — في النطاق الحالي</p>
+          <p style="font-size:13px;margin-top:5px;">📌 <strong>شراء ثانٍ: 95–100 ج</strong> — على تراجع</p>
+        </div>
+        <div class="target-box">
+          <strong style="color:#1a5276;">المستهدفات</strong>
+          <p style="font-size:13px;margin-top:6px;">🎯 <strong>هدف 1: 120-125 ج</strong> — كسر القمة التاريخية</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 2: 130 ج</strong> — 2 أشهر</p>
+          <p style="font-size:13px;margin-top:5px;">🎯 <strong>هدف 3: 140 ج</strong> — أعلى تقدير للمحللين</p>
+        </div>
+        <div class="sl-box">
+          <strong style="color:#c62828;">وقف الخسارة</strong>
+          <p style="font-size:13px;margin-top:6px;">🛑 <strong>90 جنيه</strong></p>
+          <p style="font-size:13px;margin-top:5px;">كسر المتوسط 200 يوم</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">التوصية</div>
+      <div class="rec-box rec-buy">
+        <span class="rec-label">🟢 شراء معتدل | 30% مضاربي، 70% استثماري</span>
+        <div class="rec-text">السهم يحوم قرب قمته التاريخية 119.5 ج. اختراق هذه القمة سيفتح أهدافاً عند 130-140 ج. المضارب ينتظر تأكيد الاختراق. المستثمر طويل الأمد يدخل الآن بمركز جزئي. القيمة العادلة: 125-140 ج.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">نقاط القوة والضعف</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <ol class="strength-list">
+            <li>التخصص في التمويل العقاري = ميزة تنافسية فريدة</li>
+            <li>شراكة استراتيجية مع برامج الإسكان الحكومية</li>
+            <li>4 محللين شراء - لا أحد بيع</li>
+            <li>قرب من كسر القمة التاريخية (اختراق محتمل)</li>
+            <li>إشارة "Strong Buy" فنياً</li>
+          </ol>
+        </div>
+        <div>
+          <ol class="weakness-list">
+            <li>أصغر حجماً من البنوك الكبيرة</li>
+            <li>حساسية عالية لأسعار الفائدة</li>
+            <li>مقاومة تاريخية عند 119.5 ج قد تعيق الصعود مؤقتاً</li>
+            <li>ارتفع 129% - تقييم غير رخيص</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section">
+      <div class="section-title">تأثير الحرب والهدنة</div>
+      <div class="war-effect">
+        <p>🏠 بنك التعمير مرتبط بـ TMGH في السلوك: كلاهما يستفيد من استقرار القطاع العقاري. الهدنة = ثقة المستثمرين = قطاع عقاري نشط = تمويل عقاري أكثر. خفض الفائدة المتوقع مع تراجع التضخم = <strong>المحرك الأقوى لبنك التعمير.</strong> كل 1% خفض في الفائدة يعني زيادة الطلب على القروض العقارية بشكل كبير.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- COMPARISON TABLE -->
+<!-- ============================================================ -->
+<div class="compare-section" id="compare">
+  <h2>📊 المقارنة الشاملة والاحترافية بين الأسهم الثمانية</h2>
+  <table class="compare">
+    <thead>
+      <tr>
+        <th>السهم</th>
+        <th>السعر الحالي</th>
+        <th>القمة 52 أسبوع</th>
+        <th>التراجع من القمة</th>
+        <th>هدف المحللين</th>
+        <th>الارتفاع المحتمل</th>
+        <th>P/E</th>
+        <th>البيتا</th>
+        <th>التوصية</th>
+        <th>النوع</th>
+        <th>الأولوية</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>TMGH طلعت مصطفى</strong></td>
+        <td>78–81 ج</td>
+        <td>97.39 ج</td>
+        <td style="color:#c62828;">−20%</td>
+        <td>126.32 ج</td>
+        <td style="color:#2e7d32;font-weight:700;">+61%</td>
+        <td>~8x</td>
+        <td>1.40</td>
+        <td style="color:#1a7a4a;font-weight:700;">شراء قوي</td>
+        <td>استثماري</td>
+        <td><span style="color:#f9a825;">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>ADIB أبو ظبي الإسلامي</strong></td>
+        <td>37–40 ج</td>
+        <td>44.97 ج</td>
+        <td style="color:#c62828;">−18%</td>
+        <td>50.08 ج</td>
+        <td style="color:#2e7d32;font-weight:700;">+36%</td>
+        <td>~5x</td>
+        <td>1.14</td>
+        <td style="color:#1a7a4a;font-weight:700;">شراء قوي</td>
+        <td>استثماري</td>
+        <td><span style="color:#f9a825;">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>ETEL المصرية للاتصالات</strong></td>
+        <td>82–86 ج</td>
+        <td>112.98 ج</td>
+        <td style="color:#c62828;">−25%</td>
+        <td>105.84 ج</td>
+        <td style="color:#2e7d32;font-weight:700;">+25%</td>
+        <td>~12x</td>
+        <td>0.88</td>
+        <td style="color:#1a7a4a;font-weight:700;">شراء قوي</td>
+        <td>دفاعي</td>
+        <td><span style="color:#f9a825;">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>EGAL مصر للألومنيوم</strong></td>
+        <td>280–300 ج</td>
+        <td>276+ ج</td>
+        <td style="color:#2e7d32;">فوق القمة</td>
+        <td>361 ج</td>
+        <td style="color:#2e7d32;font-weight:700;">+59%</td>
+        <td>~9x</td>
+        <td>0.45</td>
+        <td style="color:#4a90d9;">شراء معتدل</td>
+        <td>مضاربي</td>
+        <td><span style="color:#f9a825;">★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>HDBK التعمير والإسكان</strong></td>
+        <td>110–115 ج</td>
+        <td>119.50 ج</td>
+        <td style="color:#c62828;">−4%</td>
+        <td>121.56 ج</td>
+        <td style="color:#2e7d32;">+6-22%</td>
+        <td>~7x</td>
+        <td>~1.0</td>
+        <td style="color:#4a90d9;">شراء معتدل</td>
+        <td>استثماري</td>
+        <td><span style="color:#f9a825;">★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>FWRY فوري</strong></td>
+        <td>19–20 ج</td>
+        <td>20.75 ج</td>
+        <td style="color:#c62828;">−3%</td>
+        <td>19.66 ج</td>
+        <td style="color:#2e7d32;">+15-40%</td>
+        <td>~30x</td>
+        <td>0.98</td>
+        <td style="color:#4a90d9;">شراء على تراجع</td>
+        <td>نمو</td>
+        <td><span style="color:#f9a825;">★★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>MCQE مصر للاسمنت قنا</strong></td>
+        <td>185–190 ج</td>
+        <td>185.70 ج</td>
+        <td style="color:#c62828;">عند القمة</td>
+        <td>90-114 ج</td>
+        <td style="color:#c62828;">محدود قصيراً</td>
+        <td>4.83</td>
+        <td>−0.17</td>
+        <td style="color:#c47f00;">شراء على تراجع</td>
+        <td>مضاربي</td>
+        <td><span style="color:#f9a825;">★★★</span></td>
+      </tr>
+      <tr>
+        <td><strong>FERC فيركيم</strong></td>
+        <td>غير متاح</td>
+        <td>غير متاح</td>
+        <td>—</td>
+        <td>غير متاح</td>
+        <td>محفزات قوية</td>
+        <td>—</td>
+        <td>—</td>
+        <td style="color:#c47f00;">مضاربة فقط</td>
+        <td>مضاربي</td>
+        <td><span style="color:#f9a825;">★★★</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- RECOMMENDED ADDITIONAL STOCKS -->
+<!-- ============================================================ -->
+<div class="compare-section" id="recommended">
+  <h2>💡 أسهم مصرية مقترحة إضافية تستحق الدراسة</h2>
+  <table class="compare">
+    <thead>
+      <tr><th>السهم</th><th>الرمز</th><th>السبب</th><th>النوع</th><th>الأولوية</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>البنك التجاري الدولي</strong></td><td>COMI</td><td>أكبر بنك خاص في مصر. أداء قياسي ثابت. استثمار دفاعي ممتاز. مدعوم من EGX30</td><td>استثماري ممتاز</td><td>★★★★★</td></tr>
+      <tr><td><strong>إيفولف للتكنولوجيا (Raya)</strong></td><td>IRAX</td><td>قطاع التكنولوجيا والخدمات الرقمية سريع النمو. مستفيد من الرقمنة الحكومية</td><td>نمو</td><td>★★★★</td></tr>
+      <tr><td><strong>بالم هيلز للتطوير</strong></td><td>PHDC</td><td>ثاني أكبر مطور عقاري بعد طلعت مصطفى. نمو قوي وأسعار معقولة نسبياً</td><td>عقاري/استثماري</td><td>★★★★</td></tr>
+      <tr><td><strong>بنك مصر للإسكان</strong></td><td>EBH</td><td>يوفر تمويل عقاري بفوائد تنافسية. مستفيد من انخفاض التضخم وخفض الفائدة</td><td>بنكي/استثماري</td><td>★★★★</td></tr>
+      <tr><td><strong>سيدبك للبتروكيماويات</strong></td><td>SKPC</td><td>الشركة الرائدة في مصر للبتروكيماويات. مستفيدة من كيمياء النفط حتى مع تراجع الأسعار</td><td>صناعي/مضاربي</td><td>★★★</td></tr>
+      <tr><td><strong>أوراسكوم للتشييد</strong></td><td>ORAS</td><td>عمالقة البناء والإنشاءات في مصر وأفريقيا. مستفيد من مشاريع البنية التحتية</td><td>صناعي/نمو</td><td>★★★★</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- TIMING GUIDE -->
+<!-- ============================================================ -->
+<div class="stock-card" style="border:2px solid #1a3a5c;">
+  <div class="stock-header" style="background:#f0f4ff;">
+    <div class="stock-name-block">
+      <div>
+        <div class="stock-title">🗓️ دليل التوقيت: متى تشتري؟</div>
+        <p style="font-size:13px;color:#666;margin-top:3px;">ترتيب الأولويات حسب الفرصة الحالية</p>
+      </div>
+    </div>
+  </div>
+  <div class="stock-body">
+    <div class="scenario-grid">
+      <div class="scenario sc-a">
+        <div class="sc-title">🟢 الآن (أبريل 2026)</div>
+        <p style="font-size:13px;"><strong>ADIB</strong> - تراجع 18% من قمته<br><strong>TMGH</strong> - تراجع 20% وزخم<br><strong>ETEL</strong> - دفاعي بسعر مناسب</p>
+      </div>
+      <div class="scenario sc-b">
+        <div class="sc-title">🟡 انتظر تراجعًا (1-2 أسبوع)</div>
+        <p style="font-size:13px;"><strong>FWRY</strong> - انتظر 17-18 ج<br><strong>HDBK</strong> - انتظر كسر 119.5 ج<br><strong>EGAL</strong> - انتظر 260-270 ج</p>
+      </div>
+      <div class="scenario sc-c">
+        <div class="sc-title">🔴 تريّث (مخاطر عالية)</div>
+        <p style="font-size:13px;"><strong>MCQE</strong> - عند القمة، انتظر 175 ج<br><strong>FERC</strong> - سيولة منخفضة جداً</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;background:#f8f7f3;border-radius:10px;padding:1rem;">
+      <p style="font-size:14px;font-weight:700;color:#1a3a5c;margin-bottom:8px;">📐 توزيع مقترح للمحفظة:</p>
+      <table class="data-table">
+        <tr><th>نوع المستثمر</th><th>ADIB</th><th>ETEL</th><th>TMGH</th><th>FWRY</th><th>HDBK</th><th>EGAL</th><th>MCQE</th><th>FERC</th></tr>
+        <tr><td><strong>محافظ (طويل)</strong></td><td>30%</td><td>30%</td><td>20%</td><td>10%</td><td>10%</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><strong>متوسط</strong></td><td>20%</td><td>20%</td><td>20%</td><td>15%</td><td>10%</td><td>10%</td><td>5%</td><td>—</td></tr>
+        <tr><td><strong>مضارب</strong></td><td>15%</td><td>10%</td><td>20%</td><td>15%</td><td>10%</td><td>20%</td><td>5%</td><td>5%</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Disclaimer -->
+<div class="disclaimer">
+  <strong>⚠️ تنويه قانوني وأخلاقي مهم:</strong><br>
+  أسواق المال تنطوي على مخاطر مالية عالية، والقرارات الاستثمارية المتخذة بناءً على هذه المعلومات هي مسؤوليتك الشخصية بالكامل. يُنصح دائماً بمراعاة قواعد إدارة رأس المال والالتزام الصارم بنقاط وقف الخسارة. هذا التقرير إعلامي ولا يمثل توصية استثمارية رسمية. الأسعار المذكورة مبنية على آخر بيانات متاحة من مصادر Investing.com وTradingView وMubasher وBloomberg حتى 9 أبريل 2026، وقد تتغير في أي لحظة. الأداء السابق لا يضمن الأداء المستقبلي. لا تستثمر أموالاً لا تتحمل خسارتها.
+</div>
+
+</div>
+</body>
+</html>
