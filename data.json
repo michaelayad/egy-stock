@@ -3,6 +3,14 @@
   "siteSubtitle": "تقارير تحليل الأسهم و المحفظة الاستثمارية",
   "reports": [
     {
+      "title": "فرص مقترحة — أبريل",
+      "subtitle": "مضاربي + متوسط + طويل المدى",
+      "path": "reports/suggestions-2026-04-27.html",
+      "date": "2026-04-27",
+      "type": "فرص مقترحة",
+      "badge": null
+    },
+    {
       "title": "تحليل المحفظة الاستثمارية",
       "subtitle": "أسهم + صناديق ذهب + ادخار — ثاندر",
       "path": "reports/portfolio-2026-04-26.html",
