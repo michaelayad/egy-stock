@@ -5,1242 +5,1795 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>📋 تحليل المحفظة الاستثمارية — 4 مايو 2026</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap');
+
   :root {
-    --bg: #0d1117;
-    --bg2: #161b22;
-    --bg3: #1c2230;
-    --border: #30363d;
-    --text: #e6edf3;
-    --muted: #8b949e;
-    --green: #3fb950;
-    --green-bg: #0d2319;
-    --green-border: #1a4731;
-    --red: #f85149;
-    --red-bg: #2d1117;
-    --red-border: #5c1a1a;
-    --yellow: #d29922;
-    --yellow-bg: #2d2000;
-    --yellow-border: #5c3d00;
-    --blue: #58a6ff;
-    --purple: #bc8cff;
-    --orange: #f0883e;
-    --teal: #39c5cf;
-    --gold: #e3b341;
-    --radius: 12px;
-    --shadow: 0 4px 24px rgba(0,0,0,0.5);
+    --bg-primary: #0a0e17;
+    --bg-card: #111827;
+    --bg-card2: #141d2e;
+    --bg-elevated: #1a2540;
+    --accent-gold: #f5c842;
+    --accent-green: #00d68f;
+    --accent-red: #ff4d6a;
+    --accent-yellow: #ffb800;
+    --accent-blue: #4d9fff;
+    --accent-purple: #9b6dff;
+    --text-primary: #e8edf5;
+    --text-secondary: #8fa3c0;
+    --text-muted: #4a6080;
+    --border: rgba(255,255,255,0.07);
+    --border-green: rgba(0,214,143,0.3);
+    --border-red: rgba(255,77,106,0.3);
+    --border-gold: rgba(245,200,66,0.3);
+    --shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
   }
+
+  /* Background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 20%, rgba(77,159,255,0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(155,109,255,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   /* STICKY NAV */
   nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(13,17,23,0.95);
-    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,14,23,0.92);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    padding: 8px 20px;
-    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
-    justify-content: flex-end;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 52px;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
+  nav::-webkit-scrollbar { display: none; }
   nav a {
-    color: var(--muted); text-decoration: none; font-size: 12px;
-    padding: 4px 10px; border-radius: 20px;
-    border: 1px solid var(--border); transition: all .2s;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
   }
-  nav a:hover { color: var(--text); border-color: var(--blue); }
+  nav a:hover { color: var(--text-primary); border-bottom-color: var(--accent-gold); }
+  nav .nav-brand { color: var(--accent-gold); font-weight: 900; font-size: 13px; margin-left: auto; }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 24px 20px;
+    position: relative;
+    z-index: 1;
+  }
+
   /* HEADER */
   .header {
-    background: linear-gradient(135deg, #0d2319 0%, #0d1117 50%, #1a1a2e 100%);
-    border-bottom: 2px solid var(--green-border);
-    padding: 32px 24px 24px;
     text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
   }
-  .header h1 { font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
-  .header .meta { color: var(--muted); font-size: 14px; }
-  .header .meta span { color: var(--blue); font-weight: 600; }
-  /* CONTAINER */
-  .container { max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
-  /* SECTIONS */
-  .section { margin-bottom: 36px; }
-  .section-title {
-    font-size: 18px; font-weight: 700; color: var(--gold);
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 8px; margin-bottom: 16px;
-    display: flex; align-items: center; gap: 8px;
+  .header h1 {
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent-gold), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
   }
+  .header .meta {
+    color: var(--text-secondary);
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .header .meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* CARDS */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(77,159,255,0.06), transparent);
+    border-radius: 0 16px 0 100%;
+  }
+  .card.green { border-color: var(--border-green); }
+  .card.green::before { background: radial-gradient(circle, rgba(0,214,143,0.06), transparent); }
+  .card.red { border-color: var(--border-red); }
+  .card.red::before { background: radial-gradient(circle, rgba(255,77,106,0.06), transparent); }
+  .card.gold { border-color: var(--border-gold); }
+  .card.gold::before { background: radial-gradient(circle, rgba(245,200,66,0.06), transparent); }
+  .card.urgent {
+    border-color: rgba(255,184,0,0.5);
+    animation: pulse-border 2s infinite;
+  }
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,184,0,0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(255,184,0,0); }
+  }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .card-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+  .card-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
   /* DASHBOARD GRID */
-  .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 28px; }
-  .kpi {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 16px; text-align: center;
-    box-shadow: var(--shadow);
-  }
-  .kpi .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
-  .kpi .value { font-size: 24px; font-weight: 700; margin: 6px 0; }
-  .kpi .sub { font-size: 12px; color: var(--muted); }
-  .kpi.green { border-color: var(--green-border); background: var(--green-bg); }
-  .kpi.green .value { color: var(--green); }
-  .kpi.red { border-color: var(--red-border); background: var(--red-bg); }
-  .kpi.red .value { color: var(--red); }
-  .kpi.gold { border-color: #5c3d00; background: #1a1000; }
-  .kpi.gold .value { color: var(--gold); }
-  .kpi.blue { border-color: #1a3a5c; background: #0d1f33; }
-  .kpi.blue .value { color: var(--blue); }
-  /* ACTION PLAN - PROMINENT */
-  .action-plan {
-    background: var(--bg2); border: 2px solid var(--gold);
-    border-radius: var(--radius); padding: 20px;
-    box-shadow: 0 0 30px rgba(227,179,65,0.15);
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
     margin-bottom: 28px;
   }
-  .action-plan h2 { color: var(--gold); font-size: 18px; margin-bottom: 14px; }
-  /* TABLES */
-  .tbl-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to left, transparent, var(--border));
+  }
+
+  /* BADGE */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge.green { background: rgba(0,214,143,0.15); color: var(--accent-green); }
+  .badge.red { background: rgba(255,77,106,0.15); color: var(--accent-red); }
+  .badge.yellow { background: rgba(255,184,0,0.15); color: var(--accent-yellow); }
+  .badge.blue { background: rgba(77,159,255,0.15); color: var(--accent-blue); }
+  .badge.urgent { background: rgba(255,184,0,0.2); color: var(--accent-yellow); border: 1px solid rgba(255,184,0,0.4); }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+  }
+
+  /* PROFIT/LOSS */
+  .profit { color: var(--accent-green); font-weight: 700; }
+  .loss { color: var(--accent-red); font-weight: 700; }
+  .neutral { color: var(--accent-yellow); font-weight: 700; }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x: auto; margin: 0 -4px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
   th {
-    background: var(--bg3); color: var(--muted);
-    padding: 10px 12px; text-align: right;
-    font-weight: 600; font-size: 12px;
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 12px;
+    text-align: right;
+    white-space: nowrap;
+  }
+  td {
+    padding: 11px 12px;
     border-bottom: 1px solid var(--border);
+    text-align: right;
+    vertical-align: middle;
   }
-  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: rgba(255,255,255,0.03); }
-  .g { color: var(--green); font-weight: 600; }
-  .r { color: var(--red); font-weight: 600; }
-  .y { color: var(--yellow); font-weight: 600; }
-  .b { color: var(--blue); }
-  .gold-text { color: var(--gold); }
-  /* CARDS */
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 16px; }
-  .card {
-    background: var(--bg2); border-radius: var(--radius);
-    border: 1px solid var(--border); padding: 16px;
-    box-shadow: var(--shadow); position: relative;
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* HOLDING CARD */
+  .holding-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: transform 0.2s;
   }
-  .card.profit { border-right: 4px solid var(--green); }
-  .card.loss { border-right: 4px solid var(--red); }
-  .card.neutral { border-right: 4px solid var(--yellow); }
-  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-  .card-title { font-size: 18px; font-weight: 700; color: var(--text); }
-  .card-type { font-size: 11px; background: var(--bg3); padding: 3px 8px; border-radius: 20px; color: var(--muted); }
-  .card-badge {
-    display: inline-block; padding: 4px 12px; border-radius: 20px;
-    font-size: 12px; font-weight: 700;
+  .holding-card:hover { transform: translateY(-2px); }
+  .holding-card.green { border-right: 3px solid var(--accent-green); }
+  .holding-card.red { border-right: 3px solid var(--accent-red); }
+  .holding-card.gold { border-right: 3px solid var(--accent-gold); }
+  .holding-card.urgent { border-right: 3px solid var(--accent-yellow); box-shadow: 0 0 20px rgba(255,184,0,0.1); }
+
+  .holding-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
   }
-  .badge-buy { background: #0d2319; color: var(--green); border: 1px solid var(--green-border); }
-  .badge-hold { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
-  .badge-sell { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-  .badge-partial { background: #2d1a00; color: var(--orange); border: 1px solid #5c3200; }
-  .card-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
-  .metric { background: var(--bg3); border-radius: 8px; padding: 8px 10px; }
-  .metric .lbl { font-size: 10px; color: var(--muted); }
-  .metric .val { font-size: 15px; font-weight: 700; }
-  .tech-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
-  .tech-tag { background: var(--bg3); padding: 3px 8px; border-radius: 6px; font-size: 11px; }
+  .holding-name {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--text-primary);
+  }
+  .holding-name span {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    display: block;
+    margin-top: 2px;
+  }
+  .holding-pnl {
+    text-align: left;
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  /* ANALYSIS GRID */
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .analysis-item {
+    background: var(--bg-elevated);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .analysis-item .label {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .analysis-item .value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* RECOMMENDATION BOX */
   .rec-box {
-    border-radius: 8px; padding: 12px; margin-top: 12px;
-    border: 1px solid;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 14px;
   }
-  .rec-box.buy { background: var(--green-bg); border-color: var(--green-border); }
-  .rec-box.hold { background: var(--yellow-bg); border-color: var(--yellow-border); }
-  .rec-box.sell { background: var(--red-bg); border-color: var(--red-border); }
-  .rec-box.partial { background: #1a0d00; border-color: #5c3200; }
-  .rec-box h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-  .rec-box ul { list-style: none; padding: 0; }
-  .rec-box ul li { font-size: 12px; padding: 2px 0; display: flex; gap: 6px; }
-  .rec-box ul li::before { content: '◆'; font-size: 8px; margin-top: 4px; flex-shrink: 0; }
-  .summary-line { background: var(--bg3); border-radius: 6px; padding: 8px 12px; margin-top: 10px; font-size: 12px; font-style: italic; color: var(--blue); }
-  /* FUND CARDS */
-  .fund-card {
-    background: var(--bg2); border-radius: var(--radius);
-    border: 1px solid var(--border); padding: 16px;
-    box-shadow: var(--shadow);
+  .rec-box.hold { background: rgba(255,184,0,0.06); border: 1px solid rgba(255,184,0,0.2); }
+  .rec-box.buy { background: rgba(0,214,143,0.06); border: 1px solid rgba(0,214,143,0.2); }
+  .rec-box.sell-partial { background: rgba(255,153,0,0.06); border: 1px solid rgba(255,153,0,0.2); }
+  .rec-box.sell-all { background: rgba(255,77,106,0.06); border: 1px solid rgba(255,77,106,0.2); }
+  .rec-box.urgent-action { background: rgba(255,184,0,0.1); border: 2px solid rgba(255,184,0,0.4); }
+
+  .rec-title {
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 12px;
   }
-  .fund-card.good { border-right: 4px solid var(--teal); }
-  .fund-card.bad { border-right: 4px solid var(--red); }
-  .fund-card.ok { border-right: 4px solid var(--yellow); }
-  /* DONUT CHART */
-  .chart-container { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
-  .donut-wrap { position: relative; }
-  .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
-  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
-  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+  }
+  .rec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .rec-item .rlabel { font-size: 10px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .rec-item .rvalue { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+  .rec-item .rsub { font-size: 11px; color: var(--text-secondary); }
+
+  .summary-line {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: var(--bg-elevated);
+    border-radius: 8px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-secondary);
+    border-right: 3px solid var(--accent-gold);
+  }
+
+  /* ACTION PLAN */
+  .action-plan {
+    background: linear-gradient(135deg, #0d1a2e, #111827);
+    border: 1px solid rgba(77,159,255,0.2);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  .action-table td, .action-table th { padding: 12px 14px; }
+  .priority-urgent { color: var(--accent-red); font-weight: 900; }
+  .priority-high { color: var(--accent-yellow); font-weight: 700; }
+  .priority-normal { color: var(--accent-blue); font-weight: 600; }
+
+  /* ALLOCATION BARS */
+  .alloc-bar-wrap { margin-bottom: 10px; }
+  .alloc-bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+  .alloc-bar-track { background: var(--bg-elevated); border-radius: 20px; height: 8px; overflow: hidden; }
+  .alloc-bar-fill { height: 100%; border-radius: 20px; transition: width 1s ease; }
+
+  /* GLOSSARY */
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .glossary-item {
+    background: var(--bg-elevated);
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .glossary-item strong { color: var(--accent-gold); font-size: 13px; display: block; margin-bottom: 4px; }
+  .glossary-item p { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
   /* BACK TO TOP */
-  .back-top {
-    position: fixed; bottom: 24px; left: 24px;
-    background: var(--green); color: #000; font-weight: 700;
-    border: none; border-radius: 50%; width: 44px; height: 44px;
-    cursor: pointer; font-size: 18px; z-index: 200;
-    box-shadow: 0 4px 12px rgba(63,185,80,.4);
-    display: flex; align-items: center; justify-content: center;
+  #back-top {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: var(--accent-gold);
+    color: #000;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(245,200,66,0.3);
+    transition: transform 0.2s;
   }
-  .priority-urgent { color: var(--red); font-weight: 700; }
-  .priority-high { color: var(--orange); font-weight: 700; }
-  .priority-normal { color: var(--yellow); }
-  .priority-low { color: var(--green); }
-  .pct-bar { background: var(--bg3); border-radius: 4px; height: 6px; margin-top: 4px; }
-  .pct-fill { height: 6px; border-radius: 4px; }
-  .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
-  .glossary-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
-  .glossary-item .term { color: var(--blue); font-weight: 700; font-size: 13px; }
-  .glossary-item .def { color: var(--muted); font-size: 12px; margin-top: 3px; }
-  .scenario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 12px; }
-  .scenario { background: var(--bg2); border-radius: var(--radius); padding: 16px; border: 1px solid var(--border); text-align: center; }
-  .scenario.best { border-color: var(--green-border); background: var(--green-bg); }
-  .scenario.worst { border-color: var(--red-border); background: var(--red-bg); }
-  .scenario.likely { border-color: #1a3a5c; background: #0d1f33; }
-  .divider { height: 1px; background: var(--border); margin: 16px 0; }
-  .news-item { padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 13px; }
-  .news-item:last-child { border: none; }
-  .news-impact { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; margin-right: 8px; }
-  .up { background: var(--green-bg); color: var(--green); }
-  .down { background: var(--red-bg); color: var(--red); }
-  .flat { background: var(--bg3); color: var(--muted); }
-  @media(max-width:600px) {
-    .cards { grid-template-columns: 1fr; }
-    .card-metrics { grid-template-columns: 1fr 1fr; }
-    .dashboard { grid-template-columns: repeat(2,1fr); }
-    .header h1 { font-size: 20px; }
+  #back-top:hover { transform: translateY(-3px); }
+
+  /* DONUT CHART (SVG) */
+  .donut-container { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .donut-legend { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 160px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ALERT URGENT */
+  .alert-urgent {
+    background: rgba(255,184,0,0.1);
+    border: 1px solid rgba(255,184,0,0.4);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
   }
-  .fund-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 8px; margin: 10px 0; }
-  .compare-item { background: var(--bg3); border-radius: 8px; padding: 8px; text-align: center; }
-  .compare-item .cl { font-size: 11px; color: var(--muted); }
-  .compare-item .cv { font-size: 15px; font-weight: 700; }
+  .alert-urgent .icon { font-size: 24px; flex-shrink: 0; }
+  .alert-urgent .text strong { color: var(--accent-yellow); display: block; margin-bottom: 4px; font-size: 15px; }
+  .alert-urgent .text p { color: var(--text-secondary); font-size: 13px; }
+
+  /* HEALTH GRID */
+  .health-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .health-grid { grid-template-columns: 1fr; } }
+
+  /* FORECAST */
+  .forecast-scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  @media (max-width: 640px) { .forecast-scenarios { grid-template-columns: 1fr; } }
+  .scenario-card {
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .scenario-card.worst { background: rgba(255,77,106,0.08); border: 1px solid rgba(255,77,106,0.2); }
+  .scenario-card.likely { background: rgba(77,159,255,0.08); border: 1px solid rgba(77,159,255,0.2); }
+  .scenario-card.best { background: rgba(0,214,143,0.08); border: 1px solid rgba(0,214,143,0.2); }
+  .scenario-card .s-pct { font-size: 26px; font-weight: 900; margin: 8px 0; }
+  .scenario-card .s-val { font-size: 13px; font-weight: 700; }
+  .scenario-card .s-prob { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .container { padding: 16px 12px; }
+    .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-value { font-size: 22px; }
+  }
+  @media (max-width: 480px) {
+    .dashboard-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+  /* NEWS ITEMS */
+  .news-list { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+  .news-item { background: var(--bg-elevated); border-radius: 8px; padding: 10px 14px; font-size: 13px; display: flex; gap: 10px; align-items: flex-start; }
+  .news-item .ni-icon { flex-shrink: 0; font-size: 16px; }
+  .news-item .ni-text { flex: 1; color: var(--text-secondary); }
+  .news-item .ni-text strong { color: var(--text-primary); display: block; margin-bottom: 2px; }
+  .news-item .ni-effect { font-size: 11px; padding: 2px 8px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
+  .ni-up { background: rgba(0,214,143,0.15); color: var(--accent-green); }
+  .ni-down { background: rgba(255,77,106,0.15); color: var(--accent-red); }
+  .ni-neutral { background: rgba(255,184,0,0.15); color: var(--accent-yellow); }
+
+  /* Mini summary table */
+  .mini-summary { background: var(--bg-elevated); border-radius: 8px; padding: 12px 16px; margin-top: 14px; font-size: 13px; }
+  .mini-summary .ms-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .mini-summary .ms-row:last-child { border-bottom: none; }
+
+  /* section spacing */
+  section { margin-bottom: 40px; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="top">
-  <a href="#action">⚡ خطة العمل</a>
-  <a href="#stocks">📊 الأسهم</a>
+<!-- STICKY NAV -->
+<nav>
+  <a href="#dashboard">📊 لوحة التحكم</a>
+  <a href="#action-plan">⚡ خطة العمل</a>
+  <a href="#stocks">📈 الأسهم</a>
   <a href="#funds">📦 الصناديق</a>
   <a href="#health">🩺 صحة المحفظة</a>
-  <a href="#allocation">⚖️ التوزيع المقترح</a>
+  <a href="#allocation">⚖️ التوزيع المثالي</a>
   <a href="#forecast">🔮 التوقعات</a>
-  <a href="#summary">📋 الملخص</a>
-  <a href="#glossary">📖 قاموس</a>
+  <a href="#glossary">📖 القاموس</a>
+  <div class="nav-brand">ثاندر | تحليل محفظة</div>
 </nav>
 
 <!-- HEADER -->
 <div class="header">
   <h1>📋 تحليل المحفظة الاستثمارية</h1>
   <div class="meta">
-    📅 تاريخ التحليل: <span>4 مايو 2026</span> &nbsp;|&nbsp;
-    🏦 المنصة: <span>ثاندر (Thunder)</span> &nbsp;|&nbsp;
-    📌 عدد الأدوات: <span>9 أداة</span> (6 أسهم + 3 صناديق ادخار) &nbsp;|&nbsp;
-    📈 EGX30: <span>~52,312 نقطة</span>
+    <span>📅 4 مايو 2026</span>
+    <span>🏛️ البورصة المصرية</span>
+    <span>📊 9 أدوات استثمارية</span>
+    <span>📈 EGX30: 52,312 نقطة</span>
   </div>
 </div>
 
 <div class="container">
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="section">
-  <div class="section-title">🎯 لوحة القيادة</div>
-  <div class="dashboard">
-    <div class="kpi gold">
-      <div class="label">إجمالي الأصول</div>
-      <div class="value">52,637</div>
-      <div class="sub">جنيه مصري</div>
+<!-- ======== SECTION 1: DASHBOARD ======== -->
+<section id="dashboard">
+  <div class="section-title">📊 لوحة التحكم — نظرة عامة</div>
+
+  <div class="dashboard-grid">
+    <div class="card gold">
+      <div class="card-title">إجمالي الأصول</div>
+      <div class="card-value">52,637 <small style="font-size:14px">ج.م</small></div>
+      <div class="card-sub">نقدي + استثمارات + قيد التسوية</div>
     </div>
-    <div class="kpi">
-      <div class="label">إجمالي التكلفة</div>
-      <div class="value">46,905</div>
-      <div class="sub">جنيه مصري</div>
+    <div class="card green">
+      <div class="card-title">الربح غير المحقق</div>
+      <div class="card-value profit">+2,548 <small style="font-size:14px">ج.م</small></div>
+      <div class="card-sub profit">+5.43% على التكلفة الكلية</div>
     </div>
-    <div class="kpi green">
-      <div class="label">الربح الإجمالي</div>
-      <div class="value">+2,548</div>
-      <div class="sub">جنيه مصري</div>
+    <div class="card">
+      <div class="card-title">تكلفة المحفظة</div>
+      <div class="card-value">46,905 <small style="font-size:14px">ج.م</small></div>
+      <div class="card-sub">القيمة السوقية الحالية: 49,453 ج.م</div>
     </div>
-    <div class="kpi green">
-      <div class="label">العائد الكلي</div>
-      <div class="value">+5.43%</div>
-      <div class="sub">على المحفظة</div>
+    <div class="card green">
+      <div class="card-title">🏆 أكبر رابح</div>
+      <div class="card-value" style="color:var(--accent-green)">PHDC</div>
+      <div class="card-sub profit">+1,039 ج.م · +13.60%</div>
     </div>
-    <div class="kpi green">
-      <div class="label">🏆 أكبر رابح</div>
-      <div class="value">PHDC</div>
-      <div class="sub">+13.60% | +1,039 ج.م</div>
-    </div>
-    <div class="kpi red">
-      <div class="label">⚠️ أكبر خسران</div>
-      <div class="value">BSB</div>
-      <div class="sub">-0.69% | -45 ج.م</div>
-    </div>
-    <div class="kpi blue">
-      <div class="label">قيمة الأسهم</div>
-      <div class="value">27,480</div>
-      <div class="sub">52.2% من المحفظة</div>
-    </div>
-    <div class="kpi">
-      <div class="label">قيمة الصناديق</div>
-      <div class="value">21,975</div>
-      <div class="sub">41.7% من المحفظة</div>
+    <div class="card red">
+      <div class="card-title">❌ أكبر خاسر</div>
+      <div class="card-value" style="color:var(--accent-red)">GBCO</div>
+      <div class="card-sub loss">−81 ج.م · −1.81%</div>
     </div>
   </div>
-  <!-- ALLOCATION PIE (SVG) -->
-  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-top:12px;">
-    <div style="font-weight:700;margin-bottom:14px;color:var(--gold);">📊 توزيع المحفظة الحالي</div>
-    <div class="chart-container">
-      <svg width="160" height="160" viewBox="0 0 36 36">
-        <!-- Stocks 52.2% -->
-        <circle cx="18" cy="18" r="15.91" fill="none" stroke="#58a6ff" stroke-width="5" stroke-dasharray="52.2 47.8" stroke-dashoffset="25" transform="rotate(-90 18 18)"/>
-        <!-- Savings Funds 41.7% -->
-        <circle cx="18" cy="18" r="15.91" fill="none" stroke="#39c5cf" stroke-width="5" stroke-dasharray="41.7 58.3" stroke-dashoffset="-27.2" transform="rotate(-90 18 18)"/>
-        <!-- Queue 6.0% -->
-        <circle cx="18" cy="18" r="15.91" fill="none" stroke="#e3b341" stroke-width="5" stroke-dasharray="6 94" stroke-dashoffset="-68.9" transform="rotate(-90 18 18)"/>
-        <!-- Cash 0.1% -->
-        <circle cx="18" cy="18" r="15.91" fill="none" stroke="#8b949e" stroke-width="5" stroke-dasharray="0.1 99.9" stroke-dashoffset="-74.9" transform="rotate(-90 18 18)"/>
-        <circle cx="18" cy="18" r="12" fill="#161b22"/>
-        <text x="18" y="17" text-anchor="middle" font-size="3.5" fill="#e6edf3" font-weight="bold">52,637</text>
-        <text x="18" y="21" text-anchor="middle" font-size="2.5" fill="#8b949e">جنيه</text>
+
+  <!-- Portfolio Composition -->
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-title" style="margin-bottom:16px">توزيع المحفظة الحالي</div>
+    <div class="donut-container">
+      <svg width="160" height="160" viewBox="0 0 160 160" style="flex-shrink:0">
+        <!-- Donut chart (manually computed) -->
+        <!-- PHDC: 17.55%, ADIB: 8.72%, AMES: 8.91%, ETEL: 6.62%, GBCO: 8.88%, MPCI: 4.90% -->
+        <!-- BSB: 13.18%, CFF: 14.15%, CI30: 17.09% -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#1a2540" stroke-width="22"/>
+        <!-- PHDC 17.55% = 65.9deg -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#00d68f" stroke-width="22"
+          stroke-dasharray="65.9 311.2" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
+        <!-- CI30 17.09% = 64.2deg offset=-65.9 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#9b6dff" stroke-width="22"
+          stroke-dasharray="64.2 313" stroke-dashoffset="-65.9" transform="rotate(-90 80 80)"/>
+        <!-- CFF 14.15% = 53.1deg offset=-130.1 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#4d9fff" stroke-width="22"
+          stroke-dasharray="53.1 324" stroke-dashoffset="-130.1" transform="rotate(-90 80 80)"/>
+        <!-- BSB 13.18% = 49.5deg offset=-183.2 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#f5c842" stroke-width="22"
+          stroke-dasharray="49.5 327.7" stroke-dashoffset="-183.2" transform="rotate(-90 80 80)"/>
+        <!-- GBCO 8.88% = 33.3deg offset=-232.7 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#ff4d6a" stroke-width="22"
+          stroke-dasharray="33.3 343.9" stroke-dashoffset="-232.7" transform="rotate(-90 80 80)"/>
+        <!-- AMES 8.91% = 33.5deg offset=-266 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#ffb800" stroke-width="22"
+          stroke-dasharray="33.5 343.7" stroke-dashoffset="-266" transform="rotate(-90 80 80)"/>
+        <!-- ADIB 8.72% = 32.7deg offset=-299.5 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#00bcd4" stroke-width="22"
+          stroke-dasharray="32.7 344.5" stroke-dashoffset="-299.5" transform="rotate(-90 80 80)"/>
+        <!-- MPCI+ETEL remaining -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#6c7a9c" stroke-width="22"
+          stroke-dasharray="43.3 333.9" stroke-dashoffset="-332.2" transform="rotate(-90 80 80)"/>
+        <text x="80" y="74" text-anchor="middle" fill="#e8edf5" font-size="12" font-weight="900" font-family="Cairo">49,453</text>
+        <text x="80" y="90" text-anchor="middle" fill="#8fa3c0" font-size="9" font-family="Cairo">جنيه</text>
       </svg>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div class="legend-item"><div class="legend-dot" style="background:#58a6ff"></div> أسهم فردية — 27,480 ج.م (52.2%)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#39c5cf"></div> صناديق ادخار — 21,975 ج.م (41.7%)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#e3b341"></div> نقد في القابضة — 3,157 ج.م (6.0%)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#8b949e"></div> كاش — 26 ج.م (0.1%)</div>
+      <div class="donut-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#00d68f"></div><span>PHDC عقارات — 17.6%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#9b6dff"></div><span>CI30 مؤشر — 17.1%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#4d9fff"></div><span>CFF ادخار رقمي — 14.2%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#f5c842"></div><span>BSB ذهب — 13.2%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ffb800"></div><span>AMES حقوق — 8.9%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ff4d6a"></div><span>GBCO متنوع — 8.9%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#00bcd4"></div><span>ADIB بنوك — 8.7%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#6c7a9c"></div><span>ETEL+MPCI — 11.4%</span></div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ACTION PLAN - URGENT / PROMINENT -->
-<div id="action" class="section">
-  <div class="action-plan">
-    <h2>⚡ خطة العمل — نفّذ بالترتيب ده</h2>
+  <!-- Summary Table -->
+  <div class="card">
+    <div class="card-title" style="margin-bottom:14px">📊 جدول الأوراق المالية الكامل</div>
     <div class="tbl-wrap">
       <table>
         <thead>
           <tr>
-            <th>#</th><th>الإجراء</th><th>الأداة</th><th>السعر</th><th>السبب</th><th>الأولوية</th>
+            <th>الرمز</th>
+            <th>النوع</th>
+            <th>الكمية</th>
+            <th>متوسط الشراء</th>
+            <th>السعر الحالي</th>
+            <th>القيمة الحالية</th>
+            <th>ر/خ ج.م</th>
+            <th>ر/خ %</th>
+            <th>الوزن %</th>
+            <th>الحالة</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="background:rgba(248,81,73,0.05)">
+          <tr>
+            <td><strong style="color:#00bcd4">ADIB</strong></td>
+            <td><span class="tag">سهم بنكي</span></td>
+            <td>90</td>
+            <td>42.53</td>
+            <td>47.90</td>
+            <td>4,311</td>
+            <td class="profit">+483.51</td>
+            <td class="profit">+12.63%</td>
+            <td>8.7%</td>
+            <td><span class="badge green">🟢 رابح</span></td>
+          </tr>
+          <tr style="background:rgba(255,184,0,0.03)">
+            <td><strong style="color:#ffb800">AMES_r2</strong></td>
+            <td><span class="tag" style="background:rgba(255,184,0,0.2);color:#ffb800">⚠️ حق اكتتاب</span></td>
+            <td>85</td>
+            <td>50.10</td>
+            <td>51.82</td>
+            <td>4,405</td>
+            <td class="profit">+146.38</td>
+            <td class="profit">+3.44%</td>
+            <td>8.9%</td>
+            <td><span class="badge urgent">⚠️ عاجل</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#f5c842">BSB</strong></td>
+            <td><span class="tag">صندوق ذهب</span></td>
+            <td>3,477</td>
+            <td>1.89</td>
+            <td>1.87</td>
+            <td>6,518</td>
+            <td class="loss">−45.31</td>
+            <td class="loss">−0.69%</td>
+            <td>13.2%</td>
+            <td><span class="badge red">🔴 خسران طفيف</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#4d9fff">CFF</strong></td>
+            <td><span class="tag">صندوق ادخار</span></td>
+            <td>351</td>
+            <td>19.80</td>
+            <td>19.93</td>
+            <td>6,996</td>
+            <td class="profit">+45.77</td>
+            <td class="profit">+0.66%</td>
+            <td>14.2%</td>
+            <td><span class="badge yellow">⚪ محايد</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#9b6dff">CI30</strong></td>
+            <td><span class="tag">صندوق مؤشر</span></td>
+            <td>235</td>
+            <td>33.16</td>
+            <td>36.00</td>
+            <td>8,461</td>
+            <td class="profit">+667.91</td>
+            <td class="profit">+8.57%</td>
+            <td>17.1%</td>
+            <td><span class="badge green">🟢 رابح</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#e0e0e0">ETEL</strong></td>
+            <td><span class="tag">سهم اتصالات</span></td>
+            <td>35</td>
+            <td>88.20</td>
+            <td>93.50</td>
+            <td>3,273</td>
+            <td class="profit">+185.65</td>
+            <td class="profit">+6.01%</td>
+            <td>6.6%</td>
+            <td><span class="badge green">🟢 رابح</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#ff4d6a">GBCO</strong></td>
+            <td><span class="tag">سهم متنوع</span></td>
+            <td>165</td>
+            <td>27.09</td>
+            <td>26.60</td>
+            <td>4,389</td>
+            <td class="loss">−81.04</td>
+            <td class="loss">−1.81%</td>
+            <td>8.9%</td>
+            <td><span class="badge red">🔴 خسران</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#a0e0a0">MPCI</strong></td>
+            <td><span class="tag">سهم أدوية</span></td>
+            <td>14</td>
+            <td>165.42</td>
+            <td>172.97</td>
+            <td>2,422</td>
+            <td class="profit">+105.69</td>
+            <td class="profit">+4.56%</td>
+            <td>4.9%</td>
+            <td><span class="badge green">🟢 رابح</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#00d68f">PHDC</strong></td>
+            <td><span class="tag">سهم عقاري</span></td>
+            <td>700</td>
+            <td>10.92</td>
+            <td>12.40</td>
+            <td>8,680</td>
+            <td class="profit">+1,039.47</td>
+            <td class="profit">+13.60%</td>
+            <td>17.6%</td>
+            <td><span class="badge green">🏆 أكبر رابح</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="background:var(--bg-elevated)">
+            <td colspan="5"><strong>الإجمالي</strong></td>
+            <td><strong>49,453 ج.م</strong></td>
+            <td class="profit"><strong>+2,548 ج.م</strong></td>
+            <td class="profit"><strong>+5.43%</strong></td>
+            <td><strong>100%</strong></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 2: ACTION PLAN ======== -->
+<section id="action-plan">
+  <div class="section-title">⚡ خطة العمل — نفّذ بالترتيب ده</div>
+
+  <!-- URGENT ALERT for AMES_r2 -->
+  <div class="alert-urgent">
+    <div class="icon">🚨</div>
+    <div class="text">
+      <strong>تحذير عاجل جداً — AMES_r2 (حق اكتتاب)</strong>
+      <p>حقوق الاكتتاب لها تاريخ انتهاء محدد. لو انتهى التاريخ من غير ما تبيع أو تكتتب — بتخسر الفلوس كلها! اتصل بثاندر فوراً واسأل عن آخر موعد للتصرف في AMES_r2. هذه هي الأولوية القصوى في المحفظة.</p>
+    </div>
+  </div>
+
+  <div class="action-plan">
+    <div class="tbl-wrap">
+      <table class="action-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>الإجراء</th>
+            <th>الأداة</th>
+            <th>السعر المستهدف</th>
+            <th>السبب</th>
+            <th>الأولوية</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
             <td><strong>1</strong></td>
-            <td>🔴 تحويل / بيع فوراً</td>
-            <td><strong class="r">BSB</strong></td>
-            <td class="r">1.87 ج.م (السوق فوراً)</td>
-            <td>صندوق ادخار خسران والبديل أفضل — حوّل لـ CI30 أو CFF</td>
-            <td class="priority-urgent">🔴 عاجل</td>
+            <td>🚨 <strong>بيع أو اكتتاب فوري</strong></td>
+            <td><strong style="color:#ffb800">AMES_r2</strong></td>
+            <td>بسعر السوق فوراً</td>
+            <td>حقوق اكتتاب بتنتهي — خسارة كاملة لو أهملت</td>
+            <td><span class="priority-urgent">عاجل جداً 🚨</span></td>
           </tr>
-          <tr style="background:rgba(240,136,62,0.05)">
+          <tr>
             <td><strong>2</strong></td>
-            <td>🟡 بيع جزئي + أخذ أرباح</td>
-            <td><strong class="g">PHDC</strong></td>
-            <td class="g">13.50 – 14.00 ج.م</td>
-            <td>ربح +13.6% — حجز 40% من المركز عند القمم</td>
-            <td class="priority-high">🟠 مهم</td>
+            <td>🟠 <strong>بيع جزئي — جني أرباح</strong></td>
+            <td><strong style="color:#ff4d6a">GBCO</strong></td>
+            <td>بسعر السوق (26.60)</td>
+            <td>أداء ضعيف، خسارة، لا محفزات واضحة</td>
+            <td><span class="priority-high">مهم جداً</span></td>
           </tr>
-          <tr style="background:rgba(88,166,255,0.05)">
+          <tr>
             <td><strong>3</strong></td>
-            <td>🟢 زيادة</td>
-            <td><strong class="b">ETEL</strong></td>
-            <td class="b">93.00 – 95.00 ج.م</td>
-            <td>مستهدف المحللين 110 ج.م — أرباح قوية — عائد توزيعات</td>
-            <td class="priority-high">🟠 مهم</td>
+            <td>🟢 <strong>احتفاظ — راقب مستهدف البيع</strong></td>
+            <td><strong style="color:#00d68f">PHDC</strong></td>
+            <td>بيع جزئي عند 15.00</td>
+            <td>أكبر رابح، محللون يستهدفون 17-23 ج.م</td>
+            <td><span class="priority-normal">عادي</span></td>
           </tr>
           <tr>
             <td><strong>4</strong></td>
-            <td>⚪ انتظر وراقب</td>
-            <td><strong>ADIB</strong></td>
-            <td>احتفظ — وقف خسارة 43.50</td>
-            <td>زخم إيجابي — قطاع مصرفي قوي</td>
-            <td class="priority-normal">🟡 عادي</td>
+            <td>⚪ <strong>احتفاظ — راقب توزيع أسهم مجاني</strong></td>
+            <td><strong style="color:#00bcd4">ADIB</strong></td>
+            <td>بيع جزئي عند 55.00</td>
+            <td>أرباح Q1 +43%، زيادة رأس مال قادمة</td>
+            <td><span class="priority-normal">عادي</span></td>
           </tr>
           <tr>
             <td><strong>5</strong></td>
-            <td>⚪ احتفظ مع مراقبة</td>
-            <td><strong>GBCO</strong></td>
-            <td>وقف خسارة 25.50 ج.م</td>
-            <td>خسارة طفيفة — انتظر تأكيد ارتداد</td>
-            <td class="priority-normal">🟡 عادي</td>
+            <td>⚪ <strong>احتفاظ — استهداف 110 ج.م</strong></td>
+            <td><strong style="color:#e0e0e0">ETEL</strong></td>
+            <td>بيع جزئي عند 105.00</td>
+            <td>قوي أساسياً، نمو إيرادات 2026</td>
+            <td><span class="priority-normal">عادي</span></td>
           </tr>
           <tr>
             <td><strong>6</strong></td>
-            <td>⚪ احتفظ</td>
-            <td><strong>AMES_r2</strong></td>
-            <td>بيع جزئي عند 56.00 ج.م</td>
-            <td>نمو معقول — نتائج Q1 2026 ممتازة</td>
-            <td class="priority-low">🟢 عند الوصول</td>
+            <td>⚪ <strong>احتفاظ — التضخم حماية</strong></td>
+            <td><strong style="color:#f5c842">BSB</strong></td>
+            <td>—</td>
+            <td>ذهب يحمي من التضخم، ارفع نسبته</td>
+            <td><span class="priority-normal">عادي</span></td>
           </tr>
           <tr>
             <td><strong>7</strong></td>
-            <td>🟢 زيادة</td>
-            <td><strong>CI30</strong></td>
-            <td>أضف بعد تحويل BSB</td>
-            <td>أفضل أداء بين الصناديق +8.57% — عائد سنوي ~23%</td>
-            <td class="priority-high">🟠 بعد تحويل BSB</td>
+            <td>⚪ <strong>احتفاظ — مؤشر السوق</strong></td>
+            <td><strong style="color:#9b6dff">CI30</strong></td>
+            <td>—</td>
+            <td>EGX30 في اتجاه صاعد، هدف تراكمي</td>
+            <td><span class="priority-normal">عادي</span></td>
           </tr>
           <tr>
             <td><strong>8</strong></td>
-            <td>🟢 اشتري عند الضعف</td>
-            <td><strong>MPCI</strong></td>
-            <td>165.00 – 168.00 ج.م</td>
-            <td>سهم دفاعي — قطاع طاقة — زيادة أسعار المحروقات محتملة</td>
-            <td class="priority-low">🟢 عند الانخفاض</td>
+            <td>🔄 <strong>مراجعة — قارن بشهادات البنوك</strong></td>
+            <td><strong style="color:#4d9fff">CFF</strong></td>
+            <td>—</td>
+            <td>شهادات البنوك الآن 17-19.5% vs عائد الصندوق</td>
+            <td><span class="priority-normal">مراجعة</span></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-</div>
+</section>
 
-<!-- SECTION 1: DATA TABLE -->
-<div class="section">
-  <div class="section-title">📊 القسم ١ — بيانات المحفظة الكاملة</div>
-  <div style="margin-bottom:16px;font-weight:700;color:var(--blue);">الأسهم الفردية</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>السهم</th><th>الكمية</th><th>متوسط الشراء</th><th>السعر الحالي</th><th>القيمة الحالية</th><th>الربح/الخسارة ج.م</th><th>ع/خ %</th><th>الوزن %</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong class="g">ADIB</strong> <span style="color:var(--muted);font-size:11px;">بنك أبوظبي الإسلامي</span></td>
-          <td>90</td><td>42.53</td><td>47.90</td>
-          <td>4,311</td><td class="g">+483.51</td><td class="g">+12.63% 🟢</td><td>8.2%</td>
-        </tr>
-        <tr>
-          <td><strong class="g">AMES_r2</strong> <span style="color:var(--muted);font-size:11px;">أمريكانا مطاعم</span></td>
-          <td>85</td><td>50.10</td><td>51.82</td>
-          <td>4,405</td><td class="g">+146.38</td><td class="g">+3.44% 🟢</td><td>8.4%</td>
-        </tr>
-        <tr>
-          <td><strong class="g">ETEL</strong> <span style="color:var(--muted);font-size:11px;">المصرية للاتصالات</span></td>
-          <td>35</td><td>88.20</td><td>93.50</td>
-          <td>3,273</td><td class="g">+185.65</td><td class="g">+6.01% 🟢</td><td>6.2%</td>
-        </tr>
-        <tr>
-          <td><strong class="r">GBCO</strong> <span style="color:var(--muted);font-size:11px;">جي بي كور</span></td>
-          <td>165</td><td>27.09</td><td>26.60</td>
-          <td>4,389</td><td class="r">-81.04</td><td class="r">-1.81% 🔴</td><td>8.3%</td>
-        </tr>
-        <tr>
-          <td><strong class="g">MPCI</strong> <span style="color:var(--muted);font-size:11px;">مستقبل سيتي</span></td>
-          <td>14</td><td>165.42</td><td>172.97</td>
-          <td>2,422</td><td class="g">+105.69</td><td class="g">+4.56% 🟢</td><td>4.6%</td>
-        </tr>
-        <tr>
-          <td><strong class="g">PHDC</strong> <span style="color:var(--muted);font-size:11px;">بالم هيلز للتعمير</span></td>
-          <td>700</td><td>10.92</td><td>12.40</td>
-          <td>8,680</td><td class="g">+1,039.47</td><td class="g">+13.60% 🟢</td><td>16.5%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div style="margin:20px 0 10px;font-weight:700;color:var(--teal);">صناديق الادخار</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>الصندوق</th><th>النوع</th><th>الوثائق</th><th>سعر الشراء</th><th>السعر الحالي</th><th>الربح/الخسارة</th><th>العائد %</th><th>الوزن %</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong class="r">BSB</strong> <span style="color:var(--muted);font-size:11px;">بيلتون إدخار</span></td>
-          <td>ادخار</td><td>3,477</td><td>1.89</td><td>1.87</td>
-          <td class="r">-45.31</td><td class="r">-0.69%</td><td>12.4%</td>
-        </tr>
-        <tr>
-          <td><strong class="g">CFF</strong> <span style="color:var(--muted);font-size:11px;">CI Capital فيد</span></td>
-          <td>ادخار</td><td>351</td><td>19.80</td><td>19.93</td>
-          <td class="g">+45.77</td><td class="g">+0.66%</td><td>13.3%</td>
-        </tr>
-        <tr>
-          <td><strong class="g">CI30</strong> <span style="color:var(--muted);font-size:11px;">CI Capital 30</span></td>
-          <td>ادخار</td><td>235</td><td>33.16</td><td>36.00</td>
-          <td class="g">+667.91</td><td class="g">+8.57%</td><td>16.1%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div style="margin:20px 0 10px;font-weight:700;color:var(--gold);">ملخص المحفظة الإجمالي</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr><th>إجمالي القيمة</th><th>إجمالي التكلفة</th><th>إجمالي الربح/الخسارة</th><th>العائد الكلي %</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="gold-text"><strong>52,637 ج.م</strong></td>
-          <td>46,905 ج.م</td>
-          <td class="g"><strong>+2,548 ج.م</strong></td>
-          <td class="g"><strong>+5.43%</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!-- ======== SECTION 3: INDIVIDUAL STOCKS ======== -->
+<section id="stocks">
+  <div class="section-title">📈 تحليل الأسهم الفردية</div>
 
-<!-- SECTION 2: DETAILED STOCK ANALYSIS -->
-<div id="stocks" class="section">
-  <div class="section-title">📈 القسم ٢ — تحليل تفصيلي للأسهم الفردية</div>
-  <div class="cards">
-
-    <!-- PHDC -->
-    <div class="card profit">
-      <div class="card-header">
-        <div>
-          <div class="card-title">PHDC 🏗️</div>
-          <div style="color:var(--muted);font-size:12px;">بالم هيلز للتعمير</div>
-        </div>
-        <div>
-          <div class="card-badge badge-partial">🟠 بيع جزئي</div>
-        </div>
-      </div>
-      <div class="card-metrics">
-        <div class="metric"><div class="lbl">الكمية</div><div class="val">700 سهم</div></div>
-        <div class="metric"><div class="lbl">متوسط الشراء</div><div class="val">10.92 ج.م</div></div>
-        <div class="metric"><div class="lbl">السعر الحالي</div><div class="val g">12.40 ج.م</div></div>
-        <div class="metric"><div class="lbl">الربح/الخسارة</div><div class="val g">+1,039 ج.م (+13.6%)</div></div>
-      </div>
-      <!-- Technical -->
-      <div style="margin:8px 0;font-size:12px;color:var(--muted);font-weight:600;">📊 التحليل الفني</div>
-      <div class="tech-row">
-        <span class="tech-tag">RSI ~62 ⚠️ مرتفع</span>
-        <span class="tech-tag">MACD إيجابي ↑</span>
-        <span class="tech-tag">MA20: 11.80 (فوقه ✅)</span>
-        <span class="tech-tag">MA50: 10.50 (فوقه ✅)</span>
-      </div>
-      <div class="tech-row">
-        <span class="tech-tag" style="color:var(--green)">دعم: 11.50 ج.م</span>
-        <span class="tech-tag" style="color:var(--red)">مقاومة: 13.00 – 14.00 ج.م</span>
-        <span class="tech-tag">نمط صعودي 📈</span>
-      </div>
-      <!-- News -->
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);font-weight:600;">📰 آخر الأخبار</div>
-      <div class="news-item"><span class="news-impact up">↑ اتسعّر</span> ارتفع +71.5% خلال العام الماضي — زيادة القيمة السوقية إلى 32.9 مليار ج.م</div>
-      <div class="news-item"><span class="news-impact up">↑ لسه</span> مستهدف المحللين 17.87 ج.م — حد أقصى 23.30 ج.م (توصية شراء قوي)</div>
-      <div class="news-item"><span class="news-impact up">↑ لسه</span> نتائج Q4 2025: صافي ربح 1.1 مليار ج.م — نمو ملحوظ عن الفترة السابقة (903 مليون)</div>
-      <!-- Financials -->
-      <div style="margin-top:8px;font-size:12px;"><span class="b">P/E: ~8.5x</span> | <span class="b">EPS: 1.46</span> | <span class="b">D/Y: 0%</span> | <span style="color:var(--yellow)">D/E: مرتفع (قطاع عقاري)</span> → تقييم: <strong class="g">💪 جيد</strong></div>
-      <!-- Rec -->
-      <div class="rec-box partial">
-        <h4 style="color:var(--orange)">🟠 بيع جزئي — أخذ أرباح</h4>
-        <ul>
-          <li>بيع 280 سهم (40%) من أصل 700</li>
-          <li>على سعر: 13.50 – 14.00 ج.م (عند المقاومة)</li>
-          <li>ليه: ربح +13.6% قوي — RSI مرتفع — خذ أرباحك من القمة</li>
-          <li>الربح المتحقق من البيع الجزئي: ~≈ +729 ج.م</li>
-          <li>الباقي 420 سهم — استنى لحد: 17.00 ج.م (مستهدف محللين)</li>
-          <li>وقف خسارة للباقي: 11.20 ج.م</li>
-        </ul>
-      </div>
-      <div class="summary-line">PHDC: بيع جزئي 280 سهم على 13.50-14.00 — ربح قوي ومستهدف بعيد</div>
-    </div>
-
-    <!-- ADIB -->
-    <div class="card profit">
-      <div class="card-header">
-        <div>
-          <div class="card-title">ADIB 🏦</div>
-          <div style="color:var(--muted);font-size:12px;">بنك أبوظبي الإسلامي مصر</div>
-        </div>
-        <div><div class="card-badge badge-hold">⚪ احتفاظ</div></div>
-      </div>
-      <div class="card-metrics">
-        <div class="metric"><div class="lbl">الكمية</div><div class="val">90 سهم</div></div>
-        <div class="metric"><div class="lbl">متوسط الشراء</div><div class="val">42.53 ج.م</div></div>
-        <div class="metric"><div class="lbl">السعر الحالي</div><div class="val g">47.90 ج.م</div></div>
-        <div class="metric"><div class="lbl">الربح</div><div class="val g">+483.51 (+12.63%)</div></div>
-      </div>
-      <div style="margin:8px 0;font-size:12px;color:var(--muted);font-weight:600;">📊 التحليل الفني</div>
-      <div class="tech-row">
-        <span class="tech-tag">RSI ~58 محايد</span>
-        <span class="tech-tag">MACD إيجابي ↑</span>
-        <span class="tech-tag">MA20: 46.50 (فوقه ✅)</span>
-        <span class="tech-tag">MA50: 44.00 (فوقه ✅)</span>
-      </div>
-      <div class="tech-row">
-        <span class="tech-tag" style="color:var(--green)">دعم: 45.00 ج.م</span>
-        <span class="tech-tag" style="color:var(--red)">مقاومة: 50.00 ج.م</span>
-        <span class="tech-tag">تجميع ↑</span>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);font-weight:600;">📰 آخر الأخبار</div>
-      <div class="news-item"><span class="news-impact up">↑ إيجابي</span> قطاع البنوك المصري يستفيد من أسعار فائدة مرتفعة (19%) — هامش فائدة صافي قوي</div>
-      <div class="news-item"><span class="news-impact up">↑ لسه</span> خفض الفائدة المتوقع في H2 2026 قد يؤثر سلباً على هامش الفائدة لكن يدعم النمو</div>
-      <div class="news-item"><span class="news-impact flat">↔</span> البنوك الإسلامية تستفيد من طفرة التمويل للمشروعات الصغيرة ومتوسطة الحجم</div>
-      <div style="margin-top:8px;font-size:12px;"><span class="b">P/E: ~7x</span> | <span class="b">P/B: ~1.2x</span> | <span style="color:var(--green)">D/Y: ~4-5%</span> | <span class="b">D/E: مقبول</span> → تقييم: <strong class="g">💪 ممتاز</strong></div>
-      <div class="rec-box hold">
-        <h4 style="color:var(--yellow)">⚪ احتفاظ — زخم إيجابي</h4>
-        <ul>
-          <li>استنى لحد: سعر 52.00 ج.م (اختراق المقاومة)</li>
-          <li>ليه مش الوقت للبيع: السهم في اتجاه صعودي — قطاع البنوك قوي</li>
-          <li>بيع جزئي لو وصل: 52.00 ج.م (+22% من متوسطك)</li>
-          <li>بيع كامل لو وصل: 58.00 ج.م (+36%)</li>
-          <li>وقف الخسارة: 43.50 ج.م — لو كسرها بيع فوراً</li>
-        </ul>
-      </div>
-      <div class="summary-line">ADIB: احتفاظ — وقف 43.50 — هدف أول 52.00 ج.م</div>
-    </div>
-
-    <!-- AMES_r2 -->
-    <div class="card profit">
-      <div class="card-header">
-        <div>
-          <div class="card-title">AMES_r2 🍔</div>
-          <div style="color:var(--muted);font-size:12px;">أمريكانا مطاعم الدولية</div>
-        </div>
-        <div><div class="card-badge badge-hold">⚪ احتفاظ</div></div>
-      </div>
-      <div class="card-metrics">
-        <div class="metric"><div class="lbl">الكمية</div><div class="val">85 سهم</div></div>
-        <div class="metric"><div class="lbl">متوسط الشراء</div><div class="val">50.10 ج.م</div></div>
-        <div class="metric"><div class="lbl">السعر الحالي</div><div class="val g">51.82 ج.م</div></div>
-        <div class="metric"><div class="lbl">الربح</div><div class="val g">+146.38 (+3.44%)</div></div>
-      </div>
-      <div style="margin:8px 0;font-size:12px;color:var(--muted);font-weight:600;">📊 التحليل الفني</div>
-      <div class="tech-row">
-        <span class="tech-tag">RSI ~52 محايد</span>
-        <span class="tech-tag">MACD يتعافى ↑</span>
-        <span class="tech-tag">MA20: 51.00</span>
-        <span class="tech-tag">MA50: 49.50</span>
-      </div>
-      <div class="tech-row">
-        <span class="tech-tag" style="color:var(--green)">دعم: 49.50 ج.م</span>
-        <span class="tech-tag" style="color:var(--red)">مقاومة: 55.00 – 57.00 ج.م</span>
-        <span class="tech-tag">نمط عرضي</span>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);font-weight:600;">📰 آخر الأخبار</div>
-      <div class="news-item"><span class="news-impact up">↑ مباشر</span> نتائج Q1 2026: نمو مزدوج الأرقام في الإيرادات والأرباح عبر منطقة MENA وكازاخستان</div>
-      <div class="news-item"><span class="news-impact up">↑ لسه</span> التوسع في مطاعم KFC وPizza Hut بالمنطقة يدعم النمو الإيرادي</div>
-      <div class="news-item"><span class="news-impact flat">↔</span> ضغوط تكاليف مدخلات الغذاء عالمياً — التضخم يؤثر على هامش الربح</div>
-      <div style="margin-top:8px;font-size:12px;"><span class="b">P/E: ~18x</span> | <span class="b">P/B: ~2.5x</span> | <span style="color:var(--muted)">D/Y: ~2%</span> → تقييم: <strong class="y">⚠️ مقبول</strong></div>
-      <div class="rec-box hold">
-        <h4 style="color:var(--yellow)">⚪ احتفاظ — الأساسيات قوية</h4>
-        <ul>
-          <li>استنى لحد: 56.00 ج.م مع تأكيد الاتجاه</li>
-          <li>ليه مش الوقت للبيع: نتائج Q1 إيجابية — السهم قريب من الدعم</li>
-          <li>بيع جزئي لو وصل: 56.00 ج.م (+11.8%)</li>
-          <li>بيع كامل لو وصل: 62.00 ج.م (+23.7%)</li>
-          <li>وقف الخسارة: 47.50 ج.م</li>
-        </ul>
-      </div>
-      <div class="summary-line">AMES_r2: احتفاظ — وقف 47.50 — هدف أول 56.00 ج.م بعد نتائج قوية</div>
-    </div>
-
-    <!-- ETEL -->
-    <div class="card profit">
-      <div class="card-header">
-        <div>
-          <div class="card-title">ETEL 📡</div>
-          <div style="color:var(--muted);font-size:12px;">المصرية للاتصالات</div>
-        </div>
-        <div><div class="card-badge badge-buy">🟢 زيادة</div></div>
-      </div>
-      <div class="card-metrics">
-        <div class="metric"><div class="lbl">الكمية</div><div class="val">35 سهم</div></div>
-        <div class="metric"><div class="lbl">متوسط الشراء</div><div class="val">88.20 ج.م</div></div>
-        <div class="metric"><div class="lbl">السعر الحالي</div><div class="val g">93.50 ج.م</div></div>
-        <div class="metric"><div class="lbl">الربح</div><div class="val g">+185.65 (+6.01%)</div></div>
-      </div>
-      <div style="margin:8px 0;font-size:12px;color:var(--muted);font-weight:600;">📊 التحليل الفني</div>
-      <div class="tech-row">
-        <span class="tech-tag">RSI ~55 محايد-إيجابي</span>
-        <span class="tech-tag">MACD إيجابي</span>
-        <span class="tech-tag">MA20: 91.00</span>
-        <span class="tech-tag">MA50: 85.00</span>
-      </div>
-      <div class="tech-row">
-        <span class="tech-tag" style="color:var(--green)">دعم: 88.00 – 90.00 ج.م</span>
-        <span class="tech-tag" style="color:var(--red)">مقاومة: 100.00 – 113.00 ج.م</span>
-        <span class="tech-tag">نمط صعودي 📈</span>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);font-weight:600;">📰 آخر الأخبار</div>
-      <div class="news-item"><span class="news-impact up">↑ قوي</span> إيرادات Q4 2025: 28.61 مليار ج.م (تجاوزت التوقعات 28.16 مليار) — ربح صافي 5.59 مليار</div>
-      <div class="news-item"><span class="news-impact up">↑ لسه</span> مستهدف المحللين 110.17 ج.م — إمكانية صعود +17.8% من السعر الحالي</div>
-      <div class="news-item"><span class="news-impact up">↑ محتمل</span> مشروع "Coral Bridge" لكابل البحر الأحمر يعزز الإيرادات الدولية — توزيعات أرباح متوقعة</div>
-      <div style="margin-top:8px;font-size:12px;"><span class="b">P/E: ~7.5x</span> | <span class="b">P/B: ~1.8x</span> | <span style="color:var(--green)">D/Y: ~5-6%</span> | <span class="b">EPS: ~12.5</span> → تقييم: <strong class="g">💪 ممتاز</strong></div>
-      <div class="rec-box buy">
-        <h4 style="color:var(--green)">🟢 زيادة — فرصة</h4>
-        <ul>
-          <li>اشتري على سعر: 93.00 – 95.00 ج.م</li>
-          <li>الكمية المقترحة: زود 20 سهم (زيادة 57%)</li>
-          <li>ليه دلوقتي: نتائج ممتازة — مستهدف 110 — RSI لسه مش مشبّع</li>
-          <li>المتوسط الجديد هيبقى: ~90.50 ج.م</li>
-          <li>بيع جزئي عند: 105.00 ج.م (ربح ~16%)</li>
-          <li>بيع كامل عند: 113.00 ج.م (قمة 52 أسبوع)</li>
-          <li>وقف الخسارة الجديد: 87.00 ج.م</li>
-        </ul>
-      </div>
-      <div class="summary-line">ETEL: زيادة على 93-95 — مستهدف محللين 110 — نتائج قوية تدعم الصعود</div>
-    </div>
-
-    <!-- GBCO -->
-    <div class="card loss">
-      <div class="card-header">
-        <div>
-          <div class="card-title">GBCO 🏢</div>
-          <div style="color:var(--muted);font-size:12px;">جي بي كور</div>
-        </div>
-        <div><div class="card-badge badge-hold">⚪ احتفاظ + مراقبة</div></div>
-      </div>
-      <div class="card-metrics">
-        <div class="metric"><div class="lbl">الكمية</div><div class="val">165 سهم</div></div>
-        <div class="metric"><div class="lbl">متوسط الشراء</div><div class="val">27.09 ج.م</div></div>
-        <div class="metric"><div class="lbl">السعر الحالي</div><div class="val r">26.60 ج.م</div></div>
-        <div class="metric"><div class="lbl">الخسارة</div><div class="val r">-81.04 (-1.81%)</div></div>
-      </div>
-      <div style="margin:8px 0;font-size:12px;color:var(--muted);font-weight:600;">📊 التحليل الفني</div>
-      <div class="tech-row">
-        <span class="tech-tag" style="color:var(--red)">RSI ~44 ضعيف</span>
-        <span class="tech-tag">MACD سلبي ↓</span>
-        <span class="tech-tag">MA20: 27.20 (تحته ⚠️)</span>
-        <span class="tech-tag">MA50: 26.00</span>
-      </div>
-      <div class="tech-row">
-        <span class="tech-tag" style="color:var(--green)">دعم: 25.50 – 26.00 ج.م</span>
-        <span class="tech-tag" style="color:var(--red)">مقاومة: 27.50 – 28.00 ج.م</span>
-        <span class="tech-tag" style="color:var(--yellow)">نمط عرضي-هبوطي</span>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);font-weight:600;">📰 آخر الأخبار</div>
-      <div class="news-item"><span class="news-impact down">↓ سلبي</span> ضغط على قطاع السيارات والتوزيع بسبب ارتفاع أسعار الوقود وتقلبات سعر الصرف</div>
-      <div class="news-item"><span class="news-impact flat">↔</span> سعر اليوم عند 26.60 — تداول فوق الدعم الرئيسي مباشرة</div>
-      <div class="news-item"><span class="news-impact up">↑ محتمل</span> خفض أسعار الفائدة في H2 2026 سيدعم قطاع الاستهلاك والسيارات</div>
-      <div style="margin-top:8px;font-size:12px;"><span class="b">P/E: ~10x</span> | <span class="b">P/B: ~1.0x</span> | <span style="color:var(--muted)">D/Y: ~2%</span> → تقييم: <strong class="y">⚠️ مراقبة</strong></div>
-      <div class="rec-box hold">
-        <h4 style="color:var(--yellow)">⚪ احتفاظ مع وقف خسارة صارم</h4>
-        <ul>
-          <li>استنى لحد: تأكيد كسر 27.50 ج.م للأعلى</li>
-          <li>ليه مش الوقت للبيع: الخسارة طفيفة — والسعر فوق دعم 26.00</li>
-          <li>بيع جزئي لو وصل: 28.50 ج.م (+5.2%)</li>
-          <li>بيع كامل لو وصل: 31.00 ج.م (+14.4%)</li>
-          <li>وقف الخسارة: 25.50 ج.م — لو كسرها بيع الكل فوراً ✋</li>
-        </ul>
-      </div>
-      <div class="summary-line">GBCO: احتفاظ — وقف صارم 25.50 — خسارة طفيفة قابلة للانتعاش</div>
-    </div>
-
-    <!-- MPCI -->
-    <div class="card profit">
-      <div class="card-header">
-        <div>
-          <div class="card-title">MPCI ⛽</div>
-          <div style="color:var(--muted);font-size:12px;">مستقبل سيتي</div>
-        </div>
-        <div><div class="card-badge badge-buy">🟢 زيادة عند الانخفاض</div></div>
-      </div>
-      <div class="card-metrics">
-        <div class="metric"><div class="lbl">الكمية</div><div class="val">14 سهم</div></div>
-        <div class="metric"><div class="lbl">متوسط الشراء</div><div class="val">165.42 ج.م</div></div>
-        <div class="metric"><div class="lbl">السعر الحالي</div><div class="val g">172.97 ج.م</div></div>
-        <div class="metric"><div class="lbl">الربح</div><div class="val g">+105.69 (+4.56%)</div></div>
-      </div>
-      <div style="margin:8px 0;font-size:12px;color:var(--muted);font-weight:600;">📊 التحليل الفني</div>
-      <div class="tech-row">
-        <span class="tech-tag">RSI ~53 محايد</span>
-        <span class="tech-tag">MACD إيجابي طفيف</span>
-        <span class="tech-tag">MA20: 170.00</span>
-        <span class="tech-tag">MA50: 162.00</span>
-      </div>
-      <div class="tech-row">
-        <span class="tech-tag" style="color:var(--green)">دعم: 165.00 ج.م</span>
-        <span class="tech-tag" style="color:var(--red)">مقاومة: 180.00 – 185.00 ج.م</span>
-        <span class="tech-tag">صعودي معتدل</span>
-      </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted);font-weight:600;">📰 آخر الأخبار</div>
-      <div class="news-item"><span class="news-impact up">↑ إيجابي</span> ارتفاع أسعار المحروقات محلياً يدعم إيرادات قطاع الطاقة والبترول</div>
-      <div class="news-item"><span class="news-impact up">↑ محتمل</span> التوترات الجيوسياسية تدعم أسعار النفط عالمياً بشكل غير مباشر</div>
-      <div class="news-item"><span class="news-impact flat">↔</span> وزن منخفض في المحفظة (4.6%) — قيمة صغيرة رغم السعر المرتفع للسهم</div>
-      <div style="margin-top:8px;font-size:12px;"><span class="b">P/E: ~9x</span> | <span class="b">P/B: ~1.3x</span> | <span style="color:var(--green)">قطاع دفاعي</span> → تقييم: <strong class="g">💪 جيد</strong></div>
-      <div class="rec-box buy">
-        <h4 style="color:var(--green)">🟢 زيادة عند التراجع</h4>
-        <ul>
-          <li>اشتري على سعر: 165.00 – 168.00 ج.م (عند الدعم)</li>
-          <li>الكمية المقترحة: 6 أسهم إضافية (+43%)</li>
-          <li>ليه: سهم دفاعي — وزنه قليل — قطاع طاقة محمي</li>
-          <li>المتوسط الجديد هيبقى: ~167.00 ج.م</li>
-          <li>بيع جزئي عند: 185.00 ج.م (+10.8%)</li>
-          <li>بيع كامل عند: 200.00 ج.م (+19.8%)</li>
-          <li>وقف الخسارة: 158.00 ج.م</li>
-        </ul>
-      </div>
-      <div class="summary-line">MPCI: زيادة عند 165-168 — وزنه قليل — سهم دفاعي يستحق تعزيز</div>
-    </div>
-
-  </div><!-- end stocks cards -->
-</div>
-
-<!-- SECTION 3: FUNDS ANALYSIS -->
-<div id="funds" class="section">
-  <div class="section-title">📦 القسم ٣ — تحليل صناديق الادخار</div>
-
-  <!-- CI30 -->
-  <div class="fund-card good" style="margin-bottom:16px;">
-    <div class="card-header">
+  <!-- ADIB -->
+  <div class="holding-card green" id="h-adib">
+    <div class="holding-header">
       <div>
-        <div class="card-title">CI30 💰 <span class="card-badge badge-buy" style="font-size:11px;">🟢 زيادة</span></div>
-        <div style="color:var(--muted);font-size:12px;">صندوق CI Capital للدخل الثابت (30)</div>
-      </div>
-      <div style="text-align:left;text-align:end;">
-        <div class="g" style="font-size:18px;font-weight:700;">+8.57%</div>
-        <div style="color:var(--muted);font-size:11px;">عائد منذ الشراء</div>
-      </div>
-    </div>
-    <div class="card-metrics" style="grid-template-columns:repeat(4,1fr)">
-      <div class="metric"><div class="lbl">الوثائق</div><div class="val">235</div></div>
-      <div class="metric"><div class="lbl">سعر الشراء</div><div class="val">33.16</div></div>
-      <div class="metric"><div class="lbl">السعر الحالي</div><div class="val g">36.00</div></div>
-      <div class="metric"><div class="lbl">الربح</div><div class="val g">+667.91 ج.م</div></div>
-    </div>
-    <div class="fund-compare">
-      <div class="compare-item">
-        <div class="cl">عائد CI30 التقريبي سنوياً</div>
-        <div class="cv g">~23-25%</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">سعر الفائدة المركزي</div>
-        <div class="cv b">19%</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">أعلى شهادة بنكية</div>
-        <div class="cv b">17.25%</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">التضخم الحالي</div>
-        <div class="cv r">~13.4%</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">العائد الحقيقي</div>
-        <div class="cv g">+9-12%</div>
-      </div>
-    </div>
-    <div class="rec-box buy" style="margin-top:10px;">
-      <h4 style="color:var(--green)">🟢 زيادة — الأفضل في الصناديق</h4>
-      <ul>
-        <li>CI30 يتفوق على الشهادات البنكية بـ 6-8 نقطة — عائد حقيقي إيجابي بعد التضخم</li>
-        <li>بعد تحويل BSB: أضف الـ 6,473 ج.م لـ CI30 مباشرة (~180 وثيقة إضافية)</li>
-        <li>اشتري على السعر الحالي 36.00 ج.م أو أفضل</li>
-        <li>استمر في الاحتفاظ لحين خفض الفائدة المتوقع في H2 2026</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- CFF -->
-  <div class="fund-card ok" style="margin-bottom:16px;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">CFF 💵 <span class="card-badge badge-hold" style="font-size:11px;">⚪ احتفاظ</span></div>
-        <div style="color:var(--muted);font-size:12px;">صندوق CI Capital للادخار (Feed)</div>
-      </div>
-      <div style="text-align:end;">
-        <div class="g" style="font-size:18px;font-weight:700;">+0.66%</div>
-        <div style="color:var(--muted);font-size:11px;">عائد منذ الشراء</div>
-      </div>
-    </div>
-    <div class="card-metrics" style="grid-template-columns:repeat(4,1fr)">
-      <div class="metric"><div class="lbl">الوثائق</div><div class="val">351</div></div>
-      <div class="metric"><div class="lbl">سعر الشراء</div><div class="val">19.80</div></div>
-      <div class="metric"><div class="lbl">السعر الحالي</div><div class="val g">19.93</div></div>
-      <div class="metric"><div class="lbl">الربح</div><div class="val g">+45.77 ج.م</div></div>
-    </div>
-    <div class="fund-compare">
-      <div class="compare-item">
-        <div class="cl">العائد السنوي التقريبي</div>
-        <div class="cv y">~18-20%</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">مقارنة بـ CI30</div>
-        <div class="cv r">أقل بـ 4-5%</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">العائد الحقيقي</div>
-        <div class="cv y">+4-6%</div>
-      </div>
-    </div>
-    <div class="rec-box hold" style="margin-top:10px;">
-      <h4 style="color:var(--yellow)">⚪ احتفاظ — لكن راجع البديل</h4>
-      <ul>
-        <li>الصندوق مقبول لكن CI30 يؤدي أداءً أفضل — إذا كان عائده السنوي أقل من 20%، فكّر في التحويل</li>
-        <li>مناسب كسيولة شبه جاهزة مع عائد أفضل من البنك</li>
-        <li>لا تزيد الوثائق حتى تتأكد من العائد السنوي الفعلي</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- BSB -->
-  <div class="fund-card bad" style="margin-bottom:16px;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">BSB 🔴 <span class="card-badge badge-sell" style="font-size:11px;">🔴 تحويل فوري</span></div>
-        <div style="color:var(--muted);font-size:12px;">صندوق بيلتون للادخار</div>
-      </div>
-      <div style="text-align:end;">
-        <div class="r" style="font-size:18px;font-weight:700;">-0.69%</div>
-        <div style="color:var(--muted);font-size:11px;">خسارة منذ الشراء</div>
-      </div>
-    </div>
-    <div class="card-metrics" style="grid-template-columns:repeat(4,1fr)">
-      <div class="metric"><div class="lbl">الوثائق</div><div class="val">3,477</div></div>
-      <div class="metric"><div class="lbl">سعر الشراء</div><div class="val">1.89</div></div>
-      <div class="metric"><div class="lbl">السعر الحالي</div><div class="val r">1.87 ▼</div></div>
-      <div class="metric"><div class="lbl">الخسارة</div><div class="val r">-45.31 ج.م</div></div>
-    </div>
-    <div class="fund-compare">
-      <div class="compare-item">
-        <div class="cl">العائد على BSB</div>
-        <div class="cv r">سلبي</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">العائد على CI30</div>
-        <div class="cv g">+23-25%</div>
-      </div>
-      <div class="compare-item">
-        <div class="cl">الفرق في العائد</div>
-        <div class="cv r">فارق ضخم جداً!</div>
-      </div>
-    </div>
-    <div class="rec-box sell" style="margin-top:10px;">
-      <h4 style="color:var(--red)">🔴 تحويل فوري — أعلى أولوية</h4>
-      <ul>
-        <li>بيع كل 3,477 وثيقة على سعر السوق فوراً (~6,473 ج.م)</li>
-        <li>ليه: الصندوق خسران بينما المؤشر والصناديق الأخرى رابحة — مشكلة في إدارة الأصول</li>
-        <li>الخسارة المتحققة: -45.31 ج.م (-0.69%) — خسارة صغيرة نسبياً</li>
-        <li>حوّل الفلوس دي فوراً لـ: CI30 (180 وثيقة إضافية تقريباً)</li>
-        <li>العائد الفارق بعد التحويل: فرق +20%+ لصالح CI30</li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-<!-- SECTION 4: PORTFOLIO HEALTH -->
-<div id="health" class="section">
-  <div class="section-title">🩺 القسم ٤ — صحة المحفظة</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
-
-    <div style="background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius);padding:16px;">
-      <div style="color:var(--green);font-weight:700;margin-bottom:10px;">✅ نقاط القوة</div>
-      <ul style="list-style:none;padding:0;">
-        <li style="padding:4px 0;font-size:13px;">✅ تنويع جيد بين أسهم وصناديق ادخار (52% / 42%)</li>
-        <li style="padding:4px 0;font-size:13px;">✅ 5 من أصل 6 أسهم رابحة — أداء إيجابي عام</li>
-        <li style="padding:4px 0;font-size:13px;">✅ PHDC و ADIB أداء ممتاز +13% و+12%</li>
-        <li style="padding:4px 0;font-size:13px;">✅ CI30 يعطي عائداً حقيقياً إيجابياً بعد التضخم</li>
-        <li style="padding:4px 0;font-size:13px;">✅ تنويع قطاعي: بنوك + اتصالات + عقارات + مطاعم + طاقة</li>
-      </ul>
-    </div>
-
-    <div style="background:var(--red-bg);border:1px solid var(--red-border);border-radius:var(--radius);padding:16px;">
-      <div style="color:var(--red);font-weight:700;margin-bottom:10px;">❌ نقاط الضعف</div>
-      <ul style="list-style:none;padding:0;">
-        <li style="padding:4px 0;font-size:13px;">❌ BSB خسران وسط سوق صاعد — قرار يجب مراجعته</li>
-        <li style="padding:4px 0;font-size:13px;">❌ وزن PHDC مرتفع نسبياً (16.5%) في سهم واحد</li>
-        <li style="padding:4px 0;font-size:13px;">❌ ETEL وزنه قليل (6.2%) رغم إمكاناته الكبيرة</li>
-        <li style="padding:4px 0;font-size:13px;">❌ MPCI وزن ضعيف جداً (4.6%) — أقل من الكفاءة</li>
-        <li style="padding:4px 0;font-size:13px;">❌ كاش شبه صفر (26 ج.م فقط) — لا مرونة للفرص</li>
-      </ul>
-    </div>
-
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
-      <div style="color:var(--blue);font-weight:700;margin-bottom:10px;">📊 تقييم التنويع</div>
-      <div style="font-size:13px;margin-bottom:8px;">
-        <strong>القطاعات المغطاة:</strong><br>
-        🏦 البنوك (ADIB) — 8.2%<br>
-        🍔 مطاعم / F&amp;B (AMES_r2) — 8.4%<br>
-        📡 اتصالات (ETEL) — 6.2%<br>
-        🏢 تجزئة / متنوع (GBCO) — 8.3%<br>
-        ⛽ طاقة / تطوير (MPCI) — 4.6%<br>
-        🏗️ عقارات (PHDC) — 16.5%<br>
-        💰 صناديق ادخار — 41.7%
-      </div>
-      <div style="margin-top:8px;">
-        <strong style="color:var(--yellow)">التقييم: مقبول</strong><br>
-        <span style="color:var(--muted);font-size:12px;">التنويع القطاعي جيد لكن الأوزان غير متوازنة — PHDC مركّز جداً</span>
-      </div>
-    </div>
-
-    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
-      <div style="color:var(--orange);font-weight:700;margin-bottom:10px;">⚖️ نسبة المخاطرة</div>
-      <div style="font-size:13px;">
-        <div>مستوى المخاطرة: <strong class="y">متوسط إلى مرتفع</strong></div>
-        <div style="margin-top:8px;color:var(--muted);">مناسبة لـ: مستثمر متوسط يتحمل مخاطرة معقولة</div>
-        <div style="margin-top:8px;">
-          <div style="font-size:12px;color:var(--muted);">الأسهم الفردية (52%):</div>
-          <div class="pct-bar"><div class="pct-fill" style="background:var(--orange);width:52%"></div></div>
+        <div class="holding-name">ADIB <span>مصرف أبو ظبي الإسلامي — مصر | قطاع البنوك</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge green">🟢 رابح</span>
+          <span class="tag">90 سهم</span>
+          <span class="tag">متوسط: 42.53 ج.م</span>
+          <span class="tag">حالي: 47.90 ج.م</span>
         </div>
-        <div style="margin-top:6px;">
-          <div style="font-size:12px;color:var(--muted);">الصناديق الدفاعية (42%):</div>
-          <div class="pct-bar"><div class="pct-fill" style="background:var(--green);width:42%"></div></div>
-        </div>
-        <div style="margin-top:8px;font-size:12px;color:var(--yellow);">⚠️ التوترات الجيوسياسية الإقليمية تزيد المخاطر</div>
+      </div>
+      <div class="holding-pnl profit">+483.51 ج.م<br><small style="font-size:14px">+12.63%</small></div>
+    </div>
+
+    <!-- أ. الحالة -->
+    <div class="analysis-grid">
+      <div class="analysis-item">
+        <div class="label">الوضع</div>
+        <div class="value profit">رابح 🟢</div>
+      </div>
+      <div class="analysis-item">
+        <div class="label">مقارنة EGX30</div>
+        <div class="value" style="color:#4d9fff">أفضل ✅</div>
+      </div>
+      <div class="analysis-item">
+        <div class="label">قرار الشراء</div>
+        <div class="value profit">صح 👍</div>
+      </div>
+      <div class="analysis-item">
+        <div class="label">الوزن في المحفظة</div>
+        <div class="value">8.7%</div>
+      </div>
+      <div class="analysis-item">
+        <div class="label">القيمة الحالية</div>
+        <div class="value">4,311 ج.م</div>
+      </div>
+      <div class="analysis-item">
+        <div class="label">التكلفة</div>
+        <div class="value">3,827.70 ج.م</div>
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- ب. التحليل الفني -->
+    <div style="margin-top:14px">
+      <strong style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">التحليل الفني</strong>
+      <div class="analysis-grid" style="margin-top:8px">
+        <div class="analysis-item"><div class="label">RSI</div><div class="value" style="color:#ffb800">~60 محايد-صاعد</div></div>
+        <div class="analysis-item"><div class="label">الاتجاه</div><div class="value profit">صعودي 📈</div></div>
+        <div class="analysis-item"><div class="label">الدعم</div><div class="value">42.00 ج.م</div></div>
+        <div class="analysis-item"><div class="label">المقاومة</div><div class="value">50.00 ج.م</div></div>
+        <div class="analysis-item"><div class="label">MA20</div><div class="value profit">السعر فوقه</div></div>
+        <div class="analysis-item"><div class="label">النمط</div><div class="value profit">تجميع 📦</div></div>
+      </div>
+    </div>
 
-<!-- SECTION 5: IDEAL ALLOCATION -->
-<div id="allocation" class="section">
-  <div class="section-title">⚖️ القسم ٥ — التوزيع المثالي المقترح</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr><th>الفئة</th><th>الوزن الحالي %</th><th>المقترح %</th><th>الإجراء</th><th>السبب</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>أسهم نمو (PHDC, AMES_r2)</td>
-          <td class="y">24.9%</td>
-          <td class="g">18-20%</td>
-          <td class="r">تقليل</td>
-          <td>PHDC مركّز — خذ أرباح جزئية</td>
-        </tr>
-        <tr>
-          <td>أسهم قيمة (ADIB, ETEL)</td>
-          <td class="y">14.4%</td>
-          <td class="g">20-25%</td>
-          <td class="g">زيادة</td>
-          <td>ETEL فرصة حقيقية — ADIB قيمة عادلة</td>
-        </tr>
-        <tr>
-          <td>أسهم دفاعية (GBCO, MPCI)</td>
-          <td>12.9%</td>
-          <td>10-12%</td>
-          <td class="y">ثبات / تقليل GBCO</td>
-          <td>GBCO في خسارة — MPCI وزنه مناسب</td>
-        </tr>
-        <tr>
-          <td>صناديق ادخار (CI30 + CFF)</td>
-          <td class="g">29.4%</td>
-          <td class="g">35-40%</td>
-          <td class="g">زيادة بعد تحويل BSB</td>
-          <td>عائد حقيقي إيجابي في بيئة فائدة مرتفعة</td>
-        </tr>
-        <tr>
-          <td class="r">صندوق إدخار BSB</td>
-          <td class="r">12.4%</td>
-          <td class="r">0%</td>
-          <td class="r">تحويل فوري</td>
-          <td>صندوق خسران — حوّل لـ CI30</td>
-        </tr>
-        <tr>
-          <td>كاش / سيولة</td>
-          <td class="r">0.1%</td>
-          <td class="y">5-8%</td>
-          <td class="g">زيادة</td>
-          <td>لازم سيولة لاستغلال الفرص والطوارئ</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+    <!-- ج. الأخبار -->
+    <div style="margin-top:14px">
+      <strong style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">آخر الأخبار المؤثرة</strong>
+      <div class="news-list" style="margin-top:8px">
+        <div class="news-item">
+          <div class="ni-icon">💰</div>
+          <div class="ni-text"><strong>أرباح Q1 2026 ترتفع 43% سنوياً</strong> أداء مالي متميز يؤكد النمو القوي للمصرف في بيئة أسعار الفائدة الحالية</div>
+          <div class="ni-effect ni-up">↑ إيجابي</div>
+        </div>
+        <div class="news-item">
+          <div class="ni-icon">📈</div>
+          <div class="ni-text"><strong>قيد أسهم زيادة رأس المال — توزيع أسهم مجانية</strong> يجري قيد زيادة رأس المال من 10 مليار إلى 20 مليار جنيه، مع توزيع أسهم مجانية. نهاية الحق في 4 يونيو 2026.</div>
+          <div class="ni-effect ni-up">↑ ممتاز</div>
+        </div>
+        <div class="news-item">
+          <div class="ni-icon">📊</div>
+          <div class="ni-text"><strong>نمو محفظة الأصول 33.1% خلال 2025</strong> وصلت الأصول إلى 346.71 مليار جنيه نهاية 2025، مع نمو الودائع 38.9% والتمويلات 51.1%</div>
+          <div class="ni-effect ni-up">↑ إيجابي</div>
+        </div>
+      </div>
+    </div>
 
-<!-- SECTION 6: FORECAST -->
-<div id="forecast" class="section">
-  <div class="section-title">🔮 القسم ٦ — توقع المحفظة للشهر القادم</div>
-  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+    <!-- د. الوضع المالي -->
+    <div style="margin-top:14px">
+      <strong style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">المؤشرات المالية</strong>
+      <div class="analysis-grid" style="margin-top:8px">
+        <div class="analysis-item"><div class="label">P/E</div><div class="value profit">~8-10x 💪</div></div>
+        <div class="analysis-item"><div class="label">نمو الأرباح</div><div class="value profit">+43% Q1 💪</div></div>
+        <div class="analysis-item"><div class="label">القيمة السوقية</div><div class="value">مناسبة للبنك</div></div>
+        <div class="analysis-item"><div class="label">تقييم المحللين</div><div class="value profit">شراء — هدف 50 ج.م</div></div>
+      </div>
+    </div>
+
+    <!-- هـ. التوصية -->
+    <div class="rec-box hold">
+      <div class="rec-title" style="color:var(--accent-yellow)">⚪ التوصية: احتفاظ — وانتظر الأسهم المجانية</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">استنى لحد</div><div class="rvalue">نهاية حق 4 يونيو 2026</div><div class="rsub">لاستلام الأسهم المجانية</div></div>
+        <div class="rec-item"><div class="rlabel">بيع جزئي لو وصل</div><div class="rvalue" style="color:#00d68f">55.00 ج.م</div><div class="rsub">+29% من متوسطك — بيع 30 سهم</div></div>
+        <div class="rec-item"><div class="rlabel">بيع كامل لو وصل</div><div class="rvalue" style="color:#00d68f">62.00 ج.م</div><div class="rsub">+45.8% من متوسطك</div></div>
+        <div class="rec-item"><div class="rlabel">وقف الخسارة</div><div class="rvalue" style="color:#ff4d6a">40.00 ج.م</div><div class="rsub">تحت الدعم الرئيسي — بيع فوري</div></div>
+      </div>
+    </div>
+    <div class="summary-line">ADIB: احتفاظ — انتظر الأسهم المجانية يونيو</div>
+  </div>
+
+  <!-- AMES_r2 — URGENT -->
+  <div class="holding-card urgent" id="h-ames">
+    <div class="holding-header">
       <div>
-        <div style="color:var(--muted);font-size:12px;">الاتجاه المتوقع</div>
-        <div style="font-size:16px;font-weight:700;color:var(--yellow);">تذبذب مع ميل للصعود 📊</div>
+        <div class="holding-name">AMES_r2 <span>⚠️ حق اكتتاب — الاسكندرية للخدمات الطبية</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge urgent">🚨 حق اكتتاب — عاجل</span>
+          <span class="tag">85 وحدة</span>
+          <span class="tag">متوسط: 50.10 ج.م</span>
+          <span class="tag">حالي: 51.82 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl profit">+146.38 ج.م<br><small style="font-size:14px">+3.44%</small></div>
+    </div>
+
+    <div class="rec-box urgent-action">
+      <div class="rec-title" style="color:var(--accent-yellow)">🚨 تحذير خاص — حقوق الاكتتاب</div>
+      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:14px">
+        حقوق الاكتتاب (Subscription Rights) هي أوراق مالية مؤقتة لها تاريخ انتهاء صلاحية. لازم تعمل حاجة من اتنين:
+      </p>
+      <div class="rec-grid">
+        <div class="rec-item">
+          <div class="rlabel">🅰️ خيار 1 — بيع الحقوق</div>
+          <div class="rvalue" style="color:#ffb800">بيع بسعر السوق فوراً</div>
+          <div class="rsub">51.82 ج.م × 85 وحدة = ~4,405 ج.م + ربح 146 ج.م</div>
+        </div>
+        <div class="rec-item">
+          <div class="rlabel">🅱️ خيار 2 — اكتتاب بالأسهم</div>
+          <div class="rvalue" style="color:#ffb800">ادفع سعر الاكتتاب وحوّلها أسهم</div>
+          <div class="rsub">يتطلب رأس مال إضافي — راجع شروط AMES</div>
+        </div>
+        <div class="rec-item">
+          <div class="rlabel">⛔ الأسوأ — إهمال</div>
+          <div class="rvalue" style="color:#ff4d6a">خسارة 4,405 ج.م كاملة</div>
+          <div class="rsub">الحقوق بتنتهي وقيمتها بتروح</div>
+        </div>
+        <div class="rec-item">
+          <div class="rlabel">التوصية</div>
+          <div class="rvalue" style="color:#ffb800">بيع بسعر السوق فوراً</div>
+          <div class="rsub">اتصل بثاندر واعرف آخر موعد اليوم</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- أخبار AMES -->
+    <div style="margin-top:14px">
+      <strong style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">ما هي AMES؟</strong>
+      <div class="news-list" style="margin-top:8px">
+        <div class="news-item">
+          <div class="ni-icon">🏥</div>
+          <div class="ni-text"><strong>الاسكندرية للخدمات الطبية — المركز الطبى الجديد</strong> شركة خدمات طبية مدرجة في البورصة المصرية. هذه الحقوق (r2) ناتجة عن عملية زيادة رأس المال.</div>
+          <div class="ni-effect ni-neutral">↔ للمعلومة</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-line">AMES_r2: بيع فوري بسعر السوق — حقوق اكتتاب بتنتهي خسارة كاملة لو أهملت</div>
+  </div>
+
+  <!-- ETEL -->
+  <div class="holding-card green" id="h-etel">
+    <div class="holding-header">
+      <div>
+        <div class="holding-name">ETEL <span>المصرية للاتصالات | قطاع الاتصالات</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge green">🟢 رابح</span>
+          <span class="tag">35 سهم</span>
+          <span class="tag">متوسط: 88.20 ج.م</span>
+          <span class="tag">حالي: 93.50 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl profit">+185.65 ج.م<br><small style="font-size:14px">+6.01%</small></div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">الوضع</div><div class="value profit">رابح 🟢</div></div>
+      <div class="analysis-item"><div class="label">مقارنة EGX30</div><div class="value" style="color:var(--text-secondary)">مشابه ↔</div></div>
+      <div class="analysis-item"><div class="label">52 أسبوع أعلى</div><div class="value">112.98 ج.م</div></div>
+      <div class="analysis-item"><div class="label">52 أسبوع أدنى</div><div class="value">33.66 ج.م</div></div>
+      <div class="analysis-item"><div class="label">هدف المحللين</div><div class="value profit">110.17 ج.م</div></div>
+      <div class="analysis-item"><div class="label">التقييم</div><div class="value">شراء قوي 💪</div></div>
+    </div>
+
+    <div class="news-list" style="margin-top:14px">
+      <div class="news-item">
+        <div class="ni-icon">🌊</div>
+        <div class="ni-text"><strong>إتمام مد كابل "كورال بريدج" البحري</strong> تربط مصر بالأردن — أول كابل من نوعه يعزز الحضور الإقليمي لـ ETEL</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">📊</div>
+        <div class="ni-text"><strong>توقعات 2026: نمو إيرادات أحادي مرتفع</strong> الشركة أعلنت توجيهات مالية إيجابية لعام 2026 مع هوامش ربح جيدة</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">💸</div>
+        <div class="ni-text"><strong>توزيع أرباح نقدية</strong> الشركة أعلنت توزيع أرباح على مساهميها — عائد توزيعات محترم لسهم الاتصالات</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+    </div>
+
+    <div class="analysis-grid" style="margin-top:14px">
+      <div class="analysis-item"><div class="label">الإيرادات Q الأخير</div><div class="value profit">28.61 مليار ج.م</div></div>
+      <div class="analysis-item"><div class="label">صافي الربح</div><div class="value profit">5.59 مليار ج.م</div></div>
+      <div class="analysis-item"><div class="label">Upside المحللين</div><div class="value profit">+16.95%</div></div>
+      <div class="analysis-item"><div class="label">Beta</div><div class="value">0.90 منخفض مخاطرة</div></div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title" style="color:var(--accent-yellow)">⚪ التوصية: احتفاظ — الهدف 105-110 ج.م</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">استنى لحد</div><div class="rvalue">105.00 ج.م</div><div class="rsub">+12.3% من السعر الحالي</div></div>
+        <div class="rec-item"><div class="rlabel">بيع جزئي عند</div><div class="rvalue" style="color:#00d68f">105.00 ج.م (15 سهم)</div><div class="rsub">ربح ~295 ج.م من الجزء ده</div></div>
+        <div class="rec-item"><div class="rlabel">بيع كامل عند</div><div class="rvalue" style="color:#00d68f">120.00 ج.م</div><div class="rsub">+36% من متوسطك</div></div>
+        <div class="rec-item"><div class="rlabel">وقف الخسارة</div><div class="rvalue" style="color:#ff4d6a">82.00 ج.م</div><div class="rsub">تحت دعم قوي — بيع فوري</div></div>
+      </div>
+    </div>
+    <div class="summary-line">ETEL: احتفاظ — هدف 110 ج.م، نمو 2026 قوي</div>
+  </div>
+
+  <!-- GBCO -->
+  <div class="holding-card red" id="h-gbco">
+    <div class="holding-header">
+      <div>
+        <div class="holding-name">GBCO <span>جي بي كورب | متنوع</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge red">🔴 خسران</span>
+          <span class="tag">165 سهم</span>
+          <span class="tag">متوسط: 27.09 ج.م</span>
+          <span class="tag">حالي: 26.60 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl loss">−81.04 ج.م<br><small style="font-size:14px">−1.81%</small></div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">الوضع</div><div class="value loss">خسران 🔴</div></div>
+      <div class="analysis-item"><div class="label">مقارنة EGX30</div><div class="value loss">أسوأ ❌</div></div>
+      <div class="analysis-item"><div class="label">الخسارة الحالية</div><div class="value loss">−0.49 ج.م/سهم</div></div>
+      <div class="analysis-item"><div class="label">الزخم</div><div class="value loss">ضعيف ⚠️</div></div>
+    </div>
+
+    <div class="news-list" style="margin-top:14px">
+      <div class="news-item">
+        <div class="ni-icon">📉</div>
+        <div class="ni-text"><strong>أداء ضعيف مقارنة بالسوق</strong> GBCO تخلفت عن العوائد القوية التي حققها السوق العام المنصرم — قد يعكس ضعف في أساسيات الشركة أو قطاعها</div>
+        <div class="ni-effect ni-down">↓ سلبي</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">⚠️</div>
+        <div class="ni-text"><strong>غياب محفزات واضحة</strong> لا توجد أخبار إيجابية واضحة قادمة تدعم ارتفاع السهم في المدى القريب</div>
+        <div class="ni-effect ni-neutral">↔ محايد</div>
+      </div>
+    </div>
+
+    <div class="rec-box sell-partial">
+      <div class="rec-title" style="color:#ffaa00">🟠 التوصية: بيع جزئي — تخفيف المركز</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">بيع كام سهم</div><div class="rvalue">100 سهم من 165</div><div class="rsub">من أصل 165 — ابقي 65 بس</div></div>
+        <div class="rec-item"><div class="rlabel">على سعر</div><div class="rvalue" style="color:#ffaa00">بسعر السوق (26.60)</div><div class="rsub">خسارة محققة ~49 ج.م على الـ100 سهم</div></div>
+        <div class="rec-item"><div class="rlabel">الباقي (65 سهم)</div><div class="rvalue">استنى 27.50 ج.م</div><div class="rsub">لو وصل — بيع الباقي</div></div>
+        <div class="rec-item"><div class="rlabel">وقف خسارة للباقي</div><div class="rvalue" style="color:#ff4d6a">24.50 ج.م</div><div class="rsub">بيع فوري لو نزل لهنا</div></div>
+      </div>
+      <div style="margin-top:12px;padding:10px;background:rgba(255,170,0,0.08);border-radius:8px;font-size:12px;color:var(--text-secondary)">
+        💡 <strong style="color:var(--text-primary)">ليه؟</strong> الفلوس اللي هتجمعها من بيع 100 سهم (~2,660 ج.م) ضيفها على صندوق BSB الذهب أو CI30 المؤشر اللي أداؤهم أفضل.
+      </div>
+    </div>
+    <div class="summary-line">GBCO: بيع جزئي بسعر السوق — خسارة طفيفة ولا محفزات</div>
+  </div>
+
+  <!-- MPCI -->
+  <div class="holding-card green" id="h-mpci">
+    <div class="holding-header">
+      <div>
+        <div class="holding-name">MPCI <span>ممفيس للأدوية والصناعات الكيماوية | قطاع الأدوية</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge green">🟢 رابح</span>
+          <span class="tag">14 سهم</span>
+          <span class="tag">متوسط: 165.42 ج.م</span>
+          <span class="tag">حالي: 172.97 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl profit">+105.69 ج.م<br><small style="font-size:14px">+4.56%</small></div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">الوضع</div><div class="value profit">رابح 🟢</div></div>
+      <div class="analysis-item"><div class="label">التقييم الفني</div><div class="value profit">شراء قوي 💪</div></div>
+      <div class="analysis-item"><div class="label">52 أسبوع أعلى</div><div class="value">232.95 ج.م</div></div>
+      <div class="analysis-item"><div class="label">52 أسبوع أدنى</div><div class="value">54.60 ج.م</div></div>
+      <div class="analysis-item"><div class="label">الوزن</div><div class="value">4.9% (صغير)</div></div>
+      <div class="analysis-item"><div class="label">القطاع</div><div class="value profit">دفاعي متنامٍ 💊</div></div>
+    </div>
+
+    <div class="news-list" style="margin-top:14px">
+      <div class="news-item">
+        <div class="ni-icon">💊</div>
+        <div class="ni-text"><strong>قطاع الأدوية المصري ينمو</strong> الطلب على الأدوية المحلية يرتفع في ظل ارتفاع أسعار المستوردة — يفيد ممفيس كمنتج محلي</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">📊</div>
+        <div class="ni-text"><strong>السهم تحت قمته التاريخية بمسافة</strong> السهم عند 172.97 وقمته 232.95 — مساحة ارتفاع 35% للقمة السابقة</div>
+        <div class="ni-effect ni-neutral">↔ فرصة</div>
+      </div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title" style="color:var(--accent-yellow)">⚪ التوصية: احتفاظ — الوزن صغير لا يستحق تحريك</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">استنى لحد</div><div class="rvalue">200.00 ج.م</div><div class="rsub">+15.6% من السعر الحالي</div></div>
+        <div class="rec-item"><div class="rlabel">بيع جزئي عند</div><div class="rvalue" style="color:#00d68f">210.00 ج.م</div><div class="rsub">7 أسهم — ربح ~311 ج.م</div></div>
+        <div class="rec-item"><div class="rlabel">بيع كامل عند</div><div class="rvalue" style="color:#00d68f">230.00 ج.م</div><div class="rsub">+39.1% من متوسطك</div></div>
+        <div class="rec-item"><div class="rlabel">وقف الخسارة</div><div class="rvalue" style="color:#ff4d6a">150.00 ج.م</div><div class="rsub">بيع كل 14 سهم فوراً</div></div>
+      </div>
+    </div>
+    <div class="summary-line">MPCI: احتفاظ — هدف 210 ج.م، قطاع أدوية دفاعي</div>
+  </div>
+
+  <!-- PHDC -->
+  <div class="holding-card green" id="h-phdc">
+    <div class="holding-header">
+      <div>
+        <div class="holding-name">PHDC 🏆 <span>بالم هيلز للتعمير | قطاع العقارات</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge green">🏆 أكبر رابح</span>
+          <span class="tag">700 سهم</span>
+          <span class="tag">متوسط: 10.92 ج.م</span>
+          <span class="tag">حالي: 12.40 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl profit">+1,039.47 ج.م<br><small style="font-size:14px">+13.60%</small></div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">الوضع</div><div class="value profit">رابح 🏆</div></div>
+      <div class="analysis-item"><div class="label">مقارنة EGX30</div><div class="value profit">أفضل ✅</div></div>
+      <div class="analysis-item"><div class="label">هدف المحللين</div><div class="value profit">17.87 ج.م (وسط)</div></div>
+      <div class="analysis-item"><div class="label">أعلى هدف</div><div class="value profit">28.90 ج.م</div></div>
+      <div class="analysis-item"><div class="label">توصية المحللين</div><div class="value profit">شراء قوي 💪</div></div>
+      <div class="analysis-item"><div class="label">Upside المحلل</div><div class="value profit">+55% متوسط</div></div>
+    </div>
+
+    <div class="news-list" style="margin-top:14px">
+      <div class="news-item">
+        <div class="ni-icon">🏙️</div>
+        <div class="ni-text"><strong>اتفاقية تطوير مشروع أبوظبي — 1.87 مليون متر مربع</strong> بالم هيلز توقع اتفاقية مع ويف سيفن للاستثمار لتطوير قطعة أرض بأبوظبي تطل على جزيرة السعديات — توسع خليجي ضخم</div>
+        <div class="ni-effect ni-up">↑ إيجابي جداً</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">💰</div>
+        <div class="ni-text"><strong>صافي دخل Q الأخير 1.1 مليار ج.م</strong> نمو قوي في صافي الدخل — الشركة تنمو بسرعة مع تسليمات المشاريع</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">🏛️</div>
+        <div class="ni-text"><strong>شراء أسهم خزينة</strong> الشركة تشتري أسهمها من السوق — إشارة ثقة من الإدارة في تقييم السهم</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+    </div>
+
+    <div class="analysis-grid" style="margin-top:14px">
+      <div class="analysis-item"><div class="label">EPS</div><div class="value profit">1.46 ج.م</div></div>
+      <div class="analysis-item"><div class="label">P/E تقريبي</div><div class="value profit">~8.5x معقول</div></div>
+      <div class="analysis-item"><div class="label">52 أسبوع</div><div class="value">6.62 - 12.00 ج.م</div></div>
+      <div class="analysis-item"><div class="label">القيمة السوقية</div><div class="value">31-33 مليار ج.م</div></div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title" style="color:var(--accent-yellow)">⚪ التوصية: احتفاظ — هدف تدريجي للبيع</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">بيع جزئي أول</div><div class="rvalue" style="color:#00d68f">15.00 ج.م (200 سهم)</div><div class="rsub">+21% من السعر الحالي — ربح ~600 ج.م</div></div>
+        <div class="rec-item"><div class="rlabel">بيع جزئي ثاني</div><div class="rvalue" style="color:#00d68f">18.00 ج.م (300 سهم)</div><div class="rsub">هدف المحللين الوسطي — ربح ~2,160 ج.م</div></div>
+        <div class="rec-item"><div class="rlabel">بيع كامل لو وصل</div><div class="rvalue" style="color:#00d68f">22.00 ج.م (الباقي 200)</div><div class="rsub">+101.5% من متوسطك</div></div>
+        <div class="rec-item"><div class="rlabel">وقف الخسارة</div><div class="rvalue" style="color:#ff4d6a">10.50 ج.م</div><div class="rsub">تحت متوسط الشراء — بيع فوري</div></div>
+      </div>
+      <div style="margin-top:12px;padding:10px;background:rgba(0,214,143,0.08);border-radius:8px;font-size:12px;color:var(--text-secondary)">
+        💡 <strong style="color:var(--text-primary)">مهم:</strong> مشروع أبوظبي لما يتم الإعلان عنه رسمياً هيدي السهم دفعة قوية. لو وصل 15 جنيه قبل أي إعلان — بيع 200 واحتفظ بالباقي للهدف الكبير.
+      </div>
+    </div>
+    <div class="summary-line">PHDC: احتفاظ — بيع تدريجي 15 → 18 → 22 ج.م، هدف +101%</div>
+  </div>
+</section>
+
+<!-- ======== SECTION 4: FUNDS ======== -->
+<section id="funds">
+  <div class="section-title">📦 تحليل الصناديق الاستثمارية</div>
+
+  <!-- BSB GOLD -->
+  <div class="holding-card gold" id="h-bsb">
+    <div class="holding-header">
+      <div>
+        <div class="holding-name">BSB 🥇 <span>صندوق بلتون سبائك — ذهب عيار 24</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge red">🔴 خسارة طفيفة</span>
+          <span class="tag">3,477 وثيقة</span>
+          <span class="tag">شراء: 1.89 ج.م</span>
+          <span class="tag">حالي: 1.87 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl loss">−45.31 ج.م<br><small style="font-size:14px">−0.69%</small></div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">سعر ذهب عيار 24</div><div class="value" style="color:#f5c842">~7,942 ج.م/جرام</div></div>
+      <div class="analysis-item"><div class="label">الأونصة العالمية</div><div class="value profit">مرتفعة تاريخياً</div></div>
+      <div class="analysis-item"><div class="label">الاتجاه</div><div class="value profit">صعودي 📈</div></div>
+      <div class="analysis-item"><div class="label">التضخم المصري</div><div class="value" style="color:#ffb800">~11.9% حضري</div></div>
+      <div class="analysis-item"><div class="label">حجم الصندوق</div><div class="value">~1.6 مليار ج.م</div></div>
+      <div class="analysis-item"><div class="label">حكمة الاستثمار</div><div class="value profit">حماية من التضخم 💪</div></div>
+    </div>
+
+    <div class="news-list" style="margin-top:14px">
+      <div class="news-item">
+        <div class="ni-icon">🥇</div>
+        <div class="ni-text"><strong>ذهب مايو 2026 — استقرار مع ميل للارتفاع</strong> عيار 24 عند 7,942 ج.م للجرام. الذهب كملاذ آمن في ظل مخاوف جيوسياسية إقليمية</div>
+        <div class="ni-effect ni-up">↑ محايد+</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">🏦</div>
+        <div class="ni-text"><strong>البنوك ترفع الفائدة على الشهادات</strong> الأهلي ومصر رفعوا إلى 17.25%، CIB إلى 19.5% — المنافسة على السيولة تضغط على الذهب</div>
+        <div class="ni-effect ni-down">↓ تنافس</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">📊</div>
+        <div class="ni-text"><strong>BSB خسارة -0.69%</strong> الخسارة الطفيفة تعكس شراء عند قمة نسبية، الصندوق يتتبع الذهب بدقة — لا عيب في الصندوق نفسه</div>
+        <div class="ni-effect ni-neutral">↔ توقيت</div>
+      </div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title" style="color:var(--accent-yellow)">⚪ التوصية: احتفاظ — الذهب حماية ضرورية</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">السبب</div><div class="rvalue">حماية من التضخم 11.9%</div><div class="rsub">الذهب يحافظ على القيمة طويل الأمد</div></div>
+        <div class="rec-item"><div class="rlabel">التوقع الشهر القادم</div><div class="rvalue" style="color:#f5c842">تذبذب مع ميل للصعود</div><div class="rsub">مخاوف جيوسياسية تدعم الذهب</div></div>
+        <div class="rec-item"><div class="rlabel">النسبة المثالية</div><div class="rvalue">15-20% من المحفظة</div><div class="rsub">الحالي 13.2% — يمكن الزيادة قليلاً</div></div>
+        <div class="rec-item"><div class="rlabel">زيادة اختيارية</div><div class="rvalue">اشتري وثائق بـ ~1,000 ج.م</div><div class="rsub">لو عندك سيولة من بيع GBCO</div></div>
+      </div>
+    </div>
+    <div class="summary-line">BSB: احتفاظ — خسارة توقيت لا خسارة جوهرية، الذهب ملاذ</div>
+  </div>
+
+  <!-- CFF SAVINGS -->
+  <div class="holding-card" id="h-cff">
+    <div class="holding-header">
+      <div>
+        <div class="holding-name">CFF <span>صندوق CI مال ومدفوعات رقمية | ادخار/نقدي</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge yellow">⚪ محايد</span>
+          <span class="tag">351 وثيقة</span>
+          <span class="tag">شراء: 19.80 ج.م</span>
+          <span class="tag">حالي: 19.93 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl profit">+45.77 ج.م<br><small style="font-size:14px">+0.66%</small></div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">سعر فائدة المركزي</div><div class="value">19% إيداع</div></div>
+      <div class="analysis-item"><div class="label">شهادات الأهلي/مصر</div><div class="value" style="color:#ffb800">17.25% (رُفعت حديثاً)</div></div>
+      <div class="analysis-item"><div class="label">شهادات CIB</div><div class="value profit">19.5% (أعلى)</div></div>
+      <div class="analysis-item"><div class="label">التضخم</div><div class="value" style="color:#ff4d6a">~11.9%</div></div>
+      <div class="analysis-item"><div class="label">العائد الحقيقي</div><div class="value profit">موجب 💪</div></div>
+      <div class="analysis-item"><div class="label">عائد الصندوق المتوقع</div><div class="value" style="color:#ffb800">~18-20% سنوي</div></div>
+    </div>
+
+    <div class="news-list" style="margin-top:14px">
+      <div class="news-item">
+        <div class="ni-icon">🏦</div>
+        <div class="ni-text"><strong>البنوك رفعت الفائدة على الشهادات</strong> الأهلي ومصر رفعوا إلى 17.25%، CIB إلى 19.5% — يجب مقارنة عائد CFF بهذه المعدلات</div>
+        <div class="ni-effect ni-neutral">↔ منافسة</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">📊</div>
+        <div class="ni-text"><strong>اجتماع المركزي 21 مايو 2026</strong> متوقع تثبيت الفائدة عند 19% — بيئة فائدة مرتفعة تفيد صناديق الادخار</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title" style="color:var(--accent-yellow)">⚪ التوصية: احتفاظ — قارن العائد بالشهادات</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">إجراء فوري</div><div class="rvalue">اسأل عن عائد CFF السنوي</div><div class="rsub">لو أقل من 17% — حوّل لشهادات CIB</div></div>
+        <div class="rec-item"><div class="rlabel">شهادات CIB</div><div class="rvalue profit">19.5% سنوي</div><div class="rsub">أعلى بديل آمن متاح الآن</div></div>
+        <div class="rec-item"><div class="rlabel">ميزة CFF</div><div class="rvalue">سيولة فورية</div><div class="rsub">بيع الوثائق في أي وقت بدون قفل</div></div>
+        <div class="rec-item"><div class="rlabel">عائد التضخم الحقيقي</div><div class="rvalue profit">موجب (+5-8%) 💪</div><div class="rsub">بعد خصم التضخم 11.9%</div></div>
+      </div>
+    </div>
+    <div class="summary-line">CFF: احتفاظ مؤقت — قارن عائده بشهادة CIB 19.5%</div>
+  </div>
+
+  <!-- CI30 INDEX -->
+  <div class="holding-card green" id="h-ci30">
+    <div class="holding-header">
+      <div>
+        <div class="holding-name">CI30 <span>صندوق مؤشر CI EGX30 | أسهم</span></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <span class="badge green">🟢 رابح</span>
+          <span class="tag">235 وثيقة</span>
+          <span class="tag">شراء: 33.16 ج.م</span>
+          <span class="tag">حالي: 36.00 ج.م</span>
+        </div>
+      </div>
+      <div class="holding-pnl profit">+667.91 ج.م<br><small style="font-size:14px">+8.57%</small></div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-item"><div class="label">EGX30 الحالي</div><div class="value profit">52,312 نقطة</div></div>
+      <div class="analysis-item"><div class="label">أداء EGX30 شهر</div><div class="value profit">+11.6% 🚀</div></div>
+      <div class="analysis-item"><div class="label">أداء EGX30 سنة</div><div class="value profit">ارتفاع قوي</div></div>
+      <div class="analysis-item"><div class="label">الاتجاه</div><div class="value profit">صعودي قوي 📈</div></div>
+      <div class="analysis-item"><div class="label">المخاطرة</div><div class="value" style="color:#ffb800">متوسطة</div></div>
+      <div class="analysis-item"><div class="label">نوع الصندوق</div><div class="value">مؤشر — منخفض الرسوم</div></div>
+    </div>
+
+    <div class="news-list" style="margin-top:14px">
+      <div class="news-item">
+        <div class="ni-icon">📈</div>
+        <div class="ni-text"><strong>EGX30 يغلق عند 52,312 — ارتفاع 1.07% جلسة الأحد</strong> السوق في اتجاه صعودي قوي مع مكاسب 48.7 مليار في تداولات أمس</div>
+        <div class="ni-effect ni-up">↑ إيجابي</div>
+      </div>
+      <div class="news-item">
+        <div class="ni-icon">🏦</div>
+        <div class="ni-text"><strong>تدفقات محلية إيجابية</strong> المستثمرون المصريون يقودون الصعود — المؤسسات الأجنبية بائعة (224 مليون)</div>
+        <div class="ni-effect ni-neutral">↔ مختلط</div>
+      </div>
+    </div>
+
+    <div class="rec-box buy">
+      <div class="rec-title" style="color:var(--accent-green)">🟢 التوصية: احتفاظ وزيادة تدريجية</div>
+      <div class="rec-grid">
+        <div class="rec-item"><div class="rlabel">الاستراتيجية</div><div class="rvalue">تراكم شهري DCA</div><div class="rsub">ضيف وثائق كل شهر بمبلغ ثابت</div></div>
+        <div class="rec-item"><div class="rlabel">زيادة مقترحة الآن</div><div class="rvalue" style="color:#00d68f">اشتري 50 وثيقة إضافية</div><div class="rsub">على سعر ~36 ج.م = 1,800 ج.م</div></div>
+        <div class="rec-item"><div class="rlabel">بيع جزئي عند</div><div class="rvalue" style="color:#ffb800">لو EGX30 وصل 60,000</div><div class="rsub">بيع 80 وثيقة — جني أرباح</div></div>
+        <div class="rec-item"><div class="rlabel">وقف الخسارة</div><div class="rvalue" style="color:#ff4d6a">لو EGX30 نزل 44,000</div><div class="rsub">تقليل المركز 50%</div></div>
+      </div>
+    </div>
+    <div class="summary-line">CI30: زيادة تدريجية — السوق في اتجاه صعودي قوي</div>
+  </div>
+</section>
+
+<!-- ======== SECTION 5: PORTFOLIO HEALTH ======== -->
+<section id="health">
+  <div class="section-title">🩺 تقييم صحة المحفظة</div>
+
+  <div class="health-grid">
+    <div class="card green">
+      <div class="card-title" style="margin-bottom:14px">✅ نقاط القوة</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-green);flex-shrink:0">✅</span>
+          <div><strong style="font-size:13px">تنويع جيد</strong><br><span style="font-size:12px;color:var(--text-secondary)">أسهم + ذهب + ادخار + مؤشر — 4 فئات أصول مختلفة</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-green);flex-shrink:0">✅</span>
+          <div><strong style="font-size:13px">7 من 9 أدوات رابحة</strong><br><span style="font-size:12px;color:var(--text-secondary)">نسبة نجاح 78% في اختيار الأسهم الرابحة</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-green);flex-shrink:0">✅</span>
+          <div><strong style="font-size:13px">أكبر رابح (PHDC) هو الأكبر وزناً</strong><br><span style="font-size:12px;color:var(--text-secondary)">17.6% من المحفظة في أفضل سهم — بناء مركز ذكي</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-green);flex-shrink:0">✅</span>
+          <div><strong style="font-size:13px">صندوق ذهب BSB للحماية</strong><br><span style="font-size:12px;color:var(--text-secondary)">13.2% ذهب يوفر حماية من التضخم 11.9%</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-green);flex-shrink:0">✅</span>
+          <div><strong style="font-size:13px">أسهم قيادية قوية (ADIB + ETEL)</strong><br><span style="font-size:12px;color:var(--text-secondary)">بنوك واتصالات — قطاعات أساسية متنامية</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card red">
+      <div class="card-title" style="margin-bottom:14px">❌ نقاط الضعف والمخاطر</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-red);flex-shrink:0">❌</span>
+          <div><strong style="font-size:13px">AMES_r2 — خطر كامل الخسارة</strong><br><span style="font-size:12px;color:var(--text-secondary)">حق اكتتاب بتاريخ انتهاء — لا بديل عن التصرف الفوري</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-red);flex-shrink:0">❌</span>
+          <div><strong style="font-size:13px">تركيز في قطاع واحد غير معروف (GBCO)</strong><br><span style="font-size:12px;color:var(--text-secondary)">8.9% في سهم ضعيف الأداء بدون محفزات واضحة</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-red);flex-shrink:0">❌</span>
+          <div><strong style="font-size:13px">MPCI وزن صغير جداً (4.9%)</strong><br><span style="font-size:12px;color:var(--text-secondary)">لو اعتقدت في السهم — مركز صغير لا يحقق أثراً</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-red);flex-shrink:0">❌</span>
+          <div><strong style="font-size:13px">لا أسهم دفاعية في EGX70/100</strong><br><span style="font-size:12px;color:var(--text-secondary)">الأسهم الصغيرة والمتوسطة غائبة — CI30 يعوض جزئياً</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="color:var(--accent-red);flex-shrink:0">❌</span>
+          <div><strong style="font-size:13px">كاش 26.19 ج.م — ضئيل جداً</strong><br><span style="font-size:12px;color:var(--text-secondary)">لا سيولة كافية للفرص القادمة</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title" style="margin-bottom:14px">⚖️ تقييم التنويع والمخاطرة</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <div>
+        <strong style="font-size:13px">التنويع القطاعي</strong>
+        <div style="margin-top:8px;font-size:12px;color:var(--text-secondary)">
+          ✅ عقارات — ✅ بنوك — ✅ اتصالات<br>
+          ✅ أدوية — ✅ ذهب — ✅ مؤشر<br>
+          ⚠️ متنوع مقبول لكن يمكن التحسين
+        </div>
+        <div style="margin-top:8px"><span class="badge yellow">مقبول ✔️</span></div>
       </div>
       <div>
-        <div style="color:var(--muted);font-size:12px;">النسبة المتوقعة</div>
-        <div style="font-size:16px;font-weight:700;color:var(--green);">+3% إلى +8%</div>
+        <strong style="font-size:13px">الارتباط بين الأسهم</strong>
+        <div style="margin-top:8px;font-size:12px;color:var(--text-secondary)">
+          PHDC + ADIB + CI30 ترتفع مع السوق<br>
+          BSB يرتفع عكس الجنيه/السوق<br>
+          ارتباط معتدل — تنويع جزئي
+        </div>
+        <div style="margin-top:8px"><span class="badge yellow">مقبول ✔️</span></div>
       </div>
       <div>
-        <div style="color:var(--muted);font-size:12px;">أهم اجتماع قادم</div>
-        <div style="font-size:16px;font-weight:700;color:var(--blue);">البنك المركزي 21 مايو</div>
+        <strong style="font-size:13px">مستوى المخاطرة</strong>
+        <div style="margin-top:8px;font-size:12px;color:var(--text-secondary)">
+          المحفظة تجمع أسهم نمو + ذهب + ادخار<br>
+          تناسب مستثمر متوسط المخاطرة<br>
+          ليست مضاربة — ليست محافظة جداً
+        </div>
+        <div style="margin-top:8px"><span class="badge blue">متوسط المخاطرة 📊</span></div>
+      </div>
+      <div>
+        <strong style="font-size:13px">مناسبة لـ</strong>
+        <div style="margin-top:8px;font-size:12px;color:var(--text-secondary)">
+          ✅ مستثمر متوسط يريد نمو<br>
+          ✅ يقبل تذبذب معقول<br>
+          ✅ أفق استثماري 1-3 سنوات
+        </div>
+        <div style="margin-top:8px"><span class="badge green">مستثمر متوسط 👍</span></div>
       </div>
     </div>
   </div>
-  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;">
-    <div style="font-weight:700;color:var(--gold);margin-bottom:10px;">🔑 أهم 3 عوامل ستؤثر على المحفظة</div>
-    <div style="display:grid;gap:8px;">
-      <div style="background:var(--bg3);border-radius:8px;padding:10px;font-size:13px;">
-        <strong class="b">1. اجتماع البنك المركزي (21 مايو):</strong> ثبات الفائدة متوقع — التثبيت يدعم صناديق الادخار ويؤخر انتعاش الأسهم الصناعية
-      </div>
-      <div style="background:var(--bg3);border-radius:8px;padding:10px;font-size:13px;">
-        <strong class="y">2. التوترات الجيوسياسية الإقليمية:</strong> الحرب الأمريكية-الإيرانية تضغط على أسعار النفط والدولار — يزيد التضخم المستورد ويضعف الجنيه
-      </div>
-      <div style="background:var(--bg3);border-radius:8px;padding:10px;font-size:13px;">
-        <strong class="g">3. نتائج الشركات Q1 2026:</strong> ETEL و PHDC تصدران نتائجهما في يونيو — إذا جاءت إيجابية ستدعم الأسعار قبل الإعلان
-      </div>
-    </div>
-  </div>
-  <div class="scenario-grid">
-    <div class="scenario worst">
-      <div style="font-size:24px;margin-bottom:8px;">😰</div>
-      <div style="font-weight:700;color:var(--red);">أسوأ سيناريو</div>
-      <div style="font-size:13px;color:var(--muted);margin:8px 0;">تصاعد التوترات — رفع فائدة مفاجئ — هبوط EGX30</div>
-      <div style="font-size:20px;font-weight:700;color:var(--red);">-8% إلى -12%</div>
-      <div style="font-size:12px;color:var(--red);">خسارة ~4,500 – 6,300 ج.م</div>
-    </div>
-    <div class="scenario likely">
-      <div style="font-size:24px;margin-bottom:8px;">📊</div>
-      <div style="font-weight:700;color:var(--blue);">السيناريو الأرجح (55%)</div>
-      <div style="font-size:13px;color:var(--muted);margin:8px 0;">ثبات الفائدة — تذبذب معتدل — أرباح قطاع البنوك</div>
-      <div style="font-size:20px;font-weight:700;color:var(--blue);">+3% إلى +6%</div>
-      <div style="font-size:12px;color:var(--blue);">ربح ~1,580 – 3,158 ج.م</div>
-    </div>
-    <div class="scenario best">
-      <div style="font-size:24px;margin-bottom:8px;">🚀</div>
-      <div style="font-weight:700;color:var(--green);">أفضل سيناريو</div>
-      <div style="font-size:13px;color:var(--muted);margin:8px 0;">تهدئة جيوسياسية — خفض فائدة مبكر — نتائج ممتازة</div>
-      <div style="font-size:20px;font-weight:700;color:var(--green);">+8% إلى +15%</div>
-      <div style="font-size:12px;color:var(--green);">ربح ~4,211 – 7,896 ج.م</div>
-    </div>
-  </div>
-</div>
+</section>
 
-<!-- SECTION 8: QUICK SUMMARY TABLE -->
-<div id="summary" class="section">
-  <div class="section-title">📋 القسم ٨ — الملخص في دقيقة</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>الأداة</th><th>الوضع</th><th>التوصية</th><th>نفّذ على سعر</th><th>وقف الخسارة</th><th>بيع عند</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:rgba(63,185,80,0.05)">
-          <td><strong class="g">PHDC</strong></td><td class="g">رابح +13.6% 🟢</td>
-          <td class="y"><strong>🟠 بيع جزئي 40%</strong></td>
-          <td class="y">13.50 – 14.00 ج.م</td>
-          <td class="r">11.20 ج.م</td>
-          <td class="g">17.00 ج.م (الباقي)</td>
-        </tr>
-        <tr style="background:rgba(63,185,80,0.05)">
-          <td><strong class="g">ADIB</strong></td><td class="g">رابح +12.6% 🟢</td>
-          <td class="y"><strong>⚪ احتفاظ</strong></td>
-          <td>—</td><td class="r">43.50 ج.م</td><td class="g">52.00 ج.م</td>
-        </tr>
-        <tr style="background:rgba(88,166,255,0.05)">
-          <td><strong class="b">ETEL</strong></td><td class="g">رابح +6.0% 🟢</td>
-          <td class="g"><strong>🟢 زيادة</strong></td>
-          <td class="g">93.00 – 95.00 ج.م</td><td class="r">87.00 ج.م</td><td class="g">105.00 – 113.00 ج.م</td>
-        </tr>
-        <tr style="background:rgba(63,185,80,0.05)">
-          <td><strong class="g">AMES_r2</strong></td><td class="g">رابح +3.4% 🟢</td>
-          <td class="y"><strong>⚪ احتفاظ</strong></td>
-          <td>—</td><td class="r">47.50 ج.م</td><td class="g">56.00 ج.م</td>
-        </tr>
-        <tr style="background:rgba(248,81,73,0.05)">
-          <td><strong class="r">GBCO</strong></td><td class="r">خسران -1.8% 🔴</td>
-          <td class="y"><strong>⚪ احتفاظ + مراقبة</strong></td>
-          <td>—</td><td class="r">25.50 ج.م ⚠️</td><td class="g">28.50 ج.م</td>
-        </tr>
-        <tr style="background:rgba(63,185,80,0.05)">
-          <td><strong class="g">MPCI</strong></td><td class="g">رابح +4.6% 🟢</td>
-          <td class="g"><strong>🟢 زيادة عند الضعف</strong></td>
-          <td class="g">165.00 – 168.00 ج.م</td><td class="r">158.00 ج.م</td><td class="g">185.00 ج.م</td>
-        </tr>
-        <tr style="background:rgba(248,81,73,0.07)">
-          <td><strong class="r">BSB</strong></td><td class="r">خسران -0.69% 🔴</td>
-          <td class="r"><strong>🔴 تحويل فوري لـ CI30</strong></td>
-          <td class="r">بسعر السوق فوراً</td><td>—</td><td>—</td>
-        </tr>
-        <tr>
-          <td><strong>CFF</strong></td><td class="g">رابح +0.66% 🟢</td>
-          <td class="y"><strong>⚪ احتفاظ</strong></td>
-          <td>—</td><td>—</td><td>عند الحاجة للسيولة</td>
-        </tr>
-        <tr style="background:rgba(63,185,80,0.05)">
-          <td><strong class="g">CI30</strong></td><td class="g">رابح +8.57% 🟢</td>
-          <td class="g"><strong>🟢 زيادة (أضف BSB)</strong></td>
-          <td class="g">36.00 ج.م أو الحالي</td><td>—</td><td>لا تبيع — استمر</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<!-- ======== SECTION 6: IDEAL ALLOCATION ======== -->
+<section id="allocation">
+  <div class="section-title">⚖️ التوزيع المثالي المقترح</div>
 
-<!-- GLOSSARY -->
-<div id="glossary" class="section">
-  <div class="section-title">📖 القاموس</div>
+  <div class="card">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الفئة</th>
+            <th>الحالي %</th>
+            <th>المقترح %</th>
+            <th>الإجراء</th>
+            <th>السبب</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>أسهم عقارية (PHDC)</strong></td>
+            <td>17.6%</td>
+            <td class="profit">20%</td>
+            <td><span class="badge green">زيادة</span></td>
+            <td>أداء قوي، upside كبير، توسع خليجي</td>
+          </tr>
+          <tr>
+            <td><strong>أسهم بنوك (ADIB)</strong></td>
+            <td>8.7%</td>
+            <td>10%</td>
+            <td><span class="badge green">زيادة طفيفة</span></td>
+            <td>بعد الأسهم المجانية يونيو</td>
+          </tr>
+          <tr>
+            <td><strong>أسهم اتصالات (ETEL)</strong></td>
+            <td>6.6%</td>
+            <td>8%</td>
+            <td><span class="badge green">زيادة</span></td>
+            <td>هدف محللين 110، نمو 2026</td>
+          </tr>
+          <tr>
+            <td><strong>أسهم أدوية (MPCI)</strong></td>
+            <td>4.9%</td>
+            <td>4%</td>
+            <td><span class="badge yellow">ثبات</span></td>
+            <td>مركز صغير مقبول</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#ff4d6a">GBCO (تقليل)</strong></td>
+            <td>8.9%</td>
+            <td class="loss">3%</td>
+            <td><span class="badge red">تقليل</span></td>
+            <td>أداء ضعيف، لا محفزات</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#ffb800">AMES_r2 (بيع)</strong></td>
+            <td>8.9%</td>
+            <td class="loss">0%</td>
+            <td><span class="badge red">بيع فوري</span></td>
+            <td>حق اكتتاب ينتهي</td>
+          </tr>
+          <tr>
+            <td><strong>صندوق مؤشر (CI30)</strong></td>
+            <td>17.1%</td>
+            <td class="profit">18%</td>
+            <td><span class="badge green">زيادة</span></td>
+            <td>EGX30 صاعد، DCA مثالي</td>
+          </tr>
+          <tr>
+            <td><strong>صندوق ذهب (BSB)</strong></td>
+            <td>13.2%</td>
+            <td class="profit">15%</td>
+            <td><span class="badge green">زيادة</span></td>
+            <td>تضخم 11.9%، ملاذ آمن</td>
+          </tr>
+          <tr>
+            <td><strong>صندوق ادخار (CFF)</strong></td>
+            <td>14.2%</td>
+            <td>14%</td>
+            <td><span class="badge yellow">ثبات</span></td>
+            <td>قارن بشهادات البنوك</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#4d9fff">كاش / سيولة</strong></td>
+            <td>0.1%</td>
+            <td class="profit">8%</td>
+            <td><span class="badge blue">زيادة</span></td>
+            <td>سيولة للفرص — استخدم عائد GBCO+AMES</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="card-title" style="margin-bottom:12px">تصور التوزيع المقترح</div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>PHDC عقارات</span><span class="profit">20%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:20%;background:#00d68f"></div></div></div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>CI30 مؤشر</span><span class="profit">18%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:18%;background:#9b6dff"></div></div></div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>CFF ادخار</span><span>14%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:14%;background:#4d9fff"></div></div></div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>BSB ذهب</span><span>15%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:15%;background:#f5c842"></div></div></div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>ADIB بنوك</span><span>10%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:10%;background:#00bcd4"></div></div></div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>ETEL اتصالات</span><span>8%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:8%;background:#e0e0e0"></div></div></div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>كاش / سيولة</span><span class="profit">8%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:8%;background:#4d9fff"></div></div></div>
+      <div class="alloc-bar-wrap"><div class="alloc-bar-label"><span>MPCI + GBCO صغير</span><span>7%</span></div><div class="alloc-bar-track"><div class="alloc-bar-fill" style="width:7%;background:#6c7a9c"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 7: FORECAST ======== -->
+<section id="forecast">
+  <div class="section-title">🔮 توقع المحفظة — الشهر القادم</div>
+
+  <div class="card">
+    <div style="margin-bottom:20px">
+      <strong style="font-size:15px">الاتجاه المتوقع:</strong>
+      <span style="color:var(--accent-green);font-size:15px;font-weight:700;margin-right:10px"> صعود مع تذبذب ↗️</span>
+      <span class="badge green">+3% إلى +8% متوقع</span>
+    </div>
+
+    <div class="forecast-scenarios">
+      <div class="scenario-card worst">
+        <div style="color:var(--accent-red);font-size:13px;font-weight:700">أسوأ سيناريو</div>
+        <div class="s-pct loss">−8%</div>
+        <div class="s-val loss">−3,956 ج.م</div>
+        <div class="s-prob">15% احتمال</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:8px">تصعيد إقليمي + رفع فائدة مفاجئ</div>
+      </div>
+      <div class="scenario-card likely">
+        <div style="color:var(--accent-blue);font-size:13px;font-weight:700">السيناريو الأرجح</div>
+        <div class="s-pct" style="color:var(--accent-blue)">+4%</div>
+        <div class="s-val" style="color:var(--accent-blue)">+1,978 ج.م</div>
+        <div class="s-prob">60% احتمال</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:8px">تثبيت فائدة + أرباح شركات جيدة</div>
+      </div>
+      <div class="scenario-card best">
+        <div style="color:var(--accent-green);font-size:13px;font-weight:700">أفضل سيناريو</div>
+        <div class="s-pct profit">+10%</div>
+        <div class="s-val profit">+4,945 ج.م</div>
+        <div class="s-prob">25% احتمال</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:8px">خفض فائدة + أخبار PHDC خليجية</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="card-title" style="margin-bottom:12px">أهم 3 عوامل ستؤثر على محفظتك</div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="ni-icon">🏦</div>
+          <div class="ni-text"><strong>اجتماع البنك المركزي المصري 21 مايو 2026</strong> قرار الفائدة سيؤثر على CI30 وCFF وBSB وADIB — تثبيت متوقع عند 19%</div>
+          <div class="ni-effect ni-neutral">↔ مراقبة</div>
+        </div>
+        <div class="news-item">
+          <div class="ni-icon">🏗️</div>
+          <div class="ni-text"><strong>نتائج أرباح Q1 2026 (يونيو)</strong> PHDC وADIB وETEL تعلن نتائجها في يونيو — نتائج قوية متوقعة ستدفع الأسهم</div>
+          <div class="ni-effect ni-up">↑ إيجابي</div>
+        </div>
+        <div class="news-item">
+          <div class="ni-icon">🌍</div>
+          <div class="ni-text"><strong>التوترات الجيوسياسية الإقليمية</strong> تؤثر على توقعات النمو وأسعار الطاقة — تدعم الذهب BSB وتضغط على الأسهم</div>
+          <div class="ni-effect ni-neutral">↔ خطر</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== SECTION 8: QUICK SUMMARY ======== -->
+<section id="summary">
+  <div class="section-title">📋 ملخص سريع — جدول واحد</div>
+  <div class="card">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الأداة</th>
+            <th>الوضع</th>
+            <th>التوصية</th>
+            <th>نفّذ على سعر</th>
+            <th>وقف الخسارة</th>
+            <th>بيع عند</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#00bcd4">ADIB</strong></td>
+            <td><span class="badge green">🟢 رابح</span></td>
+            <td>⚪ احتفاظ</td>
+            <td>انتظر يونيو</td>
+            <td class="loss">40.00 ج.م</td>
+            <td class="profit">55.00 ج.م (جزئي)</td>
+          </tr>
+          <tr style="background:rgba(255,184,0,0.05)">
+            <td><strong style="color:#ffb800">AMES_r2</strong></td>
+            <td><span class="badge urgent">🚨 عاجل</span></td>
+            <td>🔴 بيع فوري</td>
+            <td class="loss">بسعر السوق الآن</td>
+            <td class="loss">لا تنتظر</td>
+            <td>بيع كامل فوراً</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#f5c842">BSB</strong></td>
+            <td><span class="badge yellow">⚪ خسارة طفيفة</span></td>
+            <td>⚪ احتفاظ</td>
+            <td>يمكن الزيادة</td>
+            <td>لا وقف للذهب</td>
+            <td>طويل الأمد</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#4d9fff">CFF</strong></td>
+            <td><span class="badge yellow">⚪ محايد</span></td>
+            <td>⚪ احتفاظ + مراجعة</td>
+            <td>—</td>
+            <td>لا وقف</td>
+            <td>لو وجدت بديل أفضل</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#9b6dff">CI30</strong></td>
+            <td><span class="badge green">🟢 رابح</span></td>
+            <td>🟢 احتفاظ + زيادة</td>
+            <td>36.00 (إضافة)</td>
+            <td>لو EGX 44,000</td>
+            <td>لو EGX 60,000</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#e0e0e0">ETEL</strong></td>
+            <td><span class="badge green">🟢 رابح</span></td>
+            <td>⚪ احتفاظ</td>
+            <td>—</td>
+            <td class="loss">82.00 ج.م</td>
+            <td class="profit">105.00 ج.م (جزئي)</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#ff4d6a">GBCO</strong></td>
+            <td><span class="badge red">🔴 خسران</span></td>
+            <td>🟠 بيع جزئي</td>
+            <td class="loss">بسعر السوق (100 سهم)</td>
+            <td class="loss">24.50 ج.م</td>
+            <td>27.50 (الباقي)</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#a0e0a0">MPCI</strong></td>
+            <td><span class="badge green">🟢 رابح</span></td>
+            <td>⚪ احتفاظ</td>
+            <td>—</td>
+            <td class="loss">150.00 ج.م</td>
+            <td class="profit">210.00 ج.م (جزئي)</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#00d68f">PHDC</strong></td>
+            <td><span class="badge green">🏆 أكبر رابح</span></td>
+            <td>⚪ احتفاظ</td>
+            <td>—</td>
+            <td class="loss">10.50 ج.م</td>
+            <td class="profit">15.00 → 18.00 → 22.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======== GLOSSARY ======== -->
+<section id="glossary">
+  <div class="section-title">📖 القاموس — شرح المصطلحات</div>
   <div class="glossary-grid">
-    <div class="glossary-item">
-      <div class="term">RSI (مؤشر القوة النسبية)</div>
-      <div class="def">مؤشر من 0 لـ 100 — فوق 70 = مشبع بالشراء (خطر هبوط) | تحت 30 = مشبع بالبيع (فرصة شراء)</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">MACD</div>
-      <div class="def">مؤشر يقيس الزخم — إيجابي = الاتجاه صاعد | سلبي = الاتجاه هابط</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">MA20 / MA50</div>
-      <div class="def">المتوسط المتحرك لـ 20 و50 يوم — السهم فوقهم = صعودي | تحتهم = هبوطي</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">وقف الخسارة (Stop Loss)</div>
-      <div class="def">سعر محدد لو السهم وصله بتبيع فوراً لتحديد الخسارة وعدم تراكمها</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">P/E (مضاعف الأرباح)</div>
-      <div class="def">سعر السهم ÷ الأرباح لكل سهم — كلما كان أقل = السهم أرخص نسبياً</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">EPS (ربح السهم)</div>
-      <div class="def">صافي ربح الشركة ÷ عدد الأسهم — كلما كان أعلى = أفضل</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">D/E (نسبة الدين للحقوق)</div>
-      <div class="def">إجمالي الديون ÷ حقوق الملكية — كلما كان أقل = الشركة أقل مديونية وأكثر أماناً</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">Dividend Yield (عائد الأرباح)</div>
-      <div class="def">الأرباح الموزعة ÷ سعر السهم × 100 — كلما كان أعلى = دخل دوري أكبر</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">EGX30</div>
-      <div class="def">المؤشر الرئيسي للبورصة المصرية — يقيس أداء أكبر 30 شركة — مستواه الحالي ~52,312 نقطة</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">بيع جزئي</div>
-      <div class="def">بيع جزء من الأسهم المملوكة (مثلاً نص الكمية) للحصول على أرباح مع الاحتفاظ بجزء للصعود المزيد</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">صندوق ادخار</div>
-      <div class="def">صندوق استثمار يضع الأموال في أذون الخزانة والودائع — عائد شبه ثابت + سيولة عالية</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">العائد الحقيقي</div>
-      <div class="def">العائد الاسمي - نسبة التضخم — يجب أن يكون موجباً لكي يحافظ الاستثمار على قوته الشرائية</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">مقاومة ودعم</div>
-      <div class="def">الدعم = سعر يميل السهم للارتداد منه للأعلى | المقاومة = سعر يميل للتوقف والهبوط منه</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">نقد في القابضة</div>
-      <div class="def">أموال محجوزة في منصة الوساطة لتنفيذ أوامر شراء معلقة أو انتظاراً للتسوية</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">تجميع / تصريف</div>
-      <div class="def">تجميع = المستثمرون الكبار يشترون بهدوء (إشارة صعود) | تصريف = يبيعون (إشارة هبوط)</div>
-    </div>
-    <div class="glossary-item">
-      <div class="term">P/B (مضاعف القيمة الدفترية)</div>
-      <div class="def">سعر السهم ÷ القيمة الدفترية للسهم — أقل من 1 = السهم أرخص من قيمته الحقيقية</div>
-    </div>
+    <div class="glossary-item"><strong>RSI (مؤشر القوة النسبية)</strong><p>مقياس من 0-100 لزخم السعر. فوق 70 = تشبع شراء، تحت 30 = تشبع بيع، بين 30-70 = محايد</p></div>
+    <div class="glossary-item"><strong>MACD</strong><p>مؤشر يقيس الزخم والاتجاه عبر مقارنة متوسطين متحركين. كلما كان إيجابياً = زخم صاعد</p></div>
+    <div class="glossary-item"><strong>MA20 / MA50 (المتوسط المتحرك)</strong><p>متوسط سعر السهم على 20 أو 50 يوم — مؤشر للاتجاه. السعر فوق المتوسط = إيجابي</p></div>
+    <div class="glossary-item"><strong>الدعم</strong><p>مستوى سعري يميل السهم للارتداد منه لأعلى تاريخياً — منطقة شراء</p></div>
+    <div class="glossary-item"><strong>المقاومة</strong><p>مستوى سعري يميل السهم للارتداد منه لأسفل — منطقة بيع جزئي</p></div>
+    <div class="glossary-item"><strong>P/E (مضاعف الأرباح)</strong><p>سعر السهم ÷ ربح السهم السنوي. كلما كان منخفضاً مقارنة بالقطاع = السهم رخيص</p></div>
+    <div class="glossary-item"><strong>وقف الخسارة (Stop Loss)</strong><p>سعر محدد مسبقاً — لو نزل السهم لهذا السعر تبيع فوراً لحماية نفسك من خسائر كبيرة</p></div>
+    <div class="glossary-item"><strong>بيع جزئي</strong><p>بيع جزء من الأسهم لجني أرباح وإبقاء الباقي للاستفادة من ارتفاع إضافي محتمل</p></div>
+    <div class="glossary-item"><strong>حق الاكتتاب (Subscription Right)</strong><p>ورقة مالية مؤقتة تعطيك حق شراء أسهم جديدة بسعر مخفض. لها تاريخ انتهاء إلزامي</p></div>
+    <div class="glossary-item"><strong>EGX30</strong><p>مؤشر أكبر 30 شركة في البورصة المصرية — المعيار القياسي لأداء السوق. الآن عند 52,312 نقطة</p></div>
+    <div class="glossary-item"><strong>DCA (التراكم الدوري)</strong><p>استراتيجية شراء بمبلغ ثابت كل شهر بغض النظر عن السعر — يخفض متوسط التكلفة تدريجياً</p></div>
+    <div class="glossary-item"><strong>Upside</strong><p>نسبة الارتفاع المتوقعة من السعر الحالي للسعر المستهدف — كلما كبرت كان السهم أكثر جاذبية</p></div>
+    <div class="glossary-item"><strong>صندوق مؤشر (Index Fund)</strong><p>صندوق يتتبع حركة مؤشر معين (مثل EGX30) — تنويع تلقائي ورسوم منخفضة</p></div>
+    <div class="glossary-item"><strong>صندوق ذهب (Gold Fund)</strong><p>صندوق يستثمر في الذهب الفعلي أو السبائك — يحمي من التضخم وتراجع الجنيه</p></div>
+    <div class="glossary-item"><strong>ربح/خسارة غير محقق</strong><p>الفرق بين السعر الحالي والسعر الذي اشتريت به — لا يتحقق فعلاً إلا بعد البيع</p></div>
+    <div class="glossary-item"><strong>Beta (بيتا)</strong><p>يقيس حساسية السهم لتحركات السوق. بيتا 1 = يتحرك مع السوق، أقل من 1 = أقل تذبذباً</p></div>
+    <div class="glossary-item"><strong>أسهم الخزينة (Treasury Shares)</strong><p>حين تشتري الشركة أسهمها من السوق — إشارة ثقة بأن الإدارة ترى السهم رخيصاً</p></div>
+    <div class="glossary-item"><strong>العائد الحقيقي</strong><p>العائد بعد خصم التضخم. مثال: عائد 19% - تضخم 12% = عائد حقيقي 7%</p></div>
   </div>
+</section>
+
+<!-- DISCLAIMER -->
+<div style="margin-top:32px;padding:16px 20px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid var(--border);font-size:11px;color:var(--text-muted);text-align:center">
+  ⚠️ هذا التحليل للأغراض المعلوماتية فقط ولا يمثل توصية استثمارية. الاستثمار في الأوراق المالية ينطوي على مخاطر. الأسعار والمعلومات مبنية على بيانات 4 مايو 2026. استشر مستشاراً مالياً مرخصاً قبل اتخاذ أي قرار استثماري.
 </div>
 
-<!-- FOOTER -->
-<div style="background:var(--bg2);border-top:1px solid var(--border);padding:20px;text-align:center;color:var(--muted);font-size:12px;margin-top:32px;">
-  <div style="margin-bottom:6px;">📋 <strong style="color:var(--gold)">تحليل المحفظة الاستثمارية</strong> | تاريخ التحليل: 4 مايو 2026</div>
-  <div>⚠️ <strong>تنبيه مهم:</strong> هذا التحليل للأغراض المعلوماتية فقط وليس نصيحة استثمارية. قرارات الاستثمار مسؤوليتك الكاملة. الاستثمار في الأسهم ينطوي على مخاطر وقد تخسر جزءاً أو كل ما استثمرته.</div>
-  <div style="margin-top:6px;">EGX30: ~52,312 نقطة | سعر فائدة البنك المركزي: 19% | التضخم: ~13.4%</div>
-</div>
-
-</div><!-- end container -->
+</div><!-- /container -->
 
 <!-- BACK TO TOP -->
-<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
+<script>
+  // Show/hide back to top
+  window.addEventListener('scroll', function() {
+    document.getElementById('back-top').style.opacity = window.scrollY > 300 ? '1' : '0';
+  });
+  document.getElementById('back-top').style.opacity = '0';
+  document.getElementById('back-top').style.transition = 'opacity 0.3s';
+
+  // Animate allocation bars on load
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.querySelectorAll('.alloc-bar-fill').forEach(function(bar) {
+        bar.style.width = bar.style.width;
+      });
+    }, 300);
+  });
+</script>
 </body>
 </html>
