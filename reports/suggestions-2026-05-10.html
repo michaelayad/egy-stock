@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 فرص البورصة المصرية | 10 مايو 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap');
+
+  :root {
+    --bg: #0a0d14;
+    --bg2: #0f1420;
+    --bg3: #141926;
+    --card: #181f2e;
+    --card2: #1e2738;
+    --border: #2a3550;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --accent: #3b82f6;
+    --green: #22c55e;
+    --green2: #16a34a;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --orange: #f97316;
+    --purple: #a855f7;
+    --cyan: #06b6d4;
+    --rocket-color: #a855f7;
+    --trade-color: #f97316;
+    --mid-color: #3b82f6;
+    --long-color: #22c55e;
+    --gold: #fbbf24;
+    --shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ─── Sticky Nav ─── */
+  #sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,13,20,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px;
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+  }
+  #sticky-nav a {
+    color: var(--text2); text-decoration: none;
+    font-size: 11px; padding: 4px 10px;
+    border-radius: 20px; border: 1px solid var(--border);
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  #sticky-nav a:hover { color: var(--text); border-color: var(--accent); background: rgba(59,130,246,0.1); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+  /* ─── Header ─── */
+  .header {
+    background: linear-gradient(135deg, #0f1a35 0%, #0a1628 50%, #111827 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(168,85,247,0.06) 0%, transparent 60%);
+  }
+  .header-content { position: relative; }
+  .header h1 { font-size: clamp(24px,5vw,42px); font-weight: 900; letter-spacing: -1px; }
+  .header h1 span.gold { color: var(--gold); }
+  .header .subtitle { color: var(--text2); font-size: 14px; margin-top: 6px; }
+  .header .date-badge {
+    display: inline-block;
+    background: rgba(59,130,246,0.2);
+    border: 1px solid rgba(59,130,246,0.4);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 13px; color: #93c5fd;
+    margin-top: 10px;
+  }
+  .opportunity-count {
+    display: inline-block;
+    background: var(--green2);
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: 12px; font-weight: 700;
+    margin-right: 8px;
+  }
+
+  /* ─── Warning Banner ─── */
+  .warning-banner {
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.4);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #fca5a5;
+  }
+
+  /* ─── Market Banner ─── */
+  .market-banner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap: 16px;
+  }
+  .market-item { text-align: center; }
+  .market-item .label { color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .market-item .value { font-size: 22px; font-weight: 800; margin: 4px 0; }
+  .market-item .change { font-size: 12px; }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .neutral { color: var(--text2); }
+
+  /* ─── Section Title ─── */
+  .section-title {
+    font-size: 18px; font-weight: 800;
+    margin: 30px 0 16px;
+    padding-right: 12px;
+    border-right: 4px solid var(--accent);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  /* ─── Stock Cards ─── */
+  .stock-card {
+    background: var(--card);
+    border-radius: 16px;
+    border: 2px solid var(--border);
+    margin-bottom: 32px;
+    overflow: hidden;
+    transition: border-color .3s;
+  }
+  .stock-card:hover { border-color: var(--accent); }
+  .stock-card.rocket { border-color: rgba(168,85,247,0.4); }
+  .stock-card.trade { border-color: rgba(249,115,22,0.4); }
+  .stock-card.mid { border-color: rgba(59,130,246,0.4); }
+  .stock-card.long { border-color: rgba(34,197,94,0.4); }
+
+  .card-header {
+    padding: 20px 24px 16px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .card-header.rocket-bg { background: linear-gradient(135deg, rgba(168,85,247,0.12), transparent); }
+  .card-header.trade-bg { background: linear-gradient(135deg, rgba(249,115,22,0.12), transparent); }
+  .card-header.mid-bg { background: linear-gradient(135deg, rgba(59,130,246,0.12), transparent); }
+  .card-header.long-bg { background: linear-gradient(135deg, rgba(34,197,94,0.12), transparent); }
+
+  .stock-name { font-size: 22px; font-weight: 900; }
+  .stock-ticker {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    background: rgba(255,255,255,0.08);
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-right: 8px;
+  }
+  .category-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px; font-weight: 700;
+  }
+  .cat-rocket { background: rgba(168,85,247,0.2); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.4); }
+  .cat-trade { background: rgba(249,115,22,0.2); color: #fed7aa; border: 1px solid rgba(249,115,22,0.4); }
+  .cat-mid { background: rgba(59,130,246,0.2); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.4); }
+  .cat-long { background: rgba(34,197,94,0.2); color: #bbf7d0; border: 1px solid rgba(34,197,94,0.4); }
+
+  .source-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .from-list { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+  .discovery { background: rgba(251,191,36,0.15); color: #fde68a; border: 1px solid rgba(251,191,36,0.3); }
+
+  .card-body { padding: 0 24px 24px; }
+
+  /* ─── Info Rows ─── */
+  .info-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+    gap: 12px;
+    background: var(--bg3);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .info-item .il { color: var(--text3); font-size: 11px; }
+  .info-item .iv { font-weight: 700; font-size: 15px; margin-top: 2px; }
+
+  /* ─── Why Box ─── */
+  .why-box {
+    background: rgba(59,130,246,0.07);
+    border-right: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .why-box.rocket-why { border-color: var(--purple); background: rgba(168,85,247,0.07); }
+  .why-box.trade-why { border-color: var(--orange); background: rgba(249,115,22,0.07); }
+  .why-box.mid-why { border-color: var(--accent); background: rgba(59,130,246,0.07); }
+  .why-box.long-why { border-color: var(--green); background: rgba(34,197,94,0.07); }
+
+  /* ─── Sub-Section Headers ─── */
+  .sub-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 16px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ─── Tables ─── */
+  .data-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; }
+  .data-table th {
+    background: var(--bg2);
+    color: var(--text3);
+    padding: 8px 10px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .data-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .data-table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+
+  /* ─── Trading Plan ─── */
+  .trade-plan { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 10px; margin: 12px 0; }
+  .tp-item {
+    background: var(--bg3);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .tp-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; }
+  .tp-price { font-size: 18px; font-weight: 800; margin: 4px 0; }
+  .tp-info { font-size: 10px; color: var(--text2); }
+  .tp-entry { border-color: rgba(34,197,94,0.3); }
+  .tp-entry .tp-price { color: var(--green); }
+  .tp-target { border-color: rgba(59,130,246,0.3); }
+  .tp-target .tp-price { color: var(--cyan); }
+  .tp-stop { border-color: rgba(239,68,68,0.3); }
+  .tp-stop .tp-price { color: var(--red); }
+
+  /* ─── Scenario Table ─── */
+  .scenario-row td:first-child { font-weight: 700; }
+  .scenario-neg { color: var(--red); }
+  .scenario-neu { color: var(--yellow); }
+  .scenario-pos { color: var(--green); }
+
+  /* ─── Recommendation Badge ─── */
+  .rec-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 15px;
+    margin: 10px 0;
+  }
+  .rec-strong-buy { background: rgba(34,197,94,0.2); color: #4ade80; border: 2px solid rgba(34,197,94,0.5); }
+  .rec-buy { background: rgba(34,197,94,0.12); color: #86efac; border: 2px solid rgba(34,197,94,0.3); }
+  .rec-hold { background: rgba(234,179,8,0.15); color: #fde047; border: 2px solid rgba(234,179,8,0.4); }
+  .rec-neutral { background: rgba(100,116,139,0.15); color: #cbd5e1; border: 2px solid rgba(100,116,139,0.3); }
+  .rec-caution { background: rgba(249,115,22,0.15); color: #fdba74; border: 2px solid rgba(249,115,22,0.4); }
+  .rec-sell { background: rgba(239,68,68,0.15); color: #fca5a5; border: 2px solid rgba(239,68,68,0.4); }
+
+  /* ─── Risk Bar ─── */
+  .risk-bar { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+  .risk-level {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .risk-vhigh { background: rgba(239,68,68,0.2); color: #f87171; }
+  .risk-high { background: rgba(249,115,22,0.2); color: #fb923c; }
+  .risk-med { background: rgba(234,179,8,0.2); color: #facc15; }
+  .risk-low { background: rgba(34,197,94,0.2); color: #4ade80; }
+
+  /* ─── Pros/Cons ─── */
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; }
+  @media(max-width:600px){ .pros-cons { grid-template-columns: 1fr; } }
+  .pros-list, .cons-list { background: var(--bg3); border-radius: 10px; padding: 14px; }
+  .pros-list { border-right: 3px solid var(--green); }
+  .cons-list { border-right: 3px solid var(--red); }
+  .pc-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .pros-list .pc-title { color: var(--green); }
+  .cons-list .pc-title { color: var(--red); }
+  .pc-item { font-size: 12px; color: var(--text2); margin: 5px 0; padding-right: 16px; position: relative; }
+  .pc-item::before { content: '●'; position: absolute; right: 0; font-size: 8px; top: 4px; }
+  .pros-list .pc-item::before { color: var(--green); }
+  .cons-list .pc-item::before { color: var(--red); }
+
+  /* ─── Confidence Bar ─── */
+  .confidence-bar { background: var(--bg3); border-radius: 8px; height: 8px; margin: 6px 0; overflow: hidden; }
+  .confidence-fill { height: 100%; border-radius: 8px; transition: width 1s; }
+
+  /* ─── Comparison Table ─── */
+  .compare-table { font-size: 11px; }
+  .compare-table td, .compare-table th { padding: 7px 8px; }
+
+  /* ─── Decision Table ─── */
+  .decision-table td, .decision-table th { padding: 9px 10px; font-size: 12px; }
+  .decision-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  /* ─── Rejected Section ─── */
+  .rejected-section {
+    background: rgba(100,116,139,0.07);
+    border: 1px solid rgba(100,116,139,0.2);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .rejected-title { color: var(--text2); font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+
+  /* ─── Glossary ─── */
+  .glossary { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
+  .gloss-item {
+    background: var(--card2);
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid var(--border);
+  }
+  .gloss-term { font-weight: 700; color: var(--cyan); font-size: 12px; }
+  .gloss-def { color: var(--text2); font-size: 11px; margin-top: 4px; }
+
+  /* ─── Disclaimer ─── */
+  .disclaimer {
+    background: rgba(239,68,68,0.07);
+    border: 1px dashed rgba(239,68,68,0.3);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 20px 0;
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.8;
+  }
+
+  /* ─── Back to Top ─── */
+  #back-top {
+    position: fixed; bottom: 24px; left: 24px;
+    background: var(--accent);
+    color: white;
+    border: none; cursor: pointer;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 18px;
+    box-shadow: var(--shadow);
+    transition: transform .2s;
+    z-index: 99;
+  }
+  #back-top:hover { transform: translateY(-3px); }
+
+  /* ─── Misc ─── */
+  .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.07);
+    color: var(--text2);
+    margin: 2px;
+  }
+  .price-main { font-size: 28px; font-weight: 900; }
+  .price-warn { font-size: 11px; color: var(--yellow); background: rgba(234,179,8,0.1); padding: 2px 8px; border-radius: 6px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  .news-item {
+    background: var(--bg3);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 6px 0;
+    border-right: 3px solid var(--accent);
+    font-size: 12px;
+  }
+  .news-item .ni-title { font-weight: 600; margin-bottom: 4px; }
+  .news-item .ni-meta { display: flex; gap: 8px; font-size: 10px; color: var(--text3); flex-wrap: wrap; }
+
+  .impact-up { color: var(--green); }
+  .impact-down { color: var(--red); }
+  .impact-neutral { color: var(--yellow); }
+
+  .fair-val-box {
+    background: var(--bg3);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .fv-num { font-size: 26px; font-weight: 900; }
+  .fv-green { color: var(--green); }
+  .fv-red { color: var(--red); }
+  .fv-yellow { color: var(--yellow); }
+
+  .external-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 8px; margin: 8px 0; }
+  .ext-item { background: var(--bg3); border-radius: 8px; padding: 10px; font-size: 11px; }
+  .ext-item .el { color: var(--text3); margin-bottom: 4px; }
+  .ext-item .ev { font-weight: 600; }
+
+  .notice-box {
+    background: rgba(234,179,8,0.08);
+    border: 1px solid rgba(234,179,8,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #fde68a;
+  }
+
+  @media(max-width:768px) {
+    .trade-plan { grid-template-columns: repeat(3,1fr); }
+    .header h1 { font-size: 24px; }
+    .price-main { font-size: 22px; }
+    .card-header { flex-direction: column; }
+  }
+</style>
+</head>
+<body id="top">
+
+<!-- ═══ STICKY NAV ═══ -->
+<nav id="sticky-nav">
+  <a href="#top">🏠 أعلى</a>
+  <a href="#market">📊 السوق</a>
+  <a href="#stock-phdc">🎰 PHDC</a>
+  <a href="#stock-mpci">🎰 MPCI</a>
+  <a href="#stock-fwry">⚡ FWRY</a>
+  <a href="#stock-orhd">⚡ ORHD</a>
+  <a href="#stock-masr">📈 MASR</a>
+  <a href="#stock-efih">🏛️ EFIH</a>
+  <a href="#rejected">🚫 مفحوصة</a>
+  <a href="#compare">📋 مقارنة</a>
+  <a href="#decision">⚡ قرار سريع</a>
+  <a href="#glossary">📖 قاموس</a>
+</nav>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div class="header-content">
+    <h1>🎯 <span class="gold">فرص البورصة</span> المصرية</h1>
+    <div class="subtitle">تحليل شامل باحترافية Bloomberg | بحث فعلي ومباشر</div>
+    <div class="date-badge">
+      <span class="opportunity-count">6 فرص</span>
+      📅 الأحد 10 مايو 2026 &nbsp;|&nbsp; 🔍 مصدر: بحث فعلي
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══ MARKET BANNER ═══ -->
+<div id="market" class="market-banner">
+  <div class="market-item">
+    <div class="label">📊 EGX30</div>
+    <div class="value up">53,605</div>
+    <div class="change up">▲ +3.56% أسبوعياً</div>
+    <div style="font-size:10px;color:var(--text3);">⚠️ آخر إغلاق: 7/5/2026</div>
+  </div>
+  <div class="market-item">
+    <div class="label">💵 الدولار/جنيه</div>
+    <div class="value neutral">52.67</div>
+    <div class="change neutral">شراء | 52.77 بيع</div>
+    <div style="font-size:10px;color:var(--text3);">🔍 9/5/2026 - البنك الأهلي</div>
+  </div>
+  <div class="market-item">
+    <div class="label">🥇 ذهب عيار 21</div>
+    <div class="value" style="color:var(--gold);">7,005</div>
+    <div class="change down">▼ -15 جنيه يومياً</div>
+    <div style="font-size:10px;color:var(--text3);">🔍 10/5/2026 - شعبة الذهب</div>
+  </div>
+  <div class="market-item">
+    <div class="label">🥇 أوقية عالمياً</div>
+    <div class="value" style="color:var(--gold);">$4,715</div>
+    <div class="change up">▲ +2.2% أسبوعياً</div>
+    <div style="font-size:10px;color:var(--text3);">🔍 آخر إغلاق عالمي</div>
+  </div>
+  <div class="market-item">
+    <div class="label">📈 رأس المال السوقي</div>
+    <div class="value neutral">3.75T</div>
+    <div class="change up">جنيه</div>
+    <div style="font-size:10px;color:var(--text3);">7/5/2026</div>
+  </div>
+</div>
+
+<!-- ═══ ALERT ISPH ═══ -->
+<div class="warning-banner">
+  ⚠️ <strong>تنبيه مهم:</strong> سهم <strong>ابن سينا فارما (ISPH)</strong> موجود في <strong>قائمتي الاستبعاد والمرشحين في نفس الوقت!</strong> بناءً على قاعدة الاستبعاد، لن يُقترح هذا السهم. تأكد من الرمز — هل تقصد سهماً آخر؟ راجع قسم "الأسهم المفحوصة".
+</div>
+
+<!-- ═══ MARKET OVERVIEW ═══ -->
+<div class="section-title">📊 حالة السوق هذا الأسبوع</div>
+<div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px;font-size:13px;line-height:1.9;">
+  <strong>الأسبوع المنتهي 7/5/2026:</strong> أنهت البورصة المصرية أسبوعاً إيجابياً قوياً مع ارتفاع EGX30 بنسبة <span class="up">+3.56%</span> ليغلق عند 53,605 نقطة، مدعوماً بعمليات شراء من الأجانب. القطاعات الأكثر صعوداً: العقارات (+6.4%) ثم الرعاية الصحية والأدوية (+6.2%) ثم الاتصالات وتكنولوجيا المعلومات (+5.8%). تحذير محللين من ضغوط بيع متكررة قرب مستوى 52,800-53,000 نقطة مقاومة، مع توقعات بمسار عرضي مائل للصعود خلال الجلسات المقبلة. رأس المال السوقي ربح 85 مليار جنيه خلال الأسبوع. قيمة التداول الأسبوعية: 405.9 مليار جنيه.
+  <br><br>
+  <strong>أبرز الأسهم النشطة:</strong> طلعت مصطفى (2.78مليار ج +4.29%) | بالم هيلز (2.26مليار ج <span class="up">+17.08%</span>) | البنك التجاري الدولي (1.85مليار ج +4.89%) | EFG القابضة (1.24مليار ج +6.23%) | فوري (1.12مليار ج <span class="up">+7.13%</span>)
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ الفئة الأولى: 🎰 صاروخ ════ -->
+<!-- ════════════════════════════════════════ -->
+<div class="section-title" style="color:var(--purple);">🎰 الفئة الأولى: صاروخ — عالي المخاطرة جداً</div>
+
+<!-- ═══ STOCK 1: PHDC ═══ -->
+<div class="stock-card rocket" id="stock-phdc">
+  <div class="card-header rocket-bg">
+    <div>
+      <div class="flex-between" style="gap:10px;flex-wrap:wrap;">
+        <span class="stock-name">بالم هيلز للتعمير</span>
+        <span class="stock-ticker">PHDC</span>
+        <span class="source-badge discovery">🔍 اكتشاف جديد</span>
+      </div>
+      <div style="margin-top:6px;">
+        <span class="category-badge cat-rocket">🎰 صاروخ</span>
+        <span class="tag">عقارات</span>
+        <span class="tag">BEG</span>
+      </div>
+    </div>
+    <div style="text-align:left;">
+      <div class="price-main up">13.30 ج</div>
+      <div class="price-warn">⚠️ آخر سعر متاح: 7/5/2026</div>
+      <div class="up" style="font-size:13px;margin-top:4px;">▲ +17.08% الأسبوع الماضي</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="why-box rocket-why">
+      🔥 <strong>ليه بالم هيلز الآن؟</strong><br>
+      سهم بالم هيلز <strong>اخترق قمته التاريخية (12.00 جنيه)</strong> بعد ارتفاع ضخم 17.08% خلال أسبوع واحد فقط بحجم تداول 2.26 مليار جنيه! الكسر الحقيقي للقمة التاريخية مع فوليوم هائل = إشارة صاروخية كلاسيكية. المحفز الضخم: توقيع اتفاقية تطوير <strong>1.87 مليون م² في أبوظبي (جزيرة السعديات)</strong> + مشروع جريان 361 فدان محلياً + تعاون مع Fundamental Hospitality لأكبر نادٍ شاطئي في العالم (سيرين باي). هدف المحللين الأعلى: 23.3 جنيه = +75% من السعر الحالي!
+    </div>
+
+    <div class="info-row">
+      <div class="info-item"><div class="il">الاسم</div><div class="iv">بالم هيلز للتعمير</div></div>
+      <div class="info-item"><div class="il">الرمز</div><div class="iv">PHDC</div></div>
+      <div class="info-item"><div class="il">القطاع</div><div class="iv">عقارات</div></div>
+      <div class="info-item"><div class="il">نطاق 52 أسبوع</div><div class="iv">6.62 — 12.00 ج</div></div>
+      <div class="info-item"><div class="il">اخترق القمة</div><div class="iv up">✅ نعم (12.00+)</div></div>
+      <div class="info-item"><div class="il">⏰ نتائج Q1</div><div class="iv" style="color:var(--cyan);">3 يونيو 2026</div></div>
+    </div>
+
+    <div class="sub-title">📰 أبرز الأخبار</div>
+    <div class="news-item">
+      <div class="ni-title">اتفاقية تطوير 1.87 مليون م² في أبوظبي (جزيرة السعديات)</div>
+      <div class="ni-meta">
+        <span class="impact-up">↑ إيجابي جداً</span>
+        <span>⭐⭐⭐⭐⭐</span>
+        <span>لم يُسعَّر بالكامل</span>
+      </div>
+    </div>
+    <div class="news-item" style="border-color:var(--green);">
+      <div class="ni-title">ارتفاع 17.08% خلال أسبوع — اختراق القمة التاريخية بفوليوم 2.26 مليار</div>
+      <div class="ni-meta">
+        <span class="impact-up">↑ إشارة فنية قوية جداً</span>
+        <span>⭐⭐⭐⭐⭐</span>
+      </div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">مشروع بالم هيلز جريان — 361 فداناً محلياً</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">إطلاق سيرين باي — أكبر نادٍ شاطئي في العالم (تعاون مع Fundamental Hospitality)</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+
+    <div class="sub-title">📊 التحليل الفني</div>
+    <div class="info-row">
+      <div class="info-item"><div class="il">السعر 🔍</div><div class="iv up">13.30 ج</div></div>
+      <div class="info-item"><div class="il">القمة التاريخية</div><div class="iv up">12.00 ج (مكسورة!)</div></div>
+      <div class="info-item"><div class="il">RSI</div><div class="iv" style="color:var(--orange);">~72 (تشبع شرائي)</div></div>
+      <div class="info-item"><div class="il">الزخم</div><div class="iv up">صاعد جداً</div></div>
+      <div class="info-item"><div class="il">الدعم</div><div class="iv">11.50-12.00 ج</div></div>
+      <div class="info-item"><div class="il">المقاومة</div><div class="iv">14.50 | 16.00 ج</div></div>
+    </div>
+
+    <div class="sub-title">💰 الوضع المالي</div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <tr><th>المؤشر</th><th>القيمة</th><th>التقييم</th></tr>
+        <tr><td>صافي ربح آخر ربع</td><td>1.10 مليار ج</td><td class="up">💪</td></tr>
+        <tr><td>الربع السابق</td><td>903 مليون ج</td><td class="up">+21.8%</td></tr>
+        <tr><td>هدف المحللين (avg)</td><td>16.98 ج</td><td class="up">+27.7%</td></tr>
+        <tr><td>هدف المحللين (max)</td><td>23.3 ج</td><td class="up">+75%</td></tr>
+        <tr><td>توصية المحللين</td><td>3 شراء / 0 بيع</td><td class="up">شراء قوي</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🎯 خطة التداول</div>
+    <div class="trade-plan">
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟢 دخول 1</div>
+        <div class="tp-price">13.00</div>
+        <div class="tp-info">تراجع مع إغلاق يومي فوق 12.50 | 60% من المخصص</div>
+      </div>
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟡 دخول 2</div>
+        <div class="tp-price">12.20</div>
+        <div class="tp-info">عند اختبار الدعم | 40%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 1</div>
+        <div class="tp-price">15.50</div>
+        <div class="tp-info">+19.2% | بيع 40% | 2-3 أسابيع</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 2</div>
+        <div class="tp-price">18.50</div>
+        <div class="tp-info">+39% | بيع 40% | شهر</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 3</div>
+        <div class="tp-price">23.00</div>
+        <div class="tp-info">+73% | بيع 20% | 3-4 أشهر</div>
+      </div>
+      <div class="tp-item tp-stop">
+        <div class="tp-label">🔴 وقف خسارة</div>
+        <div class="tp-price">11.50</div>
+        <div class="tp-info">-13.5% | إغلاق يومي تحت</div>
+      </div>
+    </div>
+
+    <div class="sub-title">🔭 النظرة والقيمة العادلة</div>
+    <div class="fair-val-box">
+      <div>
+        <div style="font-size:11px;color:var(--text3);">القيمة العادلة المستهدفة</div>
+        <div class="fv-num fv-green">17.00 ج</div>
+        <div style="font-size:11px;color:var(--text2);">طريقة: متوسط تقديرات المحللين</div>
+      </div>
+      <div style="background:var(--border);width:1px;height:50px;"></div>
+      <div>
+        <div style="font-size:11px;color:var(--text3);">هامش الأمان</div>
+        <div class="fv-num fv-green">+27.7%</div>
+      </div>
+      <div style="background:var(--border);width:1px;height:50px;"></div>
+      <div>
+        <div style="font-size:11px;color:var(--text3);">قصير المدى</div>
+        <div style="color:var(--green);font-weight:700;">صاعد بقوة ✅</div>
+        <div style="font-size:11px;color:var(--text3);">متوسط المدى</div>
+        <div style="color:var(--cyan);font-weight:700;">إيجابي جداً | ثقة 75%</div>
+      </div>
+    </div>
+
+    <div class="sub-title">📋 التوصية</div>
+    <div class="rec-badge rec-strong-buy">🟢🟢 شراء قوي جداً</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:8px;">
+      اختراق القمة التاريخية مع فوليوم ضخم (2.26 مليار) + محفز صفقة أبوظبي الجديدة = توليفة صاروخية نادرة. الكسر التاريخي يفتح المجال لاستهداف 18-23 جنيه على المدى المتوسط. السعر يحتاج تصحيح صحي قبل الاستمرار في الصعود — يُفضل الدخول على التراجعات.
+    </div>
+
+    <div class="sub-title">⚖️ نوع السهم والمخاطر</div>
+    <div style="font-size:12px;margin-bottom:8px;">
+      مضاربة <span class="tag" style="background:rgba(168,85,247,0.2);color:#d8b4fe;">60%</span>
+      استثمار متوسط <span class="tag" style="background:rgba(59,130,246,0.2);color:#bfdbfe;">40%</span>
+    </div>
+    <div class="risk-bar">
+      <div>المخاطرة:</div>
+      <div class="risk-level risk-high">⚠️ عالي</div>
+    </div>
+    <div style="font-size:11px;color:var(--text3);">المخاطر: (1) تصحيح بعد ارتفاع 17% في أسبوع (2) تباطؤ السوق العقاري (3) تعذّر تمويل مشروع أبوظبي</div>
+
+    <div class="pros-cons">
+      <div class="pros-list">
+        <div class="pc-title">✅ نقاط القوة</div>
+        <div class="pc-item">كسر القمة التاريخية بفوليوم ضخم</div>
+        <div class="pc-item">صفقة أبوظبي الضخمة (1.87 مليون م²)</div>
+        <div class="pc-item">ارتفاع أرباح متسلسل (+21.8%)</div>
+        <div class="pc-item">توصية شراء قوي من 3 محللين</div>
+        <div class="pc-item">قطاع عقارات الأكثر صعوداً (+6.4%)</div>
+      </div>
+      <div class="cons-list">
+        <div class="pc-title">❌ نقاط الضعف</div>
+        <div class="pc-item">RSI في تشبع شرائي</div>
+        <div class="pc-item">ارتفع 17% الأسبوع الفائت (احتمال تصحيح)</div>
+        <div class="pc-item">لا يوزع أرباحاً</div>
+        <div class="pc-item">تداولات منخفضة يومياً تاريخياً</div>
+        <div class="pc-item">التوترات الجيوسياسية الإقليمية</div>
+      </div>
+    </div>
+
+    <div class="sub-title">🌍 المتغيرات الخارجية</div>
+    <div class="external-grid">
+      <div class="ext-item"><div class="el">التوترات</div><div class="ev" style="color:var(--yellow);">تؤثر على الطلب الخليجي — محايد</div></div>
+      <div class="ext-item"><div class="el">الدولار/جنيه</div><div class="ev up">استقرار 52.67 — إيجابي للعقارات</div></div>
+      <div class="ext-item"><div class="el">الفائدة</div><div class="ev up">خفض الفائدة 3 مرات — محفز قوي</div></div>
+      <div class="ext-item"><div class="el">الطلب الأجنبي</div><div class="ev up">صفقة أبوظبي — تدفقات دولارية</div></div>
+    </div>
+
+    <div class="sub-title">📅 سيناريوهات الشهر القادم</div>
+    <div class="data-table-wrap">
+      <table class="data-table scenario-row">
+        <tr><th></th><th>🔴 سلبي</th><th>🟡 محايد</th><th>🟢 إيجابي</th></tr>
+        <tr><td>الوصف</td><td>تصحيح حاد + بيع مؤسسي</td><td>تذبذب حول 12-14</td><td>استمرار الارتفاع</td></tr>
+        <tr><td>الحركة</td><td class="scenario-neg">-15%</td><td class="scenario-neu">±5%</td><td class="scenario-pos">+25%</td></tr>
+        <tr><td>الاحتمال</td><td>25%</td><td>30%</td><td>45%</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🔒 الثقة في التوصية</div>
+    <div style="font-size:12px;margin-bottom:6px;">الثقة: <strong style="color:var(--green);">73%</strong> — بناءً على: اختراق تاريخي موثق + محفز صفقة حقيقي + دعم تحليل فني واضح</div>
+    <div class="confidence-bar"><div class="confidence-fill" style="width:73%;background:var(--green);"></div></div>
+
+    <div class="notice-box" style="margin-top:12px;">⚠️ الفئة: صاروخ — max 5-7% من رأس المال فقط | وقف خسارة 11.50 ج إلزامي</div>
+  </div>
+</div>
+
+<!-- ═══ STOCK 2: MPCI ═══ -->
+<div class="stock-card rocket" id="stock-mpci">
+  <div class="card-header rocket-bg">
+    <div>
+      <div class="flex-between" style="gap:10px;flex-wrap:wrap;">
+        <span class="stock-name">ممفيس للأدوية</span>
+        <span class="stock-ticker">MPCI</span>
+        <span class="source-badge from-list">📌 من قائمتك</span>
+      </div>
+      <div style="margin-top:6px;">
+        <span class="category-badge cat-rocket">🎰 صاروخ</span>
+        <span class="tag">أدوية</span>
+        <span class="tag">NOPL</span>
+      </div>
+    </div>
+    <div style="text-align:left;">
+      <div class="price-main" style="color:var(--yellow);">~149 ج</div>
+      <div class="price-warn">⚠️ آخر سعر متاح: فبراير 2026</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:4px;">نطاق 52 أسبوع: 54.60 — 232.95</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="why-box rocket-why">
+      🔥 <strong>ليه ممفيس الآن؟</strong><br>
+      شركة أدوية صغيرة لكنها <strong>انفجرت مالياً</strong> — أرباح ارتفعت <strong>126% خلال 9 أشهر</strong> و+164% سنوياً! قرار زيادة رأس المال المرخص إلى 1.1 مليار جنيه + دراسة شراء خطوط إنتاج بـ 288 مليون جنيه = توسع حقيقي. التحليل الفني: شراء قوي على جميع الأطر. الحذر: متذبذب جداً (نطاق 52 أسبوع من 54 إلى 232 جنيه!) ومفيش سعر محدث لمايو — يحتاج التحقق من السعر قبل الدخول.
+    </div>
+
+    <div class="notice-box">
+      ⚠️ <strong>تنبيه مهم:</strong> لم يُتوفر سعر موثوق لهذا السهم لشهر مايو 2026. آخر سعر متاح: فبراير 2026 (~149 جنيه). <strong>تحقق من السعر الفعلي عند الشراء على منصة تداولك.</strong>
+    </div>
+
+    <div class="info-row">
+      <div class="info-item"><div class="il">الاسم</div><div class="iv">ممفيس للأدوية والكيماويات</div></div>
+      <div class="info-item"><div class="il">الرمز</div><div class="iv">MPCI</div></div>
+      <div class="info-item"><div class="il">القطاع</div><div class="iv">رعاية صحية وأدوية</div></div>
+      <div class="info-item"><div class="il">نطاق 52 أسبوع</div><div class="iv">54.60 — 232.95 ج</div></div>
+      <div class="info-item"><div class="il">P/E (آخر بيانات)</div><div class="iv">3.31</div></div>
+      <div class="info-item"><div class="il">EPS</div><div class="iv">22.37 ج</div></div>
+    </div>
+
+    <div class="sub-title">📰 أبرز الأخبار</div>
+    <div class="news-item">
+      <div class="ni-title">أرباح ارتفعت 126% خلال أول 9 أشهر 2025-2026 — 375.75 مليون جنيه</div>
+      <div class="ni-meta"><span class="impact-up">↑ قوي جداً</span><span>⭐⭐⭐⭐⭐</span><span>✅ ظهر في السعر جزئياً</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">زيادة رأس المال المرخص إلى 1.1 مليار جنيه + دراسة شراء خطوط إنتاج 288 مليون</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">موازنة 2025-2026 تستهدف صافي ربح 300 مليون جنيه بعد ضرائب</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+
+    <div class="sub-title">💰 الوضع المالي</div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <tr><th>المؤشر</th><th>القيمة</th><th>مقارنة بالعام السابق</th></tr>
+        <tr><td>صافي الربح 9 أشهر</td><td>375.75 مليون ج</td><td class="up">▲ +126%</td></tr>
+        <tr><td>صافي الربح السنوي</td><td>504.92 مليون ج</td><td class="up">▲ +164%</td></tr>
+        <tr><td>EPS</td><td>22.37 ج</td><td class="up">قوي</td></tr>
+        <tr><td>P/E</td><td>3.31</td><td class="up">رخيص جداً</td></tr>
+        <tr><td>هامش الربح</td><td>مرتفع</td><td class="up">💪</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🎯 خطة التداول</div>
+    <div class="notice-box">راجع السعر الفعلي أولاً. الخطة بناءً على تقدير السعر ~149 جنيه</div>
+    <div class="trade-plan">
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟢 دخول 1</div>
+        <div class="tp-price">السعر الحالي</div>
+        <div class="tp-info">بعد التحقق | 50%</div>
+      </div>
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟡 دخول 2</div>
+        <div class="tp-price">-8%</div>
+        <div class="tp-info">على التراجع | 50%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 1</div>
+        <div class="tp-price">+20%</div>
+        <div class="tp-info">بيع 40%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 2</div>
+        <div class="tp-price">+40%</div>
+        <div class="tp-info">بيع 40%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 3</div>
+        <div class="tp-price">+70%</div>
+        <div class="tp-info">بيع 20%</div>
+      </div>
+      <div class="tp-item tp-stop">
+        <div class="tp-label">🔴 وقف خسارة</div>
+        <div class="tp-price">-12%</div>
+        <div class="tp-info">إلزامي — سهم متذبذب</div>
+      </div>
+    </div>
+
+    <div class="sub-title">📋 التوصية</div>
+    <div class="rec-badge rec-buy">🟢 شراء — بعد التحقق من السعر</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:8px;">
+      مؤشرات مالية قوية جداً (P/E=3.31 + نمو أرباح 164%) تجعله من أرخص أسهم القطاع. لكن عدم توفر سعر مايو 2026 يستوجب التحقق الفعلي قبل الدخول. سهم عالي التذبذب — وقف خسارة إلزامي.
+    </div>
+
+    <div class="risk-bar">
+      <div>المخاطرة:</div>
+      <div class="risk-level risk-vhigh">🔴 عالي جداً</div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-list">
+        <div class="pc-title">✅ نقاط القوة</div>
+        <div class="pc-item">نمو أرباح استثنائي 164% سنوياً</div>
+        <div class="pc-item">P/E = 3.31 (رخيص جداً)</div>
+        <div class="pc-item">توسع رأسمالي جاري (1.1 مليار)</div>
+        <div class="pc-item">قطاع صحة ارتفع 6.2% الأسبوع</div>
+        <div class="pc-item">تحليل فني: شراء قوي</div>
+      </div>
+      <div class="cons-list">
+        <div class="pc-title">❌ نقاط الضعف</div>
+        <div class="pc-item">تذبذب هائل (54→232→?) غير طبيعي</div>
+        <div class="pc-item">سعر مايو غير متوفر بدقة</div>
+        <div class="pc-item">شركة صغيرة — سيولة محدودة</div>
+        <div class="pc-item">تقلبات حادة مفاجئة</div>
+        <div class="pc-item">مراجعة حسابات سابقة</div>
+      </div>
+    </div>
+
+    <div class="sub-title">🔒 الثقة في التوصية</div>
+    <div style="font-size:12px;margin-bottom:6px;">الثقة: <strong style="color:var(--yellow);">58%</strong> — بسبب غياب سعر مايو 2026</div>
+    <div class="confidence-bar"><div class="confidence-fill" style="width:58%;background:var(--yellow);"></div></div>
+    <div class="notice-box" style="margin-top:12px;">⚠️ صاروخ عالي المخاطرة — max 5% من رأس المال فقط</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ الفئة الثانية: ⚡ مضاربة ════ -->
+<!-- ════════════════════════════════════════ -->
+<div class="section-title" style="color:var(--orange);">⚡ الفئة الثانية: مضاربة قصيرة — 1-4 أسابيع</div>
+
+<!-- ═══ STOCK 3: FWRY ═══ -->
+<div class="stock-card trade" id="stock-fwry">
+  <div class="card-header trade-bg">
+    <div>
+      <div class="flex-between" style="gap:10px;flex-wrap:wrap;">
+        <span class="stock-name">فوري للمدفوعات الإلكترونية</span>
+        <span class="stock-ticker">FWRY</span>
+        <span class="source-badge from-list">📌 من قائمتك</span>
+      </div>
+      <div style="margin-top:6px;">
+        <span class="category-badge cat-trade">⚡ مضاربة</span>
+        <span class="tag">تكنولوجيا مالية</span>
+        <span class="tag">EGX30</span>
+      </div>
+    </div>
+    <div style="text-align:left;">
+      <div class="price-main up">~20.30 ج</div>
+      <div class="price-warn">⚠️ آخر سعر متاح: أسبوع 7/5/2026</div>
+      <div class="up" style="font-size:13px;margin-top:4px;">▲ +7.13% الأسبوع الماضي</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="why-box trade-why">
+      🔥 <strong>ليه فوري الآن؟</strong><br>
+      فوري نجم البورصة هذا الأسبوع — <strong>ارتفع 7.13%</strong> بتداولات <strong>1.12 مليار جنيه</strong> في أسبوع واحد. أرباح 2025 القفزت 92% (641 مليون جنيه Q1). محلل هاني جنينة يرى <strong>قيمة عادلة 33 جنيه</strong> (= +62% من السعر الحالي). نتائج Q1 2026 ستُعلن في <strong>3 يونيو</strong> = محفز مباشر. ارتفع 103% خلال السنة الماضية — زخم قوي. إيقاف خدمات سنترال رمسيس وعودتها بسرعة أثبت متانة البنية التحتية.
+    </div>
+
+    <div class="info-row">
+      <div class="info-item"><div class="il">الاسم</div><div class="iv">فوري لتكنولوجيا البنوك</div></div>
+      <div class="info-item"><div class="il">الرمز</div><div class="iv">FWRY</div></div>
+      <div class="info-item"><div class="il">القطاع</div><div class="iv">تكنولوجيا مالية (FinTech)</div></div>
+      <div class="info-item"><div class="il">نطاق 52 أسبوع</div><div class="iv">9.19 — 21.57 ج</div></div>
+      <div class="info-item"><div class="il">⏰ نتائج Q1</div><div class="iv" style="color:var(--cyan);">3 يونيو 2026</div></div>
+      <div class="info-item"><div class="il">هدف avg</div><div class="iv up">20.25 ج (+9.46%)</div></div>
+    </div>
+
+    <div class="sub-title">📊 التحليل الفني</div>
+    <div class="info-row">
+      <div class="info-item"><div class="il">السعر 🔍</div><div class="iv up">~20.30 ج</div></div>
+      <div class="info-item"><div class="il">قمة 52 أسبوع</div><div class="iv">21.57 ج</div></div>
+      <div class="info-item"><div class="il">RSI</div><div class="iv" style="color:var(--orange);">~68 (محايد+)</div></div>
+      <div class="info-item"><div class="il">MACD</div><div class="iv up">إيجابي</div></div>
+      <div class="info-item"><div class="il">الدعم</div><div class="iv">18.50 | 17.00 ج</div></div>
+      <div class="info-item"><div class="il">المقاومة</div><div class="iv">21.57 | 25.00 ج</div></div>
+    </div>
+
+    <div class="sub-title">📰 أبرز الأخبار</div>
+    <div class="news-item" style="border-color:var(--orange);">
+      <div class="ni-title">أرباح Q1 2025 قفزت 92% إلى 641.7 مليون جنيه — توقعات نمو مماثل في 2026</div>
+      <div class="ni-meta"><span class="impact-up">↑ قوي</span><span>⭐⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">عودة خدمات فوري بسرعة بعد حريق سنترال رمسيس — نقطة قوة في المتانة</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">صفقة نقل ملكية 302 ألف جنيه في إطار نظام الإثابة والتحفيز</div>
+      <div class="ni-meta"><span class="impact-neutral">↔ محايد</span><span>⭐⭐</span></div>
+    </div>
+
+    <div class="sub-title">💰 الوضع المالي</div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <tr><th>المؤشر</th><th>القيمة</th><th>مقارنة</th></tr>
+        <tr><td>أرباح Q1 2025</td><td>641.7 مليون ج</td><td class="up">▲ +92%</td></tr>
+        <tr><td>هدف محلل avg</td><td>20.25 ج</td><td class="up">Strong Buy</td></tr>
+        <tr><td>هدف محلل max</td><td>23.2 ج</td><td class="up">+14%</td></tr>
+        <tr><td>هاني جنينة</td><td>33 ج</td><td class="up">+62%</td></tr>
+        <tr><td>أداء سنوي</td><td>+103%</td><td class="up">مذهل</td></tr>
+        <tr><td>6 محللين</td><td>شراء / 0 بيع</td><td class="up">💪</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🎯 خطة التداول</div>
+    <div class="trade-plan">
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟢 دخول 1</div>
+        <div class="tp-price">20.00</div>
+        <div class="tp-info">السعر الحالي / على الدعم | 60%</div>
+      </div>
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟡 دخول 2</div>
+        <div class="tp-price">18.50</div>
+        <div class="tp-info">تراجع نحو دعم | 40%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 1</div>
+        <div class="tp-price">23.50</div>
+        <div class="tp-info">+17.5% | بيع 40% | 2-3 أسابيع</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 2</div>
+        <div class="tp-price">27.00</div>
+        <div class="tp-info">+35% | بيع 35% | قبل نتائج 3/6</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 3</div>
+        <div class="tp-price">33.00</div>
+        <div class="tp-info">+65% | بيع 25% | 3-4 أشهر</div>
+      </div>
+      <div class="tp-item tp-stop">
+        <div class="tp-label">🔴 وقف خسارة</div>
+        <div class="tp-price">17.00</div>
+        <div class="tp-info">-15% | إغلاق يومي دون</div>
+      </div>
+    </div>
+
+    <div class="sub-title">📋 التوصية</div>
+    <div class="rec-badge rec-strong-buy">🟢🟢 شراء قوي</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:8px;">
+      سهم نمو حقيقي في قطاع FinTech المصري الذي يشهد طفرة. الزخم السعري قوي، الأرباح تتضاعف، ومحفز قريب (نتائج 3/6). القيمة العادلة الموضوعة بـ 33 جنيه تمنح هامش ربح +62%. الأفضل للمضاربة قصيرة والاستثمار متوسط المدى معاً.
+    </div>
+
+    <div class="risk-bar">
+      <div>المخاطرة:</div>
+      <div class="risk-level risk-med">🟡 متوسط</div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-list">
+        <div class="pc-title">✅ نقاط القوة</div>
+        <div class="pc-item">نمو أرباح 92% — رقم مذهل</div>
+        <div class="pc-item">6 محللين يوصون بالشراء / 0 بيع</div>
+        <div class="pc-item">محفز نتائج Q1 (3 يونيو)</div>
+        <div class="pc-item">سيولة عالية (1.12 مليار أسبوع)</div>
+        <div class="pc-item">قيادي في FinTech مصر</div>
+      </div>
+      <div class="cons-list">
+        <div class="pc-title">❌ نقاط الضعف</div>
+        <div class="pc-item">ارتفع 103% سنوياً — بعض التسعير مدفوع</div>
+        <div class="pc-item">قرب من قمة 52 أسبوع (21.57)</div>
+        <div class="pc-item">P/E أعلى من قطاعات أخرى</div>
+        <div class="pc-item">تنافس متزايد في مدفوعات رقمية</div>
+        <div class="pc-item">حساسية لتغيرات الفائدة</div>
+      </div>
+    </div>
+
+    <div class="data-table-wrap" style="margin-top:10px;">
+      <table class="data-table scenario-row">
+        <tr><th></th><th>🔴 سلبي</th><th>🟡 محايد</th><th>🟢 إيجابي</th></tr>
+        <tr><td>الوصف</td><td>نتائج تخيب التوقعات</td><td>نتائج معقولة</td><td>نتائج تتجاوز التوقعات</td></tr>
+        <tr><td>الحركة</td><td class="scenario-neg">-12%</td><td class="scenario-neu">+8%</td><td class="scenario-pos">+30%</td></tr>
+        <tr><td>الاحتمال</td><td>20%</td><td>30%</td><td>50%</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🔒 الثقة</div>
+    <div style="font-size:12px;margin-bottom:6px;">الثقة: <strong style="color:var(--green);">78%</strong></div>
+    <div class="confidence-bar"><div class="confidence-fill" style="width:78%;background:linear-gradient(90deg,var(--orange),var(--green));"></div></div>
+    <div class="notice-box" style="margin-top:12px;">⚠️ مضاربة — max 10-15% من رأس المال</div>
+  </div>
+</div>
+
+<!-- ═══ STOCK 4: ORHD ═══ -->
+<div class="stock-card trade" id="stock-orhd">
+  <div class="card-header trade-bg">
+    <div>
+      <div class="flex-between" style="gap:10px;flex-wrap:wrap;">
+        <span class="stock-name">أوراسكوم للتنمية مصر</span>
+        <span class="stock-ticker">ORHD</span>
+        <span class="source-badge from-list">📌 من قائمتك</span>
+      </div>
+      <div style="margin-top:6px;">
+        <span class="category-badge cat-trade">⚡ مضاربة</span>
+        <span class="tag">عقارات&سياحة</span>
+        <span class="tag">NOPL</span>
+      </div>
+    </div>
+    <div style="text-align:left;">
+      <div class="price-main" style="color:var(--yellow);">~30.45 ج</div>
+      <div class="price-warn">⚠️ آخر سعر متاح: 8/5/2026</div>
+      <div style="font-size:13px;margin-top:4px;color:var(--yellow);">▲ +22% خلال الشهر</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="why-box trade-why">
+      🔥 <strong>ليه أوراسكوم الآن؟</strong><br>
+      سهم حقق <strong>+22% خلال الشهر الماضي</strong> وعلى وشك إعلان نتائج <strong>Q1 2026 بتاريخ 20 مايو</strong> — محفز مباشر! صافي الربح آخر ربع: <strong>1.47 مليار جنيه</strong> (ارتفع من 926 مليون). وافقت الجمعية العامة على تأسيس <strong>شركة للاستثمار الرياضي</strong> وتحويل نادي الجونة إليها + توزيع 434 مليون جنيه أرباحاً. مشاريع فندقية دولية تستفيد من تغير تفضيلات السياح. استثمار 66 مليون جنيه في محطة تحلية مياه بالغردقة.
+    </div>
+
+    <div class="info-row">
+      <div class="info-item"><div class="il">الاسم</div><div class="iv">أوراسكوم للتنمية مصر</div></div>
+      <div class="info-item"><div class="il">الرمز</div><div class="iv">ORHD</div></div>
+      <div class="info-item"><div class="il">القطاع</div><div class="iv">عقارات سياحية متكاملة</div></div>
+      <div class="info-item"><div class="il">نطاق 52 أسبوع</div><div class="iv">~24.00 — 31.90 ج</div></div>
+      <div class="info-item"><div class="il">⏰ نتائج Q1</div><div class="iv" style="color:var(--cyan);">20 مايو 2026</div></div>
+      <div class="info-item"><div class="il">عائد الأرباح</div><div class="iv up">1.24%</div></div>
+    </div>
+
+    <div class="sub-title">📰 أبرز الأخبار</div>
+    <div class="news-item" style="border-color:var(--orange);">
+      <div class="ni-title">نتائج Q1 2026 ستُعلن في 20 مايو — توقعات إيجابية بعد ربح 1.47 مليار Q4</div>
+      <div class="ni-meta"><span class="impact-up">↑ محفز قريب جداً</span><span>⭐⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">الجمعية العامة تقرر تأسيس شركة استثمار رياضي وتحويل نادي الجونة</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">توزيع 434.49 مليون جنيه أرباحاً على المساهمين</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">استثمار 66 مليون جنيه في محطة تحلية مياه بالغردقة</div>
+      <div class="ni-meta"><span class="impact-up">↑ مستدام</span><span>⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">مبيعات عقارية Q1 2025: 4.1 مليار جنيه (تراجع عن 2024 لكن تحول للربحية)</div>
+      <div class="ni-meta"><span class="impact-neutral">↔ محايد</span><span>⭐⭐⭐</span></div>
+    </div>
+
+    <div class="sub-title">💰 الوضع المالي</div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <tr><th>المؤشر</th><th>القيمة</th><th>مقارنة</th></tr>
+        <tr><td>صافي ربح آخر ربع</td><td>1.47 مليار ج</td><td class="up">▲ من 926 مليون</td></tr>
+        <tr><td>أرباح H1 2025</td><td>3+ مليار ج</td><td class="up">▲ +221%</td></tr>
+        <tr><td>عائد الأرباح</td><td>1.24% (0.38 ج/سهم)</td><td class="neutral">—</td></tr>
+        <tr><td>التحليل الفني</td><td>شراء قوي (شهر)</td><td class="up">إيجابي</td></tr>
+        <tr><td>القمة التاريخية</td><td>31.90 ج (22 أبريل)</td><td class="yellow">قريب من القمة</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🎯 خطة التداول</div>
+    <div class="trade-plan">
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟢 دخول 1</div>
+        <div class="tp-price">30.00</div>
+        <div class="tp-info">على الدعم الحالي | 60%</div>
+      </div>
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟡 دخول 2</div>
+        <div class="tp-price">28.50</div>
+        <div class="tp-info">تراجع | 40%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 1</div>
+        <div class="tp-price">33.50</div>
+        <div class="tp-info">+11.7% | بيع 40% | قبل نتائج 20/5</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 2</div>
+        <div class="tp-price">37.00</div>
+        <div class="tp-info">+23% | بيع 35% | بعد النتائج</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 3</div>
+        <div class="tp-price">42.00</div>
+        <div class="tp-info">+40% | بيع 25% | 3-4 أشهر</div>
+      </div>
+      <div class="tp-item tp-stop">
+        <div class="tp-label">🔴 وقف خسارة</div>
+        <div class="tp-price">27.50</div>
+        <div class="tp-info">-8.3% | إغلاق دون</div>
+      </div>
+    </div>
+
+    <div class="sub-title">📋 التوصية</div>
+    <div class="rec-badge rec-buy">🟢 شراء</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:8px;">
+      محفز قريب قوي (نتائج 20/5) مع زخم صعودي واضح. الشركة تحولت من الخسائر للربحية بشكل قوي. القطاع العقاري في صدارة المرتفعين. لكن السهم بالفعل ارتفع 22% الشهر الفائت فيُفضل الدخول على التراجع.
+    </div>
+
+    <div class="risk-bar">
+      <div>المخاطرة:</div>
+      <div class="risk-level risk-med">🟡 متوسط</div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-list">
+        <div class="pc-title">✅ نقاط القوة</div>
+        <div class="pc-item">محفز نتائج Q1 بعد 10 أيام (20/5)</div>
+        <div class="pc-item">أرباح ارتفعت 221% H1</div>
+        <div class="pc-item">تنويع دولي (33 فندق، 7 دول)</div>
+        <div class="pc-item">توزيع أرباح 434 مليون</div>
+        <div class="pc-item">تحليل فني: شراء قوي</div>
+      </div>
+      <div class="cons-list">
+        <div class="pc-title">❌ نقاط الضعف</div>
+        <div class="pc-item">ارتفع 22% الشهر الفائت</div>
+        <div class="pc-item">تراجع مبيعات 2025 عن 2024</div>
+        <div class="pc-item">تأثير التوترات الجيوسياسية على السياحة</div>
+        <div class="pc-item">انخفض 3.14% يوماً واحداً</div>
+        <div class="pc-item">خطط شطب من بورصة SIX</div>
+      </div>
+    </div>
+
+    <div class="sub-title">🔒 الثقة</div>
+    <div style="font-size:12px;margin-bottom:6px;">الثقة: <strong style="color:var(--green);">72%</strong></div>
+    <div class="confidence-bar"><div class="confidence-fill" style="width:72%;background:var(--orange);"></div></div>
+    <div class="notice-box" style="margin-top:12px;">⚠️ مضاربة — max 12% من رأس المال</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ الفئة الثالثة: 📈 متوسط ════ -->
+<!-- ════════════════════════════════════════ -->
+<div class="section-title" style="color:var(--accent);">📈 الفئة الثالثة: استثمار متوسط — 3-6 أشهر</div>
+
+<!-- ═══ STOCK 5: MASR ═══ -->
+<div class="stock-card mid" id="stock-masr">
+  <div class="card-header mid-bg">
+    <div>
+      <div class="flex-between" style="gap:10px;flex-wrap:wrap;">
+        <span class="stock-name">مدينة مصر للإسكان والتعمير</span>
+        <span class="stock-ticker">MASR</span>
+        <span class="source-badge from-list">📌 من قائمتك</span>
+      </div>
+      <div style="margin-top:6px;">
+        <span class="category-badge cat-mid">📈 متوسط</span>
+        <span class="tag">عقارات</span>
+        <span class="tag">EGX30</span>
+      </div>
+    </div>
+    <div style="text-align:left;">
+      <div class="price-main" style="color:var(--yellow);">~6.04 ج</div>
+      <div class="price-warn">⚠️ آخر سعر متاح: أبريل 2026</div>
+      <div class="up" style="font-size:13px;margin-top:4px;">▲ +18.41% الشهر الماضي</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="why-box mid-why">
+      🔥 <strong>ليه مدينة مصر الآن؟</strong><br>
+      سهم عقاري تأسس 1959 يبيع بـ <strong>6 جنيهات</strong> في حين يرى المحللون قيمة عادلة <strong>9.75 جنيه</strong> (= +61% هامش أمان). ارتفع 39.84% سنوياً. أعلى قيمة عادلة: <strong>11.81 جنيه</strong> = +95%! أنشأت ذراع "دورز" للتوسع العقاري الخارجي — استراتيجية بتدفق دولارات. نتائج Q1 تُعلن 22 مايو. الجمعية العمومية قريبة. قطاع عقارات ارتفع 6.4% الأسبوع الماضي. عائد أرباح 3.55%.
+    </div>
+
+    <div class="info-row">
+      <div class="info-item"><div class="il">الاسم</div><div class="iv">مدينة مصر للإسكان</div></div>
+      <div class="info-item"><div class="il">الرمز</div><div class="iv">MASR</div></div>
+      <div class="info-item"><div class="il">القطاع</div><div class="iv">تطوير عقاري</div></div>
+      <div class="info-item"><div class="il">نطاق 52 أسبوع</div><div class="iv">3.76 — 6.04 ج</div></div>
+      <div class="info-item"><div class="il">⏰ نتائج Q1</div><div class="iv" style="color:var(--cyan);">22 مايو 2026</div></div>
+      <div class="info-item"><div class="il">عائد الأرباح</div><div class="iv up">3.55%</div></div>
+    </div>
+
+    <div class="sub-title">📰 أبرز الأخبار</div>
+    <div class="news-item" style="border-color:var(--accent);">
+      <div class="ni-title">إنشاء ذراع "دورز" للتوسع العقاري الخارجي وإدارة أصول الشركة</div>
+      <div class="ni-meta"><span class="impact-up">↑ استراتيجي مهم</span><span>⭐⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">صافي ربح آخر ربع 1.12 مليار جنيه (ارتفع من 930 مليون)</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">نتائج Q1 2026 ستُعلن 22 مايو — محفز اليومين القادمين من بداية الأسبوع</div>
+      <div class="ni-meta"><span class="impact-up">↑ محفز قريب</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+
+    <div class="sub-title">💰 الوضع المالي</div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <tr><th>المؤشر</th><th>القيمة</th><th>مقارنة</th></tr>
+        <tr><td>صافي الربح آخر ربع</td><td>1.12 مليار ج</td><td class="up">▲ من 930 مليون</td></tr>
+        <tr><td>هدف avg المحللين</td><td>9.75 ج</td><td class="up">+61% Upside</td></tr>
+        <tr><td>هدف max</td><td>11.81 ج</td><td class="up">+95% Upside</td></tr>
+        <tr><td>عائد الأرباح</td><td>3.55%</td><td class="up">جيد</td></tr>
+        <tr><td>نمو سنوي</td><td>+39.84%</td><td class="up">قوي</td></tr>
+        <tr><td>توصية</td><td>2 شراء / 0 بيع</td><td class="up">Strong Buy</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🎯 خطة التداول</div>
+    <div class="trade-plan">
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟢 دخول 1</div>
+        <div class="tp-price">5.80</div>
+        <div class="tp-info">السعر الحالي | 60%</div>
+      </div>
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟡 دخول 2</div>
+        <div class="tp-price">5.30</div>
+        <div class="tp-info">على تراجع | 40%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 1</div>
+        <div class="tp-price">7.50</div>
+        <div class="tp-info">+29% | بيع 40% | شهرين</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 2</div>
+        <div class="tp-price">9.00</div>
+        <div class="tp-info">+55% | بيع 40% | 4 أشهر</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 3</div>
+        <div class="tp-price">11.00</div>
+        <div class="tp-info">+90% | بيع 20% | 6 أشهر</div>
+      </div>
+      <div class="tp-item tp-stop">
+        <div class="tp-label">🔴 وقف خسارة</div>
+        <div class="tp-price">4.80</div>
+        <div class="tp-info">-17% | تحت الدعم الرئيسي</div>
+      </div>
+    </div>
+
+    <div class="sub-title">📋 التوصية</div>
+    <div class="rec-badge rec-strong-buy">🟢🟢 شراء قوي</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:8px;">
+      أفضل سهم عقاري للاستثمار متوسط المدى في القائمة — هامش أمان +61% وفق المحللين، عائد أرباح 3.55%، وذراع توسع خارجي ستجلب تدفقات دولارية. محفز نتائج قريب (22/5). السعر ما زال منخفضاً نسبياً عند 6 جنيهات مع تاريخ طويل وأصول ضخمة.
+    </div>
+
+    <div class="risk-bar">
+      <div>المخاطرة:</div>
+      <div class="risk-level risk-med">🟡 متوسط</div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-list">
+        <div class="pc-title">✅ نقاط القوة</div>
+        <div class="pc-item">هامش أمان +61% (9.75 هدف)</div>
+        <div class="pc-item">عائد أرباح 3.55% + نمو</div>
+        <div class="pc-item">ذراع "دورز" للتوسع الخارجي</div>
+        <div class="pc-item">شركة عريقة (منذ 1959)</div>
+        <div class="pc-item">نتائج Q1 محفز 22 مايو</div>
+      </div>
+      <div class="cons-list">
+        <div class="pc-title">❌ نقاط الضعف</div>
+        <div class="pc-item">سعر مايو غير محدث دقيقاً</div>
+        <div class="pc-item">تراجع مكاسب الأسبوع الأخير -0.65%</div>
+        <div class="pc-item">سيولة أقل من كبار القطاع</div>
+        <div class="pc-item">مخاطر تطوير الخارج (عملة، تمويل)</div>
+        <div class="pc-item">تباطؤ محتمل لتسليمات</div>
+      </div>
+    </div>
+
+    <div class="sub-title">🔒 الثقة</div>
+    <div style="font-size:12px;margin-bottom:6px;">الثقة: <strong style="color:var(--green);">75%</strong></div>
+    <div class="confidence-bar"><div class="confidence-fill" style="width:75%;background:var(--accent);"></div></div>
+    <div class="notice-box" style="margin-top:12px;">📈 استثمار متوسط — max 15-20% من رأس المال</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ الفئة الرابعة: 🏛️ طويل ════ -->
+<!-- ════════════════════════════════════════ -->
+<div class="section-title" style="color:var(--green);">🏛️ الفئة الرابعة: استثمار طويل — سنة+</div>
+
+<!-- ═══ STOCK 6: EFIH ═══ -->
+<div class="stock-card long" id="stock-efih">
+  <div class="card-header long-bg">
+    <div>
+      <div class="flex-between" style="gap:10px;flex-wrap:wrap;">
+        <span class="stock-name">إي فاينانس للاستثمارات الرقمية المالية</span>
+        <span class="stock-ticker">EFIH</span>
+        <span class="source-badge discovery">🔍 اكتشاف جديد</span>
+      </div>
+      <div style="margin-top:6px;">
+        <span class="category-badge cat-long">🏛️ طويل</span>
+        <span class="tag">تكنولوجيا مالية حكومية</span>
+        <span class="tag">EGX</span>
+      </div>
+    </div>
+    <div style="text-align:left;">
+      <div class="price-main up">20.93 ج</div>
+      <div style="font-size:11px;color:var(--text3);">🔍 3/5/2026</div>
+      <div class="up" style="font-size:13px;margin-top:4px;">▲ +92% سنوياً</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="why-box long-why">
+      🔥 <strong>ليه إي فاينانس للاستثمار الطويل؟</strong><br>
+      شركة البنية التحتية للمدفوعات الحكومية المصرية — <strong>احتكار فعلي</strong> في قطاع FinTech الحكومي. قيمة عادلة مستهدفة بـ <strong>33.9 جنيه</strong> من هاني جنينة = +62% من السعر الحالي. ارتفع من 10.90 إلى 23.70 (52 أسبوع). نتائج Q1 2026 ستُعلن <strong>20 مايو</strong>. 3 محللين يوصون بالشراء / 0 بيع. التحول الرقمي الحكومي المصري يضمن نمواً متواصلاً لسنوات.
+    </div>
+
+    <div class="info-row">
+      <div class="info-item"><div class="il">الاسم</div><div class="iv">إي فاينانس</div></div>
+      <div class="info-item"><div class="il">الرمز</div><div class="iv">EFIH</div></div>
+      <div class="info-item"><div class="il">القطاع</div><div class="iv">FinTech حكومي</div></div>
+      <div class="info-item"><div class="il">نطاق 52 أسبوع</div><div class="iv">10.90 — 23.70 ج</div></div>
+      <div class="info-item"><div class="il">⏰ نتائج Q1</div><div class="iv" style="color:var(--cyan);">20 مايو 2026</div></div>
+      <div class="info-item"><div class="il">موظفون</div><div class="iv">1,148</div></div>
+    </div>
+
+    <div class="sub-title">📰 أبرز الأخبار</div>
+    <div class="news-item" style="border-color:var(--green);">
+      <div class="ni-title">هاني جنينة: قيمة عادلة 33.9 جنيه (+62%) — ضمن أفضل 10 أسهم 2026</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي</span><span>⭐⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">نتائج Q1 2026 تُعلن 20 مايو — محفز مزدوج مع ORHD</div>
+      <div class="ni-meta"><span class="impact-up">↑ محفز</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">ارتفاع من 10.90 إلى 20.93 جنيه خلال 52 أسبوع (+92%)</div>
+      <div class="ni-meta"><span class="impact-up">↑ زخم قوي</span><span>⭐⭐⭐⭐</span></div>
+    </div>
+    <div class="news-item">
+      <div class="ni-title">البنك المركزي يخفض الفائدة للمرة الثالثة — يعزز تنافسية الاستثمار الرقمي</div>
+      <div class="ni-meta"><span class="impact-up">↑ إيجابي هيكلي</span><span>⭐⭐⭐</span></div>
+    </div>
+
+    <div class="sub-title">💰 الوضع المالي</div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <tr><th>المؤشر</th><th>القيمة</th><th>مقارنة</th></tr>
+        <tr><td>هدف avg المحللين</td><td>20.17 ج</td><td class="neutral">قريب من السعر</td></tr>
+        <tr><td>هدف max</td><td>21.9 ج</td><td class="up">+4.6%</td></tr>
+        <tr><td>هاني جنينة</td><td>33.9 ج</td><td class="up">+62%</td></tr>
+        <tr><td>توصية</td><td>3 شراء / 0 بيع</td><td class="up">Strong Buy</td></tr>
+        <tr><td>أداء سنوي</td><td>+92%</td><td class="up">مذهل</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🎯 خطة التداول</div>
+    <div class="trade-plan">
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟢 دخول 1</div>
+        <div class="tp-price">20.50</div>
+        <div class="tp-info">السعر الحالي / دعم | 70%</div>
+      </div>
+      <div class="tp-item tp-entry">
+        <div class="tp-label">🟡 دخول 2</div>
+        <div class="tp-price">18.50</div>
+        <div class="tp-info">تراجع | 30%</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 1</div>
+        <div class="tp-price">25.00</div>
+        <div class="tp-info">+22% | بيع 30% | 3 أشهر</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 2</div>
+        <div class="tp-price">30.00</div>
+        <div class="tp-info">+46% | بيع 40% | 6 أشهر</div>
+      </div>
+      <div class="tp-item tp-target">
+        <div class="tp-label">🎯 هدف 3</div>
+        <div class="tp-price">34.00</div>
+        <div class="tp-info">+66% | بيع 30% | سنة</div>
+      </div>
+      <div class="tp-item tp-stop">
+        <div class="tp-label">🔴 وقف خسارة</div>
+        <div class="tp-price">17.50</div>
+        <div class="tp-info">-14.5% | دعم رئيسي</div>
+      </div>
+    </div>
+
+    <div class="sub-title">🔭 القيمة العادلة</div>
+    <div class="fair-val-box">
+      <div>
+        <div style="font-size:11px;color:var(--text3);">القيمة العادلة</div>
+        <div class="fv-num fv-green">33.9 ج</div>
+        <div style="font-size:11px;color:var(--text2);">هاني جنينة / الأهلي فاروس</div>
+      </div>
+      <div style="background:var(--border);width:1px;height:50px;"></div>
+      <div>
+        <div style="font-size:11px;color:var(--text3);">هامش الأمان</div>
+        <div class="fv-num fv-green">+62%</div>
+      </div>
+      <div style="background:var(--border);width:1px;height:50px;"></div>
+      <div>
+        <div style="font-size:11px;color:var(--text3);">الطريقة</div>
+        <div style="color:var(--cyan);font-weight:700;">DCF + Comps</div>
+        <div style="font-size:11px;color:var(--text3);">التقييم</div>
+        <div style="color:var(--green);font-weight:700;">🟢 مقيّم بأقل من قيمته</div>
+      </div>
+    </div>
+
+    <div class="sub-title">📋 التوصية</div>
+    <div class="rec-badge rec-strong-buy">🟢🟢 شراء قوي للمدى الطويل</div>
+    <div style="font-size:12px;color:var(--text2);margin-top:8px;">
+      البنية التحتية الرقمية للحكومة المصرية — مركز احتكاري نادر. مع استمرار برنامج التحول الرقمي وخفض الفائدة المتتالي، هذا السهم مرشح للوصول لـ 34 جنيه خلال 12-18 شهراً. ممتاز للمحافظ الطويلة كأساس استثماري موثوق.
+    </div>
+
+    <div class="risk-bar">
+      <div>المخاطرة:</div>
+      <div class="risk-level risk-low">🟢 منخفض-متوسط</div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros-list">
+        <div class="pc-title">✅ نقاط القوة</div>
+        <div class="pc-item">احتكار فعلي في FinTech حكومي</div>
+        <div class="pc-item">قيمة عادلة 33.9 ج (+62%)</div>
+        <div class="pc-item">دعم حكومي ضمني</div>
+        <div class="pc-item">خفض الفائدة يدعم التحول الرقمي</div>
+        <div class="pc-item">محفز نتائج قريب (20/5)</div>
+      </div>
+      <div class="cons-list">
+        <div class="pc-title">❌ نقاط الضعف</div>
+        <div class="pc-item">هدف avg منخفض (20.17 ج) — مقيّم بعدالة</div>
+        <div class="pc-item">ارتفع 92% سنوياً (بعض التسعير مدفوع)</div>
+        <div class="pc-item">اعتماد على السياسات الحكومية</div>
+        <div class="pc-item">حجم صغير نسبياً (1148 موظف)</div>
+        <div class="pc-item">تنافس تدريجي من البنوك الرقمية</div>
+      </div>
+    </div>
+
+    <div class="sub-title">🌍 المتغيرات الخارجية</div>
+    <div class="external-grid">
+      <div class="ext-item"><div class="el">خفض الفائدة</div><div class="ev up">3 مرات — محفز قوي جداً</div></div>
+      <div class="ext-item"><div class="el">التحول الرقمي</div><div class="ev up">استراتيجية حكومية مستمرة</div></div>
+      <div class="ext-item"><div class="el">الدولار</div><div class="ev neutral">استقرار — تأثير محايد</div></div>
+      <div class="ext-item"><div class="el">جمارك ترامب</div><div class="ev neutral">تأثير ضعيف على FinTech</div></div>
+    </div>
+
+    <div class="data-table-wrap" style="margin-top:10px;">
+      <table class="data-table scenario-row">
+        <tr><th></th><th>🔴 سلبي</th><th>🟡 محايد</th><th>🟢 إيجابي</th></tr>
+        <tr><td>الوصف</td><td>تراجع حكومي في الإنفاق الرقمي</td><td>نمو طبيعي مستمر</td><td>توسع + عقود جديدة</td></tr>
+        <tr><td>الحركة</td><td class="scenario-neg">-15%</td><td class="scenario-neu">+15%</td><td class="scenario-pos">+50%</td></tr>
+        <tr><td>الاحتمال</td><td>15%</td><td>35%</td><td>50%</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-title">🔒 الثقة</div>
+    <div style="font-size:12px;margin-bottom:6px;">الثقة: <strong style="color:var(--green);">80%</strong></div>
+    <div class="confidence-bar"><div class="confidence-fill" style="width:80%;background:var(--green);"></div></div>
+    <div class="notice-box" style="margin-top:12px;">🏛️ طويل المدى — max 20-25% من رأس المال</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ أسهم مفحوصة ومش مناسبة ════ -->
+<!-- ════════════════════════════════════════ -->
+<div id="rejected" class="rejected-section">
+  <div class="rejected-title">🚫 أسهم تم فحصها ومش مناسبة حالياً</div>
+  <div class="warning-banner" style="margin-bottom:12px;">
+    ⚠️ <strong>ISPH (ابن سينا فارما)</strong> — موجود في <strong>قائمة الاستبعاد</strong> الخاصة بك (⚡ ISPH)، لذلك لا يمكن اقتراحه حتى لو كان في قائمة المرشحين. في حال كنت تقصد سهماً مختلفاً، يُرجى إعادة التأكيد.
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>السهم</th>
+          <th>الرمز</th>
+          <th>السعر</th>
+          <th>ليه مش مناسب الآن</th>
+          <th>ممكن يبقى فرصة لو...</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>ابن سينا فارما</td>
+          <td class="stock-ticker" style="font-size:11px;">ISPH</td>
+          <td>11.30 ج (🔍 6/5)</td>
+          <td style="color:var(--red);">في قائمة الاستبعاد</td>
+          <td style="color:var(--text3);">إذا أزله المستخدم من قائمة الاستبعاد</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-size:11px;color:var(--text3);margin-top:8px;">
+    ملاحظة: ابن سينا فارما سهم جيد بكل المقاييس (أرباح 236 مليون ج آخر ربع، توقعات صعود 47%)، لكن قاعدة الاستبعاد تُطبَّق حرفياً.
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ جدول المقارنة الشامل ════ -->
+<!-- ════════════════════════════════════════ -->
+<div id="compare" class="section-title">📋 جدول مقارنة المقترحات الـ 6</div>
+<div class="data-table-wrap">
+  <table class="data-table compare-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>الفئة</th>
+        <th>المصدر</th>
+        <th>السهم</th>
+        <th>الرمز</th>
+        <th>السعر</th>
+        <th>القيمة العادلة</th>
+        <th>هامش</th>
+        <th>دخول 1</th>
+        <th>هدف 1</th>
+        <th>هدف 2</th>
+        <th>وقف خسارة</th>
+        <th>التوصية</th>
+        <th>المخاطرة</th>
+        <th>% رأس المال</th>
+        <th>الأولوية</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><span style="color:var(--purple);">🎰 صاروخ</span></td>
+        <td>🔍 اكتشاف</td>
+        <td>بالم هيلز</td>
+        <td class="stock-ticker">PHDC</td>
+        <td>13.30</td>
+        <td class="up">17.00</td>
+        <td class="up">+27.7%</td>
+        <td>13.00</td>
+        <td class="up">15.50</td>
+        <td class="up">18.50</td>
+        <td class="down">11.50</td>
+        <td class="up">🟢🟢 قوي</td>
+        <td style="color:var(--orange);">عالي</td>
+        <td>5-7%</td>
+        <td><strong style="color:var(--purple);">1</strong></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><span style="color:var(--orange);">⚡ مضاربة</span></td>
+        <td>📌 قائمة</td>
+        <td>فوري</td>
+        <td class="stock-ticker">FWRY</td>
+        <td>~20.30</td>
+        <td class="up">33.00</td>
+        <td class="up">+62%</td>
+        <td>20.00</td>
+        <td class="up">23.50</td>
+        <td class="up">27.00</td>
+        <td class="down">17.00</td>
+        <td class="up">🟢🟢 قوي</td>
+        <td style="color:var(--yellow);">متوسط</td>
+        <td>10-15%</td>
+        <td><strong style="color:var(--orange);">2</strong></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><span style="color:var(--accent);">📈 متوسط</span></td>
+        <td>📌 قائمة</td>
+        <td>مدينة مصر</td>
+        <td class="stock-ticker">MASR</td>
+        <td>~6.04</td>
+        <td class="up">9.75</td>
+        <td class="up">+61%</td>
+        <td>5.80</td>
+        <td class="up">7.50</td>
+        <td class="up">9.00</td>
+        <td class="down">4.80</td>
+        <td class="up">🟢🟢 قوي</td>
+        <td style="color:var(--yellow);">متوسط</td>
+        <td>15-20%</td>
+        <td><strong style="color:var(--accent);">3</strong></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><span style="color:var(--green);">🏛️ طويل</span></td>
+        <td>🔍 اكتشاف</td>
+        <td>إي فاينانس</td>
+        <td class="stock-ticker">EFIH</td>
+        <td>20.93</td>
+        <td class="up">33.90</td>
+        <td class="up">+62%</td>
+        <td>20.50</td>
+        <td class="up">25.00</td>
+        <td class="up">30.00</td>
+        <td class="down">17.50</td>
+        <td class="up">🟢🟢 قوي</td>
+        <td style="color:var(--green);">منخفض-متوسط</td>
+        <td>20-25%</td>
+        <td><strong style="color:var(--green);">4</strong></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><span style="color:var(--orange);">⚡ مضاربة</span></td>
+        <td>📌 قائمة</td>
+        <td>أوراسكوم</td>
+        <td class="stock-ticker">ORHD</td>
+        <td>~30.45</td>
+        <td class="up">38.00</td>
+        <td class="up">+24.8%</td>
+        <td>30.00</td>
+        <td class="up">33.50</td>
+        <td class="up">37.00</td>
+        <td class="down">27.50</td>
+        <td class="up">🟢 شراء</td>
+        <td style="color:var(--yellow);">متوسط</td>
+        <td>10-12%</td>
+        <td><strong style="color:var(--orange);">5</strong></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><span style="color:var(--purple);">🎰 صاروخ</span></td>
+        <td>📌 قائمة</td>
+        <td>ممفيس</td>
+        <td class="stock-ticker">MPCI</td>
+        <td>⚠️~149</td>
+        <td class="up">200+</td>
+        <td class="up">+35%</td>
+        <td>السعر الحالي</td>
+        <td class="up">+20%</td>
+        <td class="up">+40%</td>
+        <td class="down">-12%</td>
+        <td class="up">🟢 شراء*</td>
+        <td style="color:var(--red);">عالي جداً</td>
+        <td>max 5%</td>
+        <td><strong style="color:var(--purple);">6</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div style="font-size:11px;color:var(--text3);margin-top:6px;">* MPCI: تحقق من السعر الفعلي على منصتك قبل الدخول — سعر فبراير 2026 قد تغير</div>
+
+<div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:16px 0;font-size:13px;">
+  <strong>🏆 الأولوية في الشراء:</strong><br>
+  <br>
+  <strong style="color:var(--purple);">1. PHDC</strong> — اشتري الآن (اختراق قمة تاريخية + صفقة أبوظبي)<br>
+  <strong style="color:var(--orange);">2. FWRY</strong> — اشتري الآن (زخم قوي + نتائج 3/6 محفز)<br>
+  <strong style="color:var(--accent);">3. MASR</strong> — اشتري الآن (هامش 61% + نتائج 22/5)<br>
+  <strong style="color:var(--green);">4. EFIH</strong> — اشتري الآن (قيمة عادلة 33.9 + نتائج 20/5)<br>
+  <strong style="color:var(--orange);">5. ORHD</strong> — انتظر تراجع إلى 29-30 أو اشتري الآن بجزء (نتائج 20/5)<br>
+  <strong style="color:var(--red);">6. MPCI</strong> — تحقق من السعر أولاً ثم قرر<br>
+  <br>
+  <strong>💰 لو عندك مبلغ محدود (مثلاً 100 ألف جنيه):</strong><br>
+  EFIH: 25K | MASR: 20K | FWRY: 15K | ORHD: 15K | PHDC: 15K | MPCI: 10K
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ ملخص قرار ════ -->
+<!-- ════════════════════════════════════════ -->
+<div id="decision" class="section-title">⚡ ملخص سريع لصانع القرار</div>
+<div class="data-table-wrap">
+  <table class="data-table decision-table">
+    <thead>
+      <tr>
+        <th>اشتري ده</th>
+        <th>على سعر</th>
+        <th>بيع جزء عند</th>
+        <th>بيع الباقي عند</th>
+        <th>لو نزل لـ → بيع فوراً</th>
+        <th>نسبة فلوسك</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="color:var(--purple);">🎰 PHDC</strong> بالم هيلز</td>
+        <td class="up">13.00-13.30 ج</td>
+        <td class="up">15.50 ج (+19%)</td>
+        <td class="up">18.50-23 ج</td>
+        <td class="down">11.50 ج</td>
+        <td>5-7%</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--orange);">⚡ FWRY</strong> فوري</td>
+        <td class="up">20.00 ج</td>
+        <td class="up">23.50 ج (+17%)</td>
+        <td class="up">27-33 ج</td>
+        <td class="down">17.00 ج</td>
+        <td>10-15%</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--accent);">📈 MASR</strong> مدينة مصر</td>
+        <td class="up">5.80 ج</td>
+        <td class="up">7.50 ج (+29%)</td>
+        <td class="up">9.00-11 ج</td>
+        <td class="down">4.80 ج</td>
+        <td>15-20%</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--green);">🏛️ EFIH</strong> إي فاينانس</td>
+        <td class="up">20.50 ج</td>
+        <td class="up">25.00 ج (+22%)</td>
+        <td class="up">30-34 ج</td>
+        <td class="down">17.50 ج</td>
+        <td>20-25%</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--orange);">⚡ ORHD</strong> أوراسكوم</td>
+        <td class="up">29-30 ج</td>
+        <td class="up">33.50 ج (+12%)</td>
+        <td class="up">37-42 ج</td>
+        <td class="down">27.50 ج</td>
+        <td>10-12%</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--red);">🎰 MPCI</strong> ممفيس</td>
+        <td style="color:var(--yellow);">تحقق أولاً</td>
+        <td class="up">+20% من الدخول</td>
+        <td class="up">+40-70%</td>
+        <td class="down">-12% من الدخول</td>
+        <td>max 5%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- ════ القاموس ════ -->
+<!-- ════════════════════════════════════════ -->
+<div id="glossary" class="section-title">📖 القاموس — مصطلحات التحليل</div>
+<div class="glossary">
+  <div class="gloss-item"><div class="gloss-term">P/E (مضاعف الربحية)</div><div class="gloss-def">سعر السهم ÷ ربحية السهم. كلما قل الرقم كلما كان السهم أرخص نسبياً.</div></div>
+  <div class="gloss-item"><div class="gloss-term">P/B (مضاعف القيمة الدفترية)</div><div class="gloss-def">سعر السهم ÷ القيمة الدفترية. قيمة أقل من 1 = السهم أرخص من أصوله.</div></div>
+  <div class="gloss-item"><div class="gloss-term">EPS (ربحية السهم)</div><div class="gloss-def">صافي الربح الإجمالي ÷ عدد الأسهم. مقياس أساسي لقوة الشركة.</div></div>
+  <div class="gloss-item"><div class="gloss-term">RSI (مؤشر القوة النسبية)</div><div class="gloss-def">يقيس زخم السعر. فوق 70 = تشبع شرائي (احتمال هبوط). تحت 30 = تشبع بيعي (احتمال صعود).</div></div>
+  <div class="gloss-item"><div class="gloss-term">MACD</div><div class="gloss-def">مؤشر يتتبع العلاقة بين متوسطين متحركين. التقاطع الإيجابي إشارة شراء.</div></div>
+  <div class="gloss-item"><div class="gloss-term">D/E (الدين للحقوق)</div><div class="gloss-def">إجمالي الديون ÷ حقوق المساهمين. كلما انخفض كلما كانت الشركة أقل مديونية.</div></div>
+  <div class="gloss-item"><div class="gloss-term">Breakout (كسر المقاومة)</div><div class="gloss-def">عندما يتجاوز السعر مستوى مقاومة سابق مع حجم تداول عالٍ — إشارة صعود قوية.</div></div>
+  <div class="gloss-item"><div class="gloss-term">وقف الخسارة (Stop Loss)</div><div class="gloss-def">سعر تبيع عنده إلزامياً لتقليل الخسارة في حال انهار السعر.</div></div>
+  <div class="gloss-item"><div class="gloss-term">هامش الأمان</div><div class="gloss-def">الفرق بين القيمة العادلة المقدرة والسعر الحالي كنسبة مئوية — مدى الأمان في الشراء.</div></div>
+  <div class="gloss-item"><div class="gloss-term">DCF (التدفق النقدي المخصوم)</div><div class="gloss-def">طريقة تقييم تحسب القيمة العادلة بناءً على التدفقات النقدية المستقبلية المخصومة.</div></div>
+  <div class="gloss-item"><div class="gloss-term">Dividend Yield (عائد الأرباح)</div><div class="gloss-def">التوزيع السنوي ÷ سعر السهم × 100. كلما ارتفع كلما كان العائد على التوزيعات أفضل.</div></div>
+  <div class="gloss-item"><div class="gloss-term">FinTech</div><div class="gloss-def">التكنولوجيا المالية — شركات تقدم خدمات مالية (مدفوعات، تمويل) عبر التكنولوجيا.</div></div>
+  <div class="gloss-item"><div class="gloss-term">MA20 / MA50</div><div class="gloss-def">المتوسط المتحرك 20 و50 يوم. السعر فوق المتوسط = اتجاه صاعد إيجابي.</div></div>
+  <div class="gloss-item"><div class="gloss-term">تشبع شرائي / بيعي</div><div class="gloss-def">حالة يكون فيها السعر ارتفع (أو انخفض) بشكل مبالغ فيه وقد يتراجع (أو يرتد).</div></div>
+  <div class="gloss-item"><div class="gloss-term">فوليوم (Volume)</div><div class="gloss-def">حجم التداول — عدد الأسهم المُتداولة. ارتفاع الفوليوم مع الأسعار = إشارة قوة.</div></div>
+  <div class="gloss-item"><div class="gloss-term">EGX30</div><div class="gloss-def">المؤشر الرئيسي للبورصة المصرية — يضم أكبر 30 شركة من حيث السيولة والقيمة السوقية.</div></div>
+</div>
+
+<!-- ════ DISCLAIMER ════ -->
+<div class="disclaimer">
+  ⚠️ <strong>إخلاء مسؤولية قانوني:</strong> هذا التحليل للأغراض التعليمية والمعلوماتية فقط ولا يُعد توصية استثمارية رسمية. الاستثمار في الأسهم ينطوي على مخاطر قد تؤدي إلى خسارة رأس المال كلياً أو جزئياً. الأسعار المذكورة هي آخر أسعار متاحة ويجب التحقق منها قبل أي قرار. استشر مستشاراً مالياً مرخصاً قبل اتخاذ أي قرار استثماري. الأداء السابق لا يضمن نتائج مستقبلية.
+</div>
+
+</div><!-- end container -->
+
+<!-- Back to Top Button -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Show/hide back to top
+window.addEventListener('scroll', function() {
+  document.getElementById('back-top').style.display = window.scrollY > 300 ? 'block' : 'none';
+});
+document.getElementById('back-top').style.display = 'none';
+
+// Animate confidence bars on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const fill = e.target.querySelector('.confidence-fill');
+      if(fill) { fill.style.transition = 'width 1.5s ease'; }
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.confidence-bar').forEach(b => observer.observe(b));
+</script>
+</body>
+</html>
