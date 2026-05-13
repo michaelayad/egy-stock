@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحليل المحفظة الاستثمارية - 13 مايو 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg: #0a0e17;
+  --card: #111827;
+  --card-border: #1e293b;
+  --green: #10b981;
+  --green-bg: rgba(16,185,129,0.08);
+  --red: #ef4444;
+  --red-bg: rgba(239,68,68,0.08);
+  --yellow: #f59e0b;
+  --yellow-bg: rgba(245,158,11,0.08);
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --text-bright: #f8fafc;
+  --gold: #d4a053;
+  --accent-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+h1,h2,h3,h4 { font-family: 'Cairo', sans-serif; }
+
+/* Sticky Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,14,23,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 10px 0;
+  overflow-x: auto;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
+  flex-wrap: nowrap;
+}
+.nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  white-space: nowrap;
+  transition: all .2s;
+}
+.nav a:hover { color: var(--green); border-color: var(--green); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, rgba(16,185,129,0.06) 0%, transparent 100%);
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 24px;
+}
+.header h1 {
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 900;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+.header .meta { color: var(--text-dim); font-size: 14px; }
+.header .meta span { margin: 0 8px; }
+
+/* Dashboard */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.dash-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.dash-card .label { font-size: 12px; color: var(--text-dim); margin-bottom: 4px; }
+.dash-card .value { font-size: 24px; font-weight: 900; font-family: 'Cairo'; }
+.dash-card .sub { font-size: 12px; margin-top: 4px; }
+
+.gain { color: var(--green); }
+.loss { color: var(--red); }
+.warn { color: var(--yellow); }
+
+/* Section */
+.section {
+  margin-bottom: 32px;
+  scroll-margin-top: 60px;
+}
+.section-title {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Stock Card */
+.stock-card {
+  background: var(--card);
+  border: 2px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: border-color .3s;
+}
+.stock-card.green { border-color: var(--green); }
+.stock-card.red { border-color: var(--red); }
+.stock-card.neutral { border-color: var(--yellow); }
+
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.stock-name {
+  font-size: 20px;
+  font-weight: 900;
+  font-family: 'Cairo';
+}
+.stock-badge {
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.badge-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+.badge-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow); }
+
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.info-block {
+  background: rgba(30,41,59,0.5);
+  border-radius: 10px;
+  padding: 16px;
+}
+.info-block h4 {
+  font-size: 14px;
+  color: var(--blue);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.info-block p, .info-block li {
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.info-block ul { list-style: none; padding: 0; }
+.info-block li::before { content: "• "; color: var(--text-dim); }
+
+.rec-box {
+  background: rgba(30,41,59,0.7);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 12px;
+  border-right: 4px solid;
+}
+.rec-box.buy { border-color: var(--green); }
+.rec-box.hold { border-color: var(--yellow); }
+.rec-box.sell { border-color: var(--red); }
+.rec-box.partial { border-color: #f97316; }
+
+.rec-title {
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.summary-line {
+  background: linear-gradient(90deg, rgba(59,130,246,0.1) 0%, transparent 100%);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  border-right: 3px solid var(--blue);
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+th {
+  background: rgba(30,41,59,0.8);
+  color: var(--text-dim);
+  padding: 10px 12px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(30,41,59,0.5);
+  white-space: nowrap;
+}
+tr:hover td { background: rgba(30,41,59,0.3); }
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+}
+
+/* Action Plan */
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.action-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.action-num.urgent { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
+.action-num.important { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow); }
+.action-num.normal { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+
+.action-content { flex: 1; }
+.action-content .tool { font-weight: 700; font-size: 15px; }
+.action-content .desc { font-size: 13px; color: var(--text-dim); }
+
+/* Strength/Weakness */
+.sw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+.sw-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.sw-card h3 { margin-bottom: 12px; font-size: 16px; }
+.sw-item { padding: 6px 0; font-size: 14px; }
+
+/* Glossary */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 8px;
+}
+.glossary-item {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+}
+.glossary-item strong { color: var(--blue); }
+
+/* Scroll to top */
+.to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(16,185,129,0.4);
+  text-decoration: none;
+  z-index: 99;
+}
+
+/* Disclaimer */
+.disclaimer {
+  background: rgba(239,68,68,0.05);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 32px;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .stock-grid { grid-template-columns: 1fr; }
+  .dashboard { grid-template-columns: repeat(2, 1fr); }
+  .dash-card .value { font-size: 18px; }
+  .container { padding: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="nav-inner">
+  <a href="#dashboard">📊 الداشبورد</a>
+  <a href="#action">🎯 خطة العمل</a>
+  <a href="#stocks">📈 الأسهم</a>
+  <a href="#funds">📦 الصناديق</a>
+  <a href="#adib-ipo">🏦 اكتتاب ADIB</a>
+  <a href="#health">💪 صحة المحفظة</a>
+  <a href="#allocation">⚖️ التوزيع المثالي</a>
+  <a href="#forecast">🔮 التوقعات</a>
+  <a href="#summary">📋 الملخص</a>
+  <a href="#glossary">📖 القاموس</a>
+</div>
+</nav>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>📋 تحليل المحفظة الاستثمارية</h1>
+  <div class="meta">
+    <span>📅 13 مايو 2026</span>
+    <span>|</span>
+    <span>🔧 7 أدوات</span>
+    <span>|</span>
+    <span>💼 منصة ثاندر</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="section">
+  <div class="section-title">📊 لمحة سريعة</div>
+  <div class="dashboard">
+    <div class="dash-card">
+      <div class="label">إجمالي الأصول</div>
+      <div class="value">42,924</div>
+      <div class="sub">جنيه مصري</div>
+    </div>
+    <div class="dash-card">
+      <div class="label">إجمالي الأوراق المالية</div>
+      <div class="value">40,163</div>
+      <div class="sub">جنيه مصري</div>
+    </div>
+    <div class="dash-card">
+      <div class="label">الربح / الخسارة</div>
+      <div class="value gain">+1,430</div>
+      <div class="sub gain">+3.69%</div>
+    </div>
+    <div class="dash-card">
+      <div class="label">أكبر رابح 🏆</div>
+      <div class="value gain" style="font-size:18px">CI30</div>
+      <div class="sub gain">+945 ج.م (+12.13%)</div>
+    </div>
+    <div class="dash-card">
+      <div class="label">أكبر خسران ⚠️</div>
+      <div class="value loss" style="font-size:18px">AMES_r2</div>
+      <div class="sub loss">-595 ج.م (-13.97%)</div>
+    </div>
+    <div class="dash-card">
+      <div class="label">الكاش المتاح</div>
+      <div class="value">2,761</div>
+      <div class="sub">6.4% من المحفظة</div>
+    </div>
+  </div>
+
+  <!-- Portfolio Table -->
+  <div class="table-wrapper" style="margin-top:16px">
+    <table>
+      <thead>
+        <tr>
+          <th>الأداة</th><th>النوع</th><th>الكمية</th><th>م. الشراء</th><th>السعر الحالي</th><th>القيمة</th><th>الربح/الخسارة</th><th>%</th><th>الوزن %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ADIB</td><td>سهم</td><td>100</td><td>42.91</td><td>48.10</td><td>4,850</td><td class="gain">+559</td><td class="gain">+13.03%</td><td>12.1%</td></tr>
+        <tr><td>AMES_r2</td><td>حق اكتتاب</td><td>85</td><td>50.10</td><td>43.05</td><td>3,664</td><td class="loss">-595</td><td class="loss">-13.97%</td><td>9.1%</td></tr>
+        <tr><td>CFF</td><td>صندوق ادخار</td><td>351</td><td>19.80</td><td>20.66</td><td>7,253</td><td class="gain">+303</td><td class="gain">+4.36%</td><td>18.1%</td></tr>
+        <tr><td>CI30</td><td>صندوق مؤشر</td><td>235</td><td>33.16</td><td>37.18</td><td>8,738</td><td class="gain">+945</td><td class="gain">+12.13%</td><td>21.7%</td></tr>
+        <tr><td>ETEL</td><td>سهم</td><td>60</td><td>90.46</td><td>97.84</td><td>5,811</td><td class="gain">+383</td><td class="gain">+7.06%</td><td>14.5%</td></tr>
+        <tr><td>FWRY</td><td>سهم</td><td>240</td><td>21.37</td><td>20.78</td><td>4,978</td><td class="loss">-151</td><td class="loss">-2.94%</td><td>12.4%</td></tr>
+        <tr><td>MTIE</td><td>سهم</td><td>500</td><td>9.77</td><td>9.80</td><td>4,870</td><td class="loss">-14</td><td class="loss">-0.29%</td><td>12.1%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Distribution -->
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-top:16px">
+    <div class="dash-card"><div class="label">أسهم فردية</div><div class="value" style="font-size:20px">48.2%</div><div class="sub">19,363 ج.م</div></div>
+    <div class="dash-card"><div class="label">صناديق مؤشر/ادخار</div><div class="value" style="font-size:20px">39.8%</div><div class="sub">15,991 ج.م</div></div>
+    <div class="dash-card"><div class="label">حقوق اكتتاب</div><div class="value" style="font-size:20px">9.1%</div><div class="sub">3,664 ج.م</div></div>
+    <div class="dash-card"><div class="label">كاش</div><div class="value" style="font-size:20px">6.4%</div><div class="sub">2,761 ج.م</div></div>
+  </div>
+</div>
+
+<!-- ACTION PLAN -->
+<div id="action" class="section">
+  <div class="section-title">🎯 خطة العمل — نفّذ بالترتيب ده</div>
+
+  <div class="action-item">
+    <div class="action-num urgent">1</div>
+    <div class="action-content">
+      <div class="tool">🔴 AMES_r2 — بيع كامل فوراً</div>
+      <div class="desc">بيع 85 حق اكتتاب بسعر السوق فوراً • خسارة ~595 ج.م • حق الاكتتاب متذبذب جداً ومخاطرته عالية — تخلص منه وحوّل الفلوس لـ CI30</div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num important">2</div>
+    <div class="action-content">
+      <div class="tool">⚪ ADIB — احتفاظ + مراقبة بعد إدراج أسهم الزيادة</div>
+      <div class="desc">السهم اتأثر بإدراج أسهم الزيادة يوم 11 مايو • استنى استقرار السعر فوق 46 ج.م • بيع جزئي (50 سهم) لو وصل 52 ج.م • وقف خسارة: 42 ج.م</div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num important">3</div>
+    <div class="action-content">
+      <div class="tool">⚪ ETEL — احتفاظ</div>
+      <div class="desc">السهم قوي وقريب من أعلى مستوياته • بيع جزئي (30 سهم) لو وصل 105 ج.م • وقف خسارة: 88 ج.م</div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num normal">4</div>
+    <div class="action-content">
+      <div class="tool">🟢 FWRY — احتفاظ + تعزيز</div>
+      <div class="desc">السهم عند أعلى مستوياته التاريخية بعد السبليت • لو نزل لـ 19.50 اشتري 100 سهم • تارجت: 23 ج.م • وقف خسارة: 18.50 ج.م</div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num normal">5</div>
+    <div class="action-content">
+      <div class="tool">⚪ MTIE — احتفاظ + مراقبة</div>
+      <div class="desc">أرباح الربع الأول نمت 18% • قرار زيادة رأس المال وتوزيع أسهم مجانية • تارجت: 11 ج.م • وقف خسارة: 8.50 ج.م</div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num normal">6</div>
+    <div class="action-content">
+      <div class="tool">🟢 CI30 + CFF — زيادة</div>
+      <div class="desc">حوّل سيولة بيع AMES + أي كاش زيادة لصندوق CI30 • أداء ممتاز +12.13% ومتتبع للمؤشر اللي عند قمم تاريخية</div>
+    </div>
+  </div>
+</div>
+
+<!-- STOCKS ANALYSIS -->
+<div id="stocks" class="section">
+  <div class="section-title">📈 تحليل تفصيلي — الأسهم الفردية</div>
+
+  <!-- ADIB -->
+  <div class="stock-card green">
+    <div class="stock-header">
+      <div class="stock-name">🏦 ADIB — مصرف أبوظبي الإسلامي مصر</div>
+      <span class="stock-badge badge-green">🟢 رابح +13.03%</span>
+    </div>
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📊 الحالة والأداء</h4>
+        <ul>
+          <li>متوسط الشراء: 42.91 | السعر: 48.10 | الربح: +559 ج.م</li>
+          <li>أداء السهم أفضل من EGX30 في نفس الفترة</li>
+          <li>قرار الشراء كان ممتاز — السهم ارتفع 13% ووصل قمة تاريخية 46.88</li>
+          <li>أرباح الربع الأول 2026: قفزت إلى 5.16 مليار ج.م</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📉 التحليل الفني</h4>
+        <ul>
+          <li>القمة التاريخية: 46.88 ج.م (16 أبريل 2026)</li>
+          <li>Beta: 1.15 — تقلب أعلى من السوق</li>
+          <li>الدعم: 44.30 ج.م | المقاومة: 48.50 ج.م</li>
+          <li>النمط: عرضي بعد إدراج أسهم الزيادة</li>
+          <li>P/E: 5.79 — تقييم منخفض جداً 💪</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📰 آخر الأخبار</h4>
+        <ul>
+          <li>✅ البورصة وافقت على قيد أسهم زيادة رأس المال (12→15 مليار) وتم الإدراج 11 مايو ↓ ضغط بيعي مؤقت</li>
+          <li>✅ الاكتتاب اتغطى 98.5% (المرحلة الأولى) و96.8 مرة (المرحلة الثانية) ↑ ثقة المستثمرين</li>
+          <li>✅ صافي أرباح 2025 المجمعة: 12.6 مليار ج.م (نمو 93%) ↑</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>💰 المؤشرات المالية</h4>
+        <ul>
+          <li>P/E: 5.79 💪</li>
+          <li>P/B: ~3.12</li>
+          <li>صافي ربح الربع الأول: 5.16 مليار</li>
+          <li>عدد الموظفين: 2,694</li>
+          <li>القيمة السوقية: ~66.45 مليار</li>
+          <li>التقييم: 💪 أقل من القيمة العادلة</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title warn">⚪ التوصية: احتفاظ (Hold)</div>
+      <ul style="list-style:none; font-size:14px;">
+        <li>• استنى لحد: استقرار السعر فوق 46 ج.م بعد إدراج أسهم الزيادة</li>
+        <li>• ليه مش الوقت للبيع: نتائج مالية قوية + تقييم رخيص (P/E 5.79)</li>
+        <li>• بيع جزئي (50 سهم) لو وصل: 52 ج.م (ربح ~21%)</li>
+        <li>• بيع كامل لو وصل: 56 ج.م (ربح ~30%)</li>
+        <li>• وقف خسارة: 42 ج.م (لو نزل تحت متوسط الشراء — بيع فوراً)</li>
+      </ul>
+    </div>
+    <div class="summary-line">ADIB: احتفاظ — مراقبة بعد إدراج الزيادة — نتائج مالية ممتازة وتقييم رخيص</div>
+  </div>
+
+  <!-- AMES_r2 -->
+  <div class="stock-card red">
+    <div class="stock-header">
+      <div class="stock-name">🏥 AMES_r2 — حق اكتتاب الإسكندرية للخدمات الطبية</div>
+      <span class="stock-badge badge-red">🔴 خسران -13.97%</span>
+    </div>
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📊 الحالة والأداء</h4>
+        <ul>
+          <li>متوسط الشراء: 50.10 | السعر: 43.05 | خسارة: -595 ج.م</li>
+          <li>حق اكتتاب — ده مش سهم عادي: تذبذب عالي جداً</li>
+          <li>نزل 3.79% في جلسة واحدة (10 مايو)</li>
+          <li>القيمة اليومية متقلبة بشكل كبير (27% في يوم واحد)</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>⚠️ المخاطر</h4>
+        <ul>
+          <li>حق الاكتتاب له مدة محددة — لو انتهت وانت لسه ماشتريتش تخسر كل حاجة</li>
+          <li>سيولة التداول ضعيفة — صعب تبيع بسعر كويس</li>
+          <li>الشركة أرباحها متذبذبة (تراجعت 52% في الربع الأول 2024)</li>
+          <li>سهم المضاربة مش الاستثمار</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rec-box sell">
+      <div class="rec-title loss">🔴 التوصية: بيع كامل فوراً</div>
+      <ul style="list-style:none; font-size:14px;">
+        <li>• بيع كل 85 حق على سعر السوق فوراً</li>
+        <li>• ليه: حق اكتتاب بمخاطرة عالية + خسارة 14% + تذبذب يومي مجنون</li>
+        <li>• الخسارة المتحققة: ~595 ج.م</li>
+        <li>• الفلوس دي حوّلها لـ: صندوق CI30 (أداءه ثابت وأقل مخاطرة)</li>
+      </ul>
+    </div>
+    <div class="summary-line">AMES_r2: بيع فوراً — بسعر السوق — مخاطرة عالية وخسارة مفتوحة</div>
+  </div>
+
+  <!-- ETEL -->
+  <div class="stock-card green">
+    <div class="stock-header">
+      <div class="stock-name">📞 ETEL — المصرية للاتصالات</div>
+      <span class="stock-badge badge-green">🟢 رابح +7.06%</span>
+    </div>
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📊 الحالة والأداء</h4>
+        <ul>
+          <li>متوسط الشراء: 90.46 | السعر: 97.84 | الربح: +383 ج.م</li>
+          <li>القمة التاريخية: 112.98 ج.م (16 فبراير 2026)</li>
+          <li>السهم صحح من القمة ~14% — وده طبيعي</li>
+          <li>إيرادات الربع الأخير: 28.61 مليار — أعلى من التوقعات</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📉 التحليل الفني</h4>
+        <ul>
+          <li>Beta: 0.90 — أقل تقلباً من السوق 💪</li>
+          <li>52-Week Range: 33.66 - 112.98</li>
+          <li>الدعم: 94 ج.م | المقاومة: 105 ج.م</li>
+          <li>الإشارة الفنية: Strong Buy (يومي/أسبوعي)</li>
+          <li>السعر المستهدف: 110 ج.م (متوسط المحللين)</li>
+          <li>تقرير أرباح قادم: 2 يونيو 2026</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📰 آخر الأخبار</h4>
+        <ul>
+          <li>✅ إيرادات أعلى من التوقعات الربع الأخير ↑</li>
+          <li>✅ تعاون مع China Mobile لمد كابلات بحرية ↑</li>
+          <li>⏳ توقع صفقة بيع حصة فودافون مصر — لو حصلت السهم هيطير ↑↑</li>
+          <li>↔ تحريك أسعار الاتصالات 15% — إيجابي للإيرادات</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title warn">⚪ التوصية: احتفاظ</div>
+      <ul style="list-style:none; font-size:14px;">
+        <li>• استنى تقرير أرباح 2 يونيو</li>
+        <li>• بيع جزئي (30 سهم) لو وصل: 105 ج.م (ربح ~16%)</li>
+        <li>• بيع كامل لو وصل: 112 ج.م (ربح ~24%)</li>
+        <li>• وقف خسارة: 88 ج.م</li>
+      </ul>
+    </div>
+    <div class="summary-line">ETEL: احتفاظ — مراقبة تقرير 2 يونيو — سهم دفاعي قوي</div>
+  </div>
+
+  <!-- FWRY -->
+  <div class="stock-card red">
+    <div class="stock-header">
+      <div class="stock-name">💳 FWRY — فوري للمدفوعات</div>
+      <span class="stock-badge badge-red">🔴 خسران -2.94%</span>
+    </div>
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📊 الحالة والأداء</h4>
+        <ul>
+          <li>متوسط الشراء: 21.37 | السعر: 20.78 | خسارة: -151 ج.م</li>
+          <li>ارتفع 113% خلال سنة! — يعني انت اشتريت قريب من القمة</li>
+          <li>أعلى سعر تاريخي: 21.66 (بعد السبليت)</li>
+          <li>RSI: 69 — قريب من منطقة تشبع شرائي</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📉 الفني + المالي</h4>
+        <ul>
+          <li>الإشارة الفنية: Strong Buy</li>
+          <li>MACD: إيجابي</li>
+          <li>MA50: 12.91 (السعر فوقه بكتير — صاعد)</li>
+          <li>السعر المستهدف: 20.45 ج.م (وصلها فعلاً)</li>
+          <li>EPS: 0.74 ج.م</li>
+          <li>الأرباح قفزت 92% في الربع الأول 2025</li>
+          <li>أرباح الربع الأول 2026 قادمة 3 يونيو</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title warn">⚪ التوصية: احتفاظ + تعزيز عند التراجع</div>
+      <ul style="list-style:none; font-size:14px;">
+        <li>• الخسارة بسيطة (-2.94%) — السهم في ترند صاعد قوي</li>
+        <li>• لو نزل لـ 19.50 ج.م: اشتري 100 سهم (متوسط جديد ~20.75)</li>
+        <li>• بيع جزئي لو وصل: 23 ج.م (ربح ~10%)</li>
+        <li>• بيع كامل لو وصل: 25 ج.م</li>
+        <li>• وقف خسارة: 18.50 ج.م</li>
+      </ul>
+    </div>
+    <div class="summary-line">FWRY: احتفاظ + تعزيز لو نزل 19.50 — سهم نمو قوي</div>
+  </div>
+
+  <!-- MTIE -->
+  <div class="stock-card neutral">
+    <div class="stock-header">
+      <div class="stock-name">📱 MTIE — إم.إم جروب للصناعة والتجارة</div>
+      <span class="stock-badge badge-yellow">⚪ على السعر -0.29%</span>
+    </div>
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📊 الحالة والأداء</h4>
+        <ul>
+          <li>متوسط الشراء: 9.77 | السعر: 9.80 | خسارة: -14 ج.م فقط</li>
+          <li>السهم صعد 13.22% في جلسة واحدة (3 مايو)!</li>
+          <li>52-Week Range: 5.52 - 9.15 → يعني السعر الحالي فوق أعلى نطاق السنة</li>
+          <li>السعر المستهدف من المحللين: 10.06 ج.م (+3%)</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📰 آخر الأخبار الإيجابية</h4>
+        <ul>
+          <li>✅ أرباح الربع الأول 2026 نمت 18% — إيرادات 5.4 مليار ↑</li>
+          <li>✅ الرقابة المالية وافقت على زيادة رأس المال + نشاط تصنيع سيارات ↑</li>
+          <li>✅ توزيع أسهم مجانية — العمومية 21 يونيو ↑</li>
+          <li>✅ التوسع للسعودية في النصف الثاني 2026 ↑</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rec-box hold">
+      <div class="rec-title warn">⚪ التوصية: احتفاظ</div>
+      <ul style="list-style:none; font-size:14px;">
+        <li>• استنى عمومية 21 يونيو — أسهم مجانية هتزود عدد الأسهم</li>
+        <li>• التارجت المحللين: 10.06 ج.م (أقرب) → 11.80 ج.م (أبعد)</li>
+        <li>• بيع جزئي (250 سهم) لو وصل: 11 ج.م (ربح ~12%)</li>
+        <li>• وقف خسارة: 8.50 ج.م</li>
+      </ul>
+    </div>
+    <div class="summary-line">MTIE: احتفاظ — أسهم مجانية قادمة + نمو أرباح 18% — سهم واعد</div>
+  </div>
+</div>
+
+<!-- FUNDS -->
+<div id="funds" class="section">
+  <div class="section-title">📦 تحليل الصناديق</div>
+
+  <!-- CI30 -->
+  <div class="stock-card green">
+    <div class="stock-header">
+      <div class="stock-name">📊 CI30 — صندوق مؤشر CI EGX30</div>
+      <span class="stock-badge badge-green">🟢 رابح +12.13%</span>
+    </div>
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📊 الأداء</h4>
+        <ul>
+          <li>سعر الشراء: 33.16 | الحالي: 37.18 | الربح: +945 ج.م</li>
+          <li>أكبر رابح في المحفظة!</li>
+          <li>EGX30 وصل قمة تاريخية: ~53,605 نقطة</li>
+          <li>الصندوق بيتتبع المؤشر — وأداءه ممتاز</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>💡 التوصية</h4>
+        <ul>
+          <li>🟢 زيادة — ده أفضل أداة في المحفظة</li>
+          <li>حوّل سيولة بيع AMES هنا</li>
+          <li>الصندوق مناسب للمستثمر اللي عايز يتتبع السوق بمخاطرة أقل</li>
+          <li>لو EGX30 نزل تحت 48,000 — زود الوثائق</li>
+        </ul>
+      </div>
+    </div>
+    <div class="summary-line">CI30: زيادة — أفضل أداء + تنويع ممتاز — حوّل سيولة البيع هنا</div>
+  </div>
+
+  <!-- CFF -->
+  <div class="stock-card green">
+    <div class="stock-header">
+      <div class="stock-name">💵 CFF — صندوق سي آي مال ومدفوعات رقمية</div>
+      <span class="stock-badge badge-green">🟢 رابح +4.36%</span>
+    </div>
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📊 الأداء</h4>
+        <ul>
+          <li>سعر الشراء: 19.80 | الحالي: 20.66 | الربح: +303 ج.م</li>
+          <li>صندوق ادخار — عائد مستقر ومخاطرة منخفضة</li>
+          <li>عائد ~4.36% حتى الآن</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📊 المقارنة</h4>
+        <ul>
+          <li>فائدة البنك المركزي: 19% (إيداع)</li>
+          <li>التضخم: 14.9% (أبريل 2026)</li>
+          <li>شهادات البنوك: حتى 19%</li>
+          <li>العائد الحقيقي للصندوق: أقل من شهادات البنوك</li>
+          <li>لكن ميزة السيولة: تقدر تبيع أي وقت</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rec-box hold">
+      <div class="rec-title warn">⚪ التوصية: احتفاظ</div>
+      <ul style="list-style:none; font-size:14px;">
+        <li>• الصندوق كويس كسيولة مرنة</li>
+        <li>• لو محتاج عائد أعلى مضمون: حوّل جزء لشهادة بنك 19%</li>
+        <li>• لكن لو عايز سيولة فورية — خليه</li>
+      </ul>
+    </div>
+    <div class="summary-line">CFF: احتفاظ — سيولة مرنة بعائد مقبول — بديل الكاش</div>
+  </div>
+</div>
+
+<!-- ADIB IPO -->
+<div id="adib-ipo" class="section">
+  <div class="section-title">🏦 وضع اكتتاب مصرف أبوظبي الإسلامي</div>
+
+  <div class="stock-card green">
+    <div class="stock-grid">
+      <div class="info-block">
+        <h4>📋 تفاصيل الاكتتاب</h4>
+        <ul>
+          <li>زيادة رأس المال: من 12 مليار → 15 مليار ج.م</li>
+          <li>عدد الأسهم الجديدة: 300 مليون سهم</li>
+          <li>القيمة الاسمية: 10 ج.م + 10 قروش مصاريف</li>
+          <li>تغطية المرحلة الأولى: 98.5%</li>
+          <li>تغطية المرحلة الثانية: 96.8 مرة 🔥</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📅 الوضع الحالي</h4>
+        <ul>
+          <li>✅ لجنة القيد وافقت على إدراج أسهم الزيادة (6 مايو)</li>
+          <li>✅ تم الإدراج فعلاً يوم 11 مايو 2026</li>
+          <li>✅ رأس المال المرخص ارتفع لـ 20 مليار</li>
+          <li>⚠️ الاكتتاب خلص — مفيش اكتتاب جديد قريب</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>📉 هل السهم هينزل؟</h4>
+        <ul>
+          <li>⚠️ ضغط بيعي مؤقت متوقع بعد الإدراج (طبيعي)</li>
+          <li>عدد الأسهم زاد 25% — Dilution Effect</li>
+          <li>لكن: أرباح البنك قوية جداً (نمو 93%)</li>
+          <li>P/E: 5.79 — تقييم رخيص مقارنة بالبنوك</li>
+          <li>التوقع: تصحيح مؤقت (44-46) ثم عودة للصعود</li>
+          <li>السهم مش هينهار — أساسيات البنك ممتازة</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h4>🎯 السيناريوهات</h4>
+        <ul>
+          <li>🟢 سيناريو متفائل: استقرار فوق 46 → صعود لـ 52</li>
+          <li>⚪ سيناريو محايد: تذبذب بين 44-48 لمدة شهر</li>
+          <li>🔴 سيناريو سلبي: كسر 42 → نزول لـ 38 (وقف خسارة)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEALTH -->
+<div id="health" class="section">
+  <div class="section-title">💪 تقييم صحة المحفظة</div>
+
+  <div class="sw-grid">
+    <div class="sw-card">
+      <h3 style="color:var(--green)">✅ نقاط القوة</h3>
+      <div class="sw-item">✅ تنويع بين أسهم وصناديق وكاش — ممتاز</div>
+      <div class="sw-item">✅ CI30 بيوفر تعرض للسوق ككل بأقل تكلفة</div>
+      <div class="sw-item">✅ أسهم في قطاعات مختلفة (بنوك، اتصالات، تكنولوجيا، تجارة)</div>
+      <div class="sw-item">✅ حجم الكاش مناسب (6.4%) لاقتناص فرص</div>
+      <div class="sw-item">✅ المحفظة رابحة إجمالاً (+3.69%)</div>
+    </div>
+    <div class="sw-card">
+      <h3 style="color:var(--red)">❌ نقاط الضعف</h3>
+      <div class="sw-item">❌ AMES_r2 (حق اكتتاب) مخاطرة عالية جداً ومش مناسب</div>
+      <div class="sw-item">❌ مفيش صناديق ذهب — وده ملاذ آمن مهم (الذهب ~6,990 ج.م)</div>
+      <div class="sw-item">❌ FWRY اتشرى قريب من القمة — توقيت دخول ضعيف</div>
+      <div class="sw-item">❌ كل الأسهم مصرية — مفيش تنويع جغرافي</div>
+      <div class="sw-item">❌ مفيش دخل ثابت حقيقي (شهادات/سندات)</div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:12px; margin-top:16px">
+    <div class="dash-card">
+      <div class="label">التنويع</div>
+      <div class="value warn" style="font-size:18px">مقبول ⚠️</div>
+      <div class="sub">ناقص ذهب ودخل ثابت</div>
+    </div>
+    <div class="dash-card">
+      <div class="label">مستوى المخاطرة</div>
+      <div class="value warn" style="font-size:18px">متوسط-عالي</div>
+      <div class="sub">بسبب AMES وتركز الأسهم</div>
+    </div>
+    <div class="dash-card">
+      <div class="label">مناسبة لـ</div>
+      <div class="value" style="font-size:18px; color:var(--blue)">مستثمر متوسط</div>
+      <div class="sub">يتحمل تقلبات معقولة</div>
+    </div>
+  </div>
+</div>
+
+<!-- ALLOCATION -->
+<div id="allocation" class="section">
+  <div class="section-title">⚖️ التوزيع المثالي المقترح</div>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>الفئة</th><th>الوزن الحالي</th><th>المقترح</th><th>الإجراء</th><th>السبب</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>أسهم فردية</td><td>48.2%</td><td>40%</td><td class="loss">تقليل</td><td>تقليل المخاطرة ببيع AMES</td></tr>
+        <tr><td>صناديق مؤشر (CI30)</td><td>21.7%</td><td>30%</td><td class="gain">زيادة</td><td>أفضل أداء وتنويع</td></tr>
+        <tr><td>صناديق ادخار (CFF)</td><td>18.1%</td><td>15%</td><td>ثبات</td><td>سيولة مرنة</td></tr>
+        <tr><td>ذهب (صندوق)</td><td>0%</td><td>8%</td><td class="gain">إضافة</td><td>ملاذ آمن — الذهب عند ~4,700$/أوقية</td></tr>
+        <tr><td>كاش</td><td>6.4%</td><td>7%</td><td>ثبات</td><td>احتياطي لفرص</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FORECAST -->
+<div id="forecast" class="section">
+  <div class="section-title">🔮 توقع المحفظة — الشهر القادم</div>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+    <div class="dash-card" style="border:1px solid var(--green)">
+      <div class="label">🟢 أفضل سيناريو (20%)</div>
+      <div class="value gain" style="font-size:20px">+8% → +3,434 ج.م</div>
+      <div class="sub">EGX30 يكمل صعود + نتائج أرباح قوية</div>
+    </div>
+    <div class="dash-card" style="border:1px solid var(--yellow)">
+      <div class="label">⚪ السيناريو الأرجح (55%)</div>
+      <div class="value warn" style="font-size:20px">+2% → +859 ج.م</div>
+      <div class="sub">تذبذب عرضي مع تحسن تدريجي</div>
+    </div>
+    <div class="dash-card" style="border:1px solid var(--red)">
+      <div class="label">🔴 أسوأ سيناريو (25%)</div>
+      <div class="value loss" style="font-size:20px">-6% → -2,575 ج.م</div>
+      <div class="sub">تصعيد جيوسياسي + رفع فائدة</div>
+    </div>
+  </div>
+
+  <div class="info-block" style="margin-top:16px">
+    <h4>🌍 أهم 3 عوامل مؤثرة</h4>
+    <ul>
+      <li><strong>1. اجتماع البنك المركزي 21 مايو:</strong> توقعات بتثبيت الفائدة عند 19% — لو رفع هينزل السوق</li>
+      <li><strong>2. التوترات الجيوسياسية:</strong> الحرب الأمريكية الإيرانية أثرت على أسعار الطاقة والتضخم (14.9%)</li>
+      <li><strong>3. نتائج أعمال الشركات:</strong> تقارير ETEL (2 يونيو) وFWRY (3 يونيو) هتحرك الأسعار</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SUMMARY -->
+<div id="summary" class="section">
+  <div class="section-title">📋 ملخص في دقيقة</div>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>الأداة</th><th>الوضع</th><th>التوصية</th><th>نفّذ على سعر</th><th>وقف خسارة</th><th>بيع عند</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ADIB</td><td class="gain">🟢 +13%</td><td>⚪ احتفاظ</td><td>—</td><td>42.00</td><td>52.00</td></tr>
+        <tr><td>AMES_r2</td><td class="loss">🔴 -14%</td><td style="color:var(--red); font-weight:700">🔴 بيع فوراً</td><td>سعر السوق</td><td>—</td><td>—</td></tr>
+        <tr><td>CFF</td><td class="gain">🟢 +4%</td><td>⚪ احتفاظ</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>CI30</td><td class="gain">🟢 +12%</td><td style="color:var(--green); font-weight:700">🟢 زيادة</td><td>بسيولة البيع</td><td>—</td><td>—</td></tr>
+        <tr><td>ETEL</td><td class="gain">🟢 +7%</td><td>⚪ احتفاظ</td><td>—</td><td>88.00</td><td>105.00</td></tr>
+        <tr><td>FWRY</td><td class="loss">🔴 -3%</td><td>⚪ احتفاظ + تعزيز</td><td>19.50</td><td>18.50</td><td>23.00</td></tr>
+        <tr><td>MTIE</td><td>⚪ 0%</td><td>⚪ احتفاظ</td><td>—</td><td>8.50</td><td>11.00</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div id="glossary" class="section">
+  <div class="section-title">📖 القاموس</div>
+  <div class="glossary-grid">
+    <div class="glossary-item"><strong>P/E:</strong> نسبة السعر للأرباح — كل ما قلّت يبقى السهم أرخص</div>
+    <div class="glossary-item"><strong>P/B:</strong> نسبة السعر للقيمة الدفترية — لو أقل من 1 يبقى السهم رخيص</div>
+    <div class="glossary-item"><strong>EPS:</strong> ربح السهم الواحد — كل ما زاد يبقى أحسن</div>
+    <div class="glossary-item"><strong>RSI:</strong> مؤشر القوة النسبية — فوق 70 تشبع شراء، تحت 30 تشبع بيع</div>
+    <div class="glossary-item"><strong>MACD:</strong> مؤشر يحدد اتجاه الترند — إيجابي = صعود</div>
+    <div class="glossary-item"><strong>Beta:</strong> حساسية السهم للسوق — فوق 1 = أكثر تقلباً</div>
+    <div class="glossary-item"><strong>وقف خسارة:</strong> سعر لو السهم نزل ليه تبيع فوراً عشان تحمي فلوسك</div>
+    <div class="glossary-item"><strong>Dilution:</strong> تخفيف — زيادة أسهم بتقلل نصيب السهم من الأرباح</div>
+    <div class="glossary-item"><strong>حق اكتتاب:</strong> حق تشتري أسهم جديدة بسعر محدد — له مدة وبيتداول</div>
+    <div class="glossary-item"><strong>Strong Buy:</strong> إشارة شراء قوية من المؤشرات الفنية</div>
+    <div class="glossary-item"><strong>السبليت (Split):</strong> تقسيم السهم — بتزيد الكمية وبيقل السعر</div>
+    <div class="glossary-item"><strong>صندوق مؤشر:</strong> صندوق بيتتبع مؤشر (زي EGX30) — تنويع تلقائي</div>
+    <div class="glossary-item"><strong>العائد الحقيقي:</strong> العائد بعد خصم التضخم — لو سالب يعني فلوسك بتقل</div>
+    <div class="glossary-item"><strong>تجميع/تصريف:</strong> تجميع = كبار بيشتروا بهدوء | تصريف = بيبيعوا</div>
+    <div class="glossary-item"><strong>القيمة العادلة:</strong> السعر الحقيقي للسهم بناءً على أرباحه ونموه</div>
+    <div class="glossary-item"><strong>أسهم مجانية:</strong> الشركة بتوزع أسهم جديدة على المساهمين ببلاش</div>
+  </div>
+</div>
+
+<!-- Disclaimer -->
+<div class="disclaimer">
+  ⚠️ <strong>تنبيه مهم:</strong> هذا التحليل للأغراض التعليمية فقط ولا يُعد نصيحة مالية أو توصية بالشراء أو البيع. الاستثمار في البورصة ينطوي على مخاطر وقد تخسر جزءاً أو كل رأس مالك. استشر مستشارك المالي قبل اتخاذ أي قرار استثماري. الأسعار والبيانات قد تتغير لحظياً.
+</div>
+
+</div>
+
+<!-- Scroll to top -->
+<a href="#dashboard" class="to-top">↑</a>
+
+</body>
+</html>
