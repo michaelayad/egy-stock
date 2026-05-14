@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>تحليل البورصة المصرية – 14 مايو 2026 | أفضل 6 أسهم للشراء</title>
+<style>
+:root{
+  --bg:#0b1020; --bg2:#111831; --card:#151c36; --line:#243056;
+  --txt:#e7ecf7; --muted:#9aa7c7; --gold:#f5c451;
+  --green:#22c55e; --red:#ef4444; --blue:#3b82f6; --purple:#a855f7; --orange:#f97316;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7}
+a{color:#7cc4ff;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:14px}
+header.top{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0b1020ee,#0b1020cc);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.banner{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:12px 14px}
+.banner .cell{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
+.banner .label{font-size:12px;color:var(--muted)}
+.banner .val{font-size:18px;font-weight:700}
+.up{color:var(--green)} .down{color:var(--red)} .neu{color:var(--gold)}
+nav.subnav{display:flex;gap:8px;flex-wrap:wrap;padding:8px 14px;border-top:1px solid var(--line)}
+nav.subnav a{background:#1a2247;color:#cfd8ff;padding:6px 10px;border-radius:8px;font-size:13px;border:1px solid var(--line)}
+nav.subnav a:hover{background:#22306a}
+h1,h2,h3{color:#fff}
+h1{font-size:26px;margin:14px 0 4px}
+h2{font-size:22px;margin:22px 0 10px;border-right:4px solid var(--gold);padding-right:10px}
+h3{font-size:18px;margin:14px 0 6px}
+.section{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:900px){.grid2,.grid3,.banner{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.grid2,.grid3,.banner{grid-template-columns:1fr}}
+.kv{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:6px 0;font-size:14px}
+.kv b{color:#fff}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px;text-align:right}
+th{background:#1a2247;color:#dbe4ff}
+tr:nth-child(even) td{background:#131a36}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700;margin-inline-start:6px}
+.b-rocket{background:#3a1357;color:#e9c8ff;border:1px solid var(--purple)}
+.b-spec{background:#4a2510;color:#ffd5b8;border:1px solid var(--orange)}
+.b-mid{background:#0e2a4d;color:#bcd9ff;border:1px solid var(--blue)}
+.b-long{background:#0e3a23;color:#b9f0c8;border:1px solid var(--green)}
+.b-list{background:#3a2f12;color:#ffe7a1;border:1px solid var(--gold)}
+.b-new{background:#13314a;color:#9fd1ff;border:1px solid #3b82f6}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.card.rocket{border-left:6px solid var(--purple)}
+.card.spec{border-left:6px solid var(--orange)}
+.card.mid{border-left:6px solid var(--blue)}
+.card.long{border-left:6px solid var(--green)}
+.title-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+.price{font-size:22px;font-weight:800;color:#fff}
+.muted{color:var(--muted)}
+.tag{display:inline-block;background:#1a2247;border:1px solid var(--line);border-radius:6px;padding:2px 8px;margin:2px;font-size:12px}
+.note{background:#1a1a33;border-right:4px solid var(--gold);padding:10px;border-radius:8px;margin:8px 0;font-size:13px;color:#ffe7a1}
+.warn{background:#2a1212;border-right:4px solid var(--red);padding:10px;border-radius:8px;margin:8px 0;font-size:13px;color:#ffd1d1}
+.ok{background:#102a1c;border-right:4px solid var(--green);padding:10px;border-radius:8px;margin:8px 0;font-size:13px;color:#c8f3d4}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid var(--line);background:#1a2247;margin:2px}
+.btn-top{position:fixed;bottom:18px;left:18px;background:var(--gold);color:#111;padding:10px 12px;border-radius:50%;font-weight:800;border:none;cursor:pointer;z-index:80;box-shadow:0 4px 14px #0008}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;margin:6px 0}
+.legend span{padding:3px 8px;border-radius:6px;border:1px solid var(--line)}
+footer{color:var(--muted);font-size:12px;text-align:center;padding:24px 8px}
+.disclosure{background:#241616;border:1px solid #5a2424;border-radius:10px;padding:10px;color:#ffd0d0;font-size:13px;margin:10px 0}
+.kvgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+@media(max-width:560px){.kvgrid{grid-template-columns:1fr}}
+hr{border:0;border-top:1px dashed var(--line);margin:12px 0}
+.smallcap{font-size:12px;color:var(--muted)}
+.signal-buy{color:var(--green);font-weight:700}
+.signal-sell{color:var(--red);font-weight:700}
+.signal-hold{color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="banner">
+    <div class="cell">
+      <div class="label">📅 تاريخ التحليل</div>
+      <div class="val">الخميس 14 مايو 2026</div>
+      <div class="smallcap">(الأسعار حتى إغلاق الأربعاء 13/5/2026)</div>
+    </div>
+    <div class="cell">
+      <div class="label">📊 مؤشر EGX30</div>
+      <div class="val neu">53,931 نقطة</div>
+      <div class="smallcap"><span class="down">▼ 0.25% يومي</span> | <span class="up">▲ ~11% شهري</span></div>
+    </div>
+    <div class="cell">
+      <div class="label">💵 الدولار/جنيه</div>
+      <div class="val">52.87 / 52.97</div>
+      <div class="smallcap">المركزي: 52.86 شراء – 53.01 بيع</div>
+    </div>
+    <div class="cell">
+      <div class="label">🥇 الذهب عيار 21</div>
+      <div class="val gold">6,980 ج/جرام</div>
+      <div class="smallcap">الأونصة: ~4,715$</div>
+    </div>
+    <div class="cell">
+      <div class="label">🏦 رأس المال السوقي</div>
+      <div class="val">3.816 تريليون ج</div>
+      <div class="smallcap">تداولات أمس: 12.8 مليار جنيه</div>
+    </div>
+  </div>
+  <nav class="subnav">
+    <a href="#market">حالة السوق</a>
+    <a href="#cib">فحص CIB</a>
+    <a href="#rocket">🎰 صاروخ</a>
+    <a href="#spec">⚡ مضاربة</a>
+    <a href="#mid">📈 متوسط</a>
+    <a href="#long">🏛️ طويل</a>
+    <a href="#compare">جدول المقارنة</a>
+    <a href="#priority">الأولويات</a>
+    <a href="#executive">ملخص التنفيذ</a>
+    <a href="#rejected">أسهم مستبعدة</a>
+    <a href="#glossary">المصطلحات</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1>📈 تحليل احترافي للبورصة المصرية – الخميس 14 مايو 2026</h1>
+<p class="muted">تقرير معتمد على بيانات حقيقية من <b>EGX، Investing.com، TradingView، مباشر، مصراوي، الشروق، البنك المركزي المصري، الأسبوع، عالم البيزنس</b>. تم استبعاد فوري (FWRY)، المصرية للاتصالات (ETEL)، وإم.إم جروب (MTIE) من المقترحات. الأسعار قبل افتتاح جلسة 14/5 مأخوذة من آخر إغلاق رسمي (الأربعاء 13/5/2026).</p>
+
+<div class="disclosure">
+⚠️ <b>إخلاء مسؤولية:</b> هذا التحليل لأغراض تعليمية واستشهادية فقط، وليس توصية ملزمة بالبيع أو الشراء. السوق متقلب وقد يتغير المشهد بشكل جوهري عند الافتتاح بعد إجازة العيد الفطر / قرار الفائدة المرتقب في 21 مايو. أي استثمار يجب أن يرتكز على إدارة مخاطر صارمة (وقف خسارة، تنويع، تحديد نسبة من رأس المال).
+</div>
+
+<!-- ============================= قسم حالة السوق ============================= -->
+<section id="market" class="section">
+  <h2>1) حالة السوق العامة – لمحة شاملة</h2>
+
+  <div class="grid2">
+    <div>
+      <h3>🎯 المؤشرات الرئيسية</h3>
+      <div class="kv"><span>EGX30 (آخر إغلاق 13/5)</span><b>53,931 نقطة (-0.22% تقريباً)</b></div>
+      <div class="kv"><span>EGX30 (إغلاق 11/5 الإثنين)</span><b>54,475 نقطة</b></div>
+      <div class="kv"><span>قمة تاريخية (6/5/2026)</span><b>54,977 نقطة</b></div>
+      <div class="kv"><span>التغير الشهري</span><b class="up">+11.0%</b></div>
+      <div class="kv"><span>التغير السنوي (YoY)</span><b class="up">+72.5%</b></div>
+      <div class="kv"><span>EGX70 EWI (شركات صغيرة ومتوسطة)</span><b>15,030 نقطة <span class="up">▲0.63%</span></b></div>
+      <div class="kv"><span>EGX100 EWI</span><b>20,679 نقطة <span class="up">▲0.61%</span></b></div>
+      <div class="kv"><span>مؤشر الشريعة</span><b>5,873 نقطة</b></div>
+      <div class="kv"><span>EGX35-LV (منخفضة التقلبات)</span><b>6,036 نقطة</b></div>
+    </div>
+    <div>
+      <h3>🪙 الذهب والعملات</h3>
+      <div class="kv"><span>الدولار في البنك المركزي</span><b>52.86 شراء – 53.01 بيع</b></div>
+      <div class="kv"><span>الدولار في البنك الأهلي / بنك مصر</span><b>52.87 / 52.97</b></div>
+      <div class="kv"><span>أقل سعر للدولار (الإمارات دبي الوطني)</span><b>52.68 / 52.78</b></div>
+      <div class="kv"><span>أعلى سعر للدولار (نكست)</span><b>53.05 / 53.15</b></div>
+      <div class="kv"><span>الذهب عيار 24</span><b>~7,989–8,000 ج/جرام</b></div>
+      <div class="kv"><span>الذهب عيار 21 (الأكثر تداولاً)</span><b class="gold">6,980 ج/جرام</b></div>
+      <div class="kv"><span>الجنيه الذهب</span><b>~55,920 ج</b></div>
+      <div class="kv"><span>الأونصة عالمياً</span><b>4,715 دولار</b></div>
+    </div>
+  </div>
+
+  <h3>📰 أهم الأخبار والمتغيرات الكلية هذا الأسبوع</h3>
+  <ul>
+    <li><b>قمة تاريخية للمؤشر:</b> سجل EGX30 قمة 54,977 نقطة في 6 مايو، ثم 54,628 في 10 مايو مدفوعاً بشراء أجانب (ربح صافي 47 مليار جنيه في جلسة واحدة).</li>
+    <li><b>تصحيح طبيعي 3 جلسات:</b> الإثنين 11/5 و12/5 و13/5 تراجع المؤشر بضغط من <b>CIB، طلعت مصطفى، إيسترن كومباني</b> مع نشاط بيع عربي وأجنبي مقابل شراء مصري.</li>
+    <li><b>قرار الفائدة المرتقب 21 مايو:</b> توقعات السوق منقسمة بين تثبيت الفائدة (19% إيداع / 20% إقراض) أو رفع 1% بسبب ضغوط حرب إيران – أمريكا.</li>
+    <li><b>التضخم في تباطؤ:</b> 14.9% في أبريل (مقابل 15.2% في مارس) في الحضر، والتضخم الأساسي 13.8% (مقابل 14%). إجمالي الجمهورية 13.4%.</li>
+    <li><b>المركزي يرفع توقعات التضخم للعام:</b> النطاق المتوقع 16–17% بدلاً من 11% بسبب توترات الشرق الأوسط وارتفاع أسعار الطاقة.</li>
+    <li><b>S&P تثبت تصنيف مصر السيادي عند B</b> ونظرة مستقبلية مستقرة.</li>
+    <li><b>نتائج Q1 قوية:</b> CIB أرباح 17.8 مليار (+7%)، بنك قناة السويس 1.64 مليار (+25%)، إيسترن كومباني أرباحها ترتفع 36%.</li>
+    <li><b>إدراج جديد:</b> البورصة وافقت على إدراج أسهم "منصة مصر للتعليم" برأسمال 1.9 مليار جنيه.</li>
+  </ul>
+
+  <h3>🏭 أداء القطاعات الأسبوع الماضي</h3>
+  <table>
+    <thead><tr><th>القطاع</th><th>قيمة التداول</th><th>الحصة</th><th>الاتجاه</th></tr></thead>
+    <tbody>
+      <tr><td>العقارات</td><td>3.20+ مليار</td><td>26.2%</td><td><span class="up">صاعد قوي</span></td></tr>
+      <tr><td>الخدمات المالية غير المصرفية</td><td>2.18 مليار</td><td>~18%</td><td><span class="up">صاعد</span></td></tr>
+      <tr><td>الرعاية الصحية والأدوية</td><td>1.69 مليار</td><td>~14%</td><td><span class="up">صاعد</span></td></tr>
+      <tr><td>الاتصالات وتكنولوجيا المعلومات</td><td>~1 مليار</td><td>~8%</td><td><span class="neu">جانبي</span></td></tr>
+      <tr><td>الموارد الأساسية</td><td>0.73 مليار</td><td>~6%</td><td><span class="up">صاعد</span></td></tr>
+      <tr><td>مواد البناء (أسمنت/حديد)</td><td>0.645 مليار</td><td>~5%</td><td><span class="up">صاعد</span></td></tr>
+      <tr><td>الأغذية والمشروبات</td><td>0.64 مليار</td><td>~5%</td><td><span class="neu">جانبي</span></td></tr>
+      <tr><td>البنوك</td><td>—</td><td>—</td><td><span class="down">تحت ضغط بيع قيادي</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>الخلاصة:</b> السوق في موجة صاعدة سنوية قوية (+72%)، يمر بتصحيح صحي قصير المدى لتبريد الأسعار قبل قرار الفائدة. القطاع العقاري والصغيرة/المتوسطة هي قائدة الزخم، بينما البنوك تتعرض لجني أرباح. <b>الفرصة في الأسهم التي صححت دون كسر متوسطاتها، وفي الأسهم بأخبار قوية لم تتسعّر بعد.</b>
+  </div>
+</section>
+
+<!-- ============================= فحص CIB ============================= -->
+<section id="cib" class="section">
+  <h2>2) فحص البنك التجاري الدولي (CIB / COMI) – من قائمتك <span class="badge b-list">📌 من قائمتك</span></h2>
+
+  <div class="grid2">
+    <div>
+      <h3>🆔 بطاقة تعريف</h3>
+      <div class="kv"><span>الاسم</span><b>البنك التجاري الدولي – مصر | Commercial International Bank</b></div>
+      <div class="kv"><span>الرمز / البورصة</span><b>COMI – EGX</b></div>
+      <div class="kv"><span>القطاع</span><b>البنوك (أكبر بنك قطاع خاص)</b></div>
+      <div class="kv"><span>السعر آخر إغلاق 13/5</span><b class="price">140.01 ج <span class="down" style="font-size:14px">-2.09 (-1.47%)</span></b></div>
+      <div class="kv"><span>السعر بـ 28/4/2026 (Investing)</span><b>139.00 ج</b></div>
+      <div class="kv"><span>نطاق 52 أسبوع</span><b>70.03 – 145.01</b></div>
+      <div class="kv"><span>القمة التاريخية</span><b>145.01 ج (16/2/2026)</b></div>
+      <div class="kv"><span>التذبذب اليومي</span><b>3.47% | بيتا 1.08</b></div>
+    </div>
+    <div>
+      <h3>💰 المؤشرات المالية (Q1 2026)</h3>
+      <div class="kv"><span>صافي ربح Q1 2026</span><b class="up">17.74 مليار ج (+7% YoY)</b></div>
+      <div class="kv"><span>الإيرادات المجمعة</span><b class="up">31.2 مليار ج (+15% YoY)</b></div>
+      <div class="kv"><span>صافي دخل العائد</span><b>29.53 مليار ج (vs 25.30)</b></div>
+      <div class="kv"><span>الربح للسهم EPS Q1</span><b>4.65 ج</b></div>
+      <div class="kv"><span>EPS (TTM)</span><b>18.05 ج</b></div>
+      <div class="kv"><span>P/E (TTM)</span><b>~7.7x (منخفض جداً)</b></div>
+      <div class="kv"><span>القيمة السوقية</span><b>~469 مليار ج</b></div>
+      <div class="kv"><span>Dividend Yield</span><b>4.35%</b></div>
+      <div class="kv"><span>إجمالي الأصول</span><b>1.561 تريليون ج (+8.7%)</b></div>
+      <div class="kv"><span>محفظة القروض</span><b>587.4 مليار ج (+8.5%)</b></div>
+      <div class="kv"><span>ودائع العملاء</span><b>1.21 تريليون ج (+9.5%)</b></div>
+      <div class="kv"><span>هامش فائدة صافي NIM</span><b>8.88% (-24 نقطة أساس)</b></div>
+    </div>
+  </div>
+
+  <h3>📉 التحليل الفني</h3>
+  <ul>
+    <li>السهم قرب القمة التاريخية 145.01 ثم صحح إلى 140 ج (تصحيح 3.4% فقط).</li>
+    <li>الدعم القوي: 133.5 ج (مستوى الاختراق الأسبوعي السابق) ثم 128 ج.</li>
+    <li>المقاومة: 145 ج (القمة) ثم 150–155 ج (هدف فيبوناتشي امتداد).</li>
+    <li>RSI أسبوعي قرب 65 (إيجابي بلا تشبع شراء حاد).</li>
+    <li>MA20/MA50 صاعدان وأقل من السعر = ترند صاعد سليم.</li>
+    <li>توقعات المحللين (Investing): متوسط 12 شهر 161.35 ج (هامش +16%).</li>
+    <li>تقييم TradingView الفني: <span class="signal-buy">شراء</span> أسبوعي وشهري.</li>
+  </ul>
+
+  <h3>🧠 القرار: هل CIB مناسب الآن؟</h3>
+  <div class="ok">
+    <b>القرار: نعم، مناسب – لكن في فئة "استثمار طويل" وليس مضاربة قصيرة.</b><br>
+    الأسباب:
+    <ol>
+      <li>نتائج Q1 2026 قوية (+7% أرباح، +15% إيرادات) رغم خفض الفائدة 825 نقطة أساس.</li>
+      <li>P/E منخفض ~7.7x مقابل أرباح ضخمة و ROE تاريخي 25%+.</li>
+      <li>Dividend Yield 4.35% مع توزيعات تاريخية ثابتة.</li>
+      <li>التصحيح من 145 إلى 140 يمنح فرصة دخول أقل مخاطرة قبل اختراق جديد.</li>
+      <li>مخاطر قائمة: ضغط بيع أجنبي قيادي + قرار فائدة 21 مايو قد يصدم القطاع المصرفي مؤقتاً.</li>
+    </ol>
+    <b>القرار النهائي:</b> ضم CIB في فئة <b>🏛️ استثمار طويل سنة+</b> ضمن الـ 6 المقترحين.
+  </div>
+</section>
+
+<!-- ============================= الأسهم الستة ============================= -->
+<section class="section">
+  <h2>3) أفضل 6 أسهم للشراء الآن – موزعة على 4 فئات</h2>
+  <div class="legend">
+    <span style="border-color:var(--purple);color:#e9c8ff">🎰 صاروخ</span>
+    <span style="border-color:var(--orange);color:#ffd5b8">⚡ مضاربة 1-4 أسابيع</span>
+    <span style="border-color:var(--blue);color:#bcd9ff">📈 متوسط 3-6 شهور</span>
+    <span style="border-color:var(--green);color:#b9f0c8">🏛️ طويل سنة+</span>
+  </div>
+</section>
+
+<!-- ===== سهم 1 : صاروخ ===== -->
+<section id="rocket" class="section">
+  <div class="card rocket">
+    <div class="title-row">
+      <h3>1) 🎰 صاروخ – الإسماعيلية الجديدة للتطوير والتنمية العمرانية (IDRE) <span class="badge b-new">🔍 اكتشاف جديد</span></h3>
+      <div class="price">47.98 ج <span class="up" style="font-size:14px">▲ 19.98% أمس!</span></div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h3>📌 بطاقة الفرصة</h3>
+        <div class="kv"><span>الفئة</span><b>🎰 صاروخ – قصير جداً</b></div>
+        <div class="kv"><span>المصدر</span><b>اكتشاف جديد (تصدر الأكثر ارتفاعاً يوم 13/5)</b></div>
+        <div class="kv"><span>المخاطرة</span><b class="down">عالية جداً</b></div>
+        <div class="kv"><span>نسبة من رأس المال</span><b>3% – 5% فقط</b></div>
+        <div class="kv"><span>الأفق الزمني</span><b>أيام إلى أسبوعين</b></div>
+      </div>
+      <div>
+        <h3>🆔 تعريف الشركة</h3>
+        <div class="kv"><span>الاسم العربي</span><b>الإسماعيلية الجديدة للتطوير</b></div>
+        <div class="kv"><span>الإنجليزي</span><b>New Ismailia for Urban Development</b></div>
+        <div class="kv"><span>القطاع</span><b>العقارات (تطوير عمراني)</b></div>
+        <div class="kv"><span>السعر السابق</span><b>39.99 ج (12/5)</b></div>
+        <div class="kv"><span>نطاق 52 أسبوع</span><b>22.32 – 48.00</b></div>
+      </div>
+    </div>
+
+    <h3>📊 التحليل الفني</h3>
+    <ul>
+      <li><b>كسر الإغلاق الأقصى</b> بنسبة 19.98% في جلسة 13/5 بحجم تداول استثنائي.</li>
+      <li>السهم خرج من نموذج مثلث صاعد طويل المدى.</li>
+      <li>المقاومة التالية: 52 ج ثم 58 ج (الزاوية 72 على نموذج جان).</li>
+      <li>الدعم: 40 ج (سعر الكسر) ثم 35.8 ج (MA20).</li>
+      <li>تقييم TradingView: <span class="signal-buy">شراء قوي</span> على الإطار اليومي والأسبوعي.</li>
+      <li>الزخم: سهم في موجة 5 صاعدة من قاع ديسمبر عند 22 ج (+118%).</li>
+    </ul>
+
+    <h3>📰 المحفزات</h3>
+    <ul>
+      <li>قطاع العقارات يستحوذ على 26.2% من سيولة السوق – موجة قطاعية قوية.</li>
+      <li>تحول الشركة من خسارة إلى ربحية في الربع الأول من العام السابق (شهر مايو 2025).</li>
+      <li>صعود ضمن أبطال الجلسة في تواقت مع تجمع مؤسسي واضح.</li>
+    </ul>
+
+    <h3>🎯 خطة التداول الكاملة</h3>
+    <table>
+      <tr><th>المرحلة</th><th>السعر</th><th>الحركة</th></tr>
+      <tr><td>دخول 1 (50% من المركز)</td><td>47.5 – 48.5 ج</td><td>عند الافتتاح بعد تأكيد الإغلاق فوق 47</td></tr>
+      <tr><td>دخول 2 (50% احتياط)</td><td>44 – 45 ج</td><td>عند تصحيح صحي يمس MA9</td></tr>
+      <tr><td>هدف 1</td><td>52 ج</td><td>+8.4% – بيع 30%</td></tr>
+      <tr><td>هدف 2</td><td>56 ج</td><td>+16% – بيع 40%</td></tr>
+      <tr><td>هدف 3</td><td>58–60 ج</td><td>+25% – بيع المتبقي</td></tr>
+      <tr><td>وقف خسارة</td><td>39.5 ج</td><td>إغلاق يومي تحته (-17%)</td></tr>
+    </table>
+
+    <div class="grid3">
+      <div class="ok"><b>نظرة قصيرة:</b> <span class="up">إيجابية قوية</span><br>مستهدف 52-58<br>الثقة: 70%</div>
+      <div class="note"><b>نظرة متوسطة:</b> <span class="neu">إيجابية بحذر</span><br>الاتجاه يحتاج تأكيد فوق 50</div>
+      <div class="warn"><b>نظرة طويلة:</b> <span class="down">غير مرشحة</span><br>تذبذب عالٍ + سيولة محدودة</div>
+    </div>
+
+    <div class="kvgrid">
+      <div class="kv"><span>القيمة العادلة التقنية</span><b>54 ج (Fib امتداد)</b></div>
+      <div class="kv"><span>هامش الأمان</span><b>~12%</b></div>
+      <div class="kv"><span>نوع التداول</span><b>مضاربة 90% / استثمار 10%</b></div>
+      <div class="kv"><span>مستوى الثقة</span><b>70%</b></div>
+    </div>
+
+    <h3>🌍 سيناريوهات الشهر</h3>
+    <table>
+      <tr><th>السيناريو</th><th>السعر المتوقع</th><th>الاحتمال</th></tr>
+      <tr><td>سلبي (تصحيح حاد)</td><td>40 ج</td><td>25%</td></tr>
+      <tr><td>محايد (تذبذب جانبي)</td><td>46 – 50 ج</td><td>35%</td></tr>
+      <tr><td>إيجابي (إكمال الموجة)</td><td>55 – 60 ج</td><td>40%</td></tr>
+    </table>
+
+    <div class="grid2">
+      <div class="ok"><b>القوة:</b> كسر فني واضح + قطاع رابح + حجم استثنائي</div>
+      <div class="warn"><b>الضعف:</b> سهم منخفض السيولة، حد سعري ±20% يومي، سهل التلاعب</div>
+    </div>
+
+    <div class="warn">
+      ⚠️ <b>تنبيه:</b> هذا السهم وصل لحدّه السعري الأقصى أمس. لا تطارد السعر، انتظر تأكيد إغلاق فوق 47 أو ارتداد لـ 44.
+    </div>
+  </div>
+</section>
+
+<!-- ===== سهم 2 و 3 : مضاربة ===== -->
+<section id="spec" class="section">
+  <div class="card spec">
+    <div class="title-row">
+      <h3>2) ⚡ مضاربة – بالم هيلز للتعمير (PHDC) <span class="badge b-new">🔍 اكتشاف جديد</span></h3>
+      <div class="price">11.20 ج <span class="up" style="font-size:14px">▲ 28% أسبوعي / +34% شهري</span></div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h3>📌 بطاقة الفرصة</h3>
+        <div class="kv"><span>الفئة</span><b>⚡ مضاربة 1–4 أسابيع</b></div>
+        <div class="kv"><span>المصدر</span><b>اكتشاف جديد (أعلى أسهم التداول قيمة)</b></div>
+        <div class="kv"><span>المخاطرة</span><b class="neu">متوسطة</b></div>
+        <div class="kv"><span>نسبة من رأس المال</span><b>10% – 12%</b></div>
+      </div>
+      <div>
+        <h3>🆔 تعريف الشركة</h3>
+        <div class="kv"><span>القطاع</span><b>عقارات/تطوير</b></div>
+        <div class="kv"><span>القيمة السوقية</span><b>~32.9 مليار ج</b></div>
+        <div class="kv"><span>نطاق 52 أسبوع</span><b>6.62 – 12.00</b></div>
+        <div class="kv"><span>الذروة التاريخية</span><b>11.98 ج (18/2/2026)</b></div>
+      </div>
+    </div>
+
+    <h3>📊 التحليل الفني</h3>
+    <ul>
+      <li>السهم يختبر القمة التاريخية 12 ج بعد موجة صاعدة قوية.</li>
+      <li>الحجم تضاعف 3–5× المتوسط في آخر 10 جلسات.</li>
+      <li>تصدر قائمة الأكثر تداولاً (777 مليون جنيه في جلسة واحدة).</li>
+      <li>MA20 = 9.2 / MA50 = 8.3 (ترند صاعد قوي).</li>
+      <li>RSI أسبوعي = 72 (تشبع شراء طفيف).</li>
+      <li>تقييم Investing: <span class="signal-buy">شراء قوي</span> | تقدير المحللين 16.98 ج (+55%).</li>
+    </ul>
+
+    <h3>📰 المحفزات</h3>
+    <ul>
+      <li>توقعات قوية لنتائج Q1 (الإعلان 3 يونيو) – تحول كبير لقطاع العقارات.</li>
+      <li>قطاع العقارات يستحوذ على 26% من سيولة السوق.</li>
+      <li>قاعدة عملاء واسعة + مشاريع جارية في أبوظبي والساحل الشمالي.</li>
+      <li>قرار الفائدة 21 مايو – أي تثبيت أو خفض سيدعم العقارات.</li>
+    </ul>
+
+    <h3>🎯 خطة التداول</h3>
+    <table>
+      <tr><th>المرحلة</th><th>السعر</th><th>التفاصيل</th></tr>
+      <tr><td>دخول 1</td><td>11.0 – 11.3 ج</td><td>60% من المركز</td></tr>
+      <tr><td>دخول 2</td><td>10.5 – 10.7 ج</td><td>40% احتياط عند تصحيح صحي</td></tr>
+      <tr><td>هدف 1</td><td>12.5 ج</td><td>+11% – بيع 35%</td></tr>
+      <tr><td>هدف 2</td><td>13.5 ج</td><td>+20% – بيع 35%</td></tr>
+      <tr><td>هدف 3</td><td>15 ج</td><td>+33% – بيع المتبقي</td></tr>
+      <tr><td>وقف خسارة</td><td>9.80 ج</td><td>تحت MA20 (-12%)</td></tr>
+    </table>
+
+    <div class="grid3">
+      <div class="ok"><b>قصير:</b> <span class="up">إيجابي</span> – مستهدف 12.5، ثقة 75%</div>
+      <div class="ok"><b>متوسط:</b> <span class="up">إيجابي</span> – مستهدف 15، ثقة 65%</div>
+      <div class="note"><b>طويل:</b> <span class="neu">حيادي</span> – يحتاج اختراق التاريخية</div>
+    </div>
+
+    <div class="kvgrid">
+      <div class="kv"><span>القيمة العادلة</span><b>14 – 17 ج</b></div>
+      <div class="kv"><span>هامش الأمان</span><b>25–50%</b></div>
+      <div class="kv"><span>نوع التداول</span><b>مضاربة 70% / استثمار 30%</b></div>
+      <div class="kv"><span>مستوى الثقة</span><b>78%</b></div>
+    </div>
+  </div>
+
+  <div class="card spec">
+    <div class="title-row">
+      <h3>3) ⚡ مضاربة – بنك قناة السويس (CANA) <span class="badge b-new">🔍 اكتشاف جديد</span></h3>
+      <div class="price">37.26 ج <span class="up" style="font-size:14px">▲ 7.01% أمس</span></div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h3>📌 بطاقة الفرصة</h3>
+        <div class="kv"><span>الفئة</span><b>⚡ مضاربة 1–4 أسابيع</b></div>
+        <div class="kv"><span>المصدر</span><b>اكتشاف جديد (أكثر ارتفاعاً 13/5)</b></div>
+        <div class="kv"><span>المخاطرة</span><b class="neu">متوسطة</b></div>
+        <div class="kv"><span>نسبة من رأس المال</span><b>10%</b></div>
+      </div>
+      <div>
+        <h3>🆔 التعريف</h3>
+        <div class="kv"><span>القطاع</span><b>البنوك (متوسط الحجم)</b></div>
+        <div class="kv"><span>القيمة السوقية</span><b>~33.4 مليار ج</b></div>
+        <div class="kv"><span>القمة التاريخية</span><b>39.57 ج (15/4/2026)</b></div>
+        <div class="kv"><span>صافي ربح Q1 2026</span><b class="up">1.64 مليار ج (+25%)</b></div>
+      </div>
+    </div>
+
+    <h3>📊 التحليل الفني والمالي</h3>
+    <ul>
+      <li>السهم في ترند صاعد قوي على الفريم اليومي والأسبوعي (+122.96% سنوي).</li>
+      <li>الدعم 35 ج / المقاومة 39.57 ج (القمة التاريخية).</li>
+      <li>تقييم TradingView الفني: <span class="signal-buy">شراء قوي</span>.</li>
+      <li>P/B منخفض جداً (~0.85x) – من أرخص بنوك السوق.</li>
+      <li>اتفاقية تمويل أخضر 50 مليون دولار مع البنك الأوروبي للإعمار.</li>
+      <li>إقرار توزيع أسهم مجانية (زيادة رأس المال).</li>
+      <li>بيتا = 0.62 (سهم منخفض التذبذب نسبياً).</li>
+    </ul>
+
+    <h3>🎯 خطة التداول</h3>
+    <table>
+      <tr><th>المرحلة</th><th>السعر</th><th>التفاصيل</th></tr>
+      <tr><td>دخول 1</td><td>37.0 – 37.5 ج</td><td>60%</td></tr>
+      <tr><td>دخول 2</td><td>35.5 – 36 ج</td><td>40% احتياط</td></tr>
+      <tr><td>هدف 1</td><td>39.5 ج</td><td>+6% – بيع 30%</td></tr>
+      <tr><td>هدف 2</td><td>42 ج</td><td>+13% – بيع 40%</td></tr>
+      <tr><td>هدف 3</td><td>45 ج</td><td>+21% – بيع المتبقي</td></tr>
+      <tr><td>وقف خسارة</td><td>34 ج</td><td>تحت الدعم (-9%)</td></tr>
+    </table>
+
+    <div class="grid3">
+      <div class="ok"><b>قصير:</b> إيجابي – مستهدف 39.5، ثقة 72%</div>
+      <div class="ok"><b>متوسط:</b> إيجابي – مستهدف 45، ثقة 68%</div>
+      <div class="ok"><b>طويل:</b> إيجابي – نمو أرباح 25%</div>
+    </div>
+
+    <div class="kvgrid">
+      <div class="kv"><span>القيمة العادلة</span><b>43 ج</b></div>
+      <div class="kv"><span>هامش الأمان</span><b>15%</b></div>
+      <div class="kv"><span>نوع التداول</span><b>مضاربة 50% / استثمار 50%</b></div>
+      <div class="kv"><span>مستوى الثقة</span><b>75%</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== سهم 4 : متوسط ===== -->
+<section id="mid" class="section">
+  <div class="card mid">
+    <div class="title-row">
+      <h3>4) 📈 متوسط 3-6 شهور – أبو قير للأسمدة (ABUK) <span class="badge b-new">🔍 اكتشاف جديد</span></h3>
+      <div class="price">90.66 ج <span class="up" style="font-size:14px">▲ 6.69% أسبوعي</span></div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h3>📌 بطاقة الفرصة</h3>
+        <div class="kv"><span>الفئة</span><b>📈 متوسط – 3 إلى 6 شهور</b></div>
+        <div class="kv"><span>المصدر</span><b>اكتشاف جديد (نمو قطاعي + توزيعات قياسية)</b></div>
+        <div class="kv"><span>المخاطرة</span><b class="neu">متوسطة منخفضة</b></div>
+        <div class="kv"><span>نسبة من رأس المال</span><b>15% – 20%</b></div>
+      </div>
+      <div>
+        <h3>🆔 التعريف</h3>
+        <div class="kv"><span>القطاع</span><b>الكيماويات والأسمدة (تصدير)</b></div>
+        <div class="kv"><span>القمة التاريخية</span><b>95 ج (مايو 2026)</b></div>
+        <div class="kv"><span>نطاق 52 أسبوع</span><b>45.01 – 95.00</b></div>
+        <div class="kv"><span>تذبذب يومي</span><b>منخفض نسبياً</b></div>
+      </div>
+    </div>
+
+    <h3>💰 المؤشرات المالية</h3>
+    <ul>
+      <li>صافي ربح الربع الأخير: 1.09 مليار ج.</li>
+      <li>الشركة تستهدف 6.71 مليار ج صافي ربح قبل الضريبة للعام المالي 2025/2026.</li>
+      <li><b>Dividend Yield ~12% في 2025 ونسبة توزيع 94.88%</b> – من أعلى الأسهم توزيعاً في البورصة.</li>
+      <li>عائد دولاري عبر تصدير الأسمدة (يستفيد من الجنيه الضعيف).</li>
+    </ul>
+
+    <h3>📊 التحليل الفني</h3>
+    <ul>
+      <li>السهم ضمن قناة سعرية صاعدة منذ قاع 36 ج.</li>
+      <li>اختراق نموذج Falling Wedge بنجاح، الهدف الأقرب 95 ثم 100.</li>
+      <li>الدعم 84 ج / المقاومة 95 ج (القمة التاريخية).</li>
+      <li>تقييم TradingView: <span class="signal-buy">شراء قوي</span>.</li>
+      <li>متوسط حجم التداول اليومي ~2.1 مليون سهم.</li>
+    </ul>
+
+    <h3>📰 المحفزات والمخاطر</h3>
+    <ul>
+      <li>✅ استقرار إمدادات الغاز بعد أزمة 2025.</li>
+      <li>✅ ارتفاع أسعار اليوريا عالمياً نتيجة توترات الشرق الأوسط.</li>
+      <li>✅ تأسيس شركة جديدة في المناطق الحرة لتعزيز التصدير.</li>
+      <li>⚠️ مخاطر: تخفيض كميات الغاز الموردة في حالات الذروة.</li>
+      <li>⚠️ توقعات المحللين متضاربة (Investing: 76 ج / TradingView 73 ج).</li>
+    </ul>
+
+    <h3>🎯 خطة التداول</h3>
+    <table>
+      <tr><th>المرحلة</th><th>السعر</th><th>التفاصيل</th></tr>
+      <tr><td>دخول 1</td><td>89 – 91 ج</td><td>50% من المركز</td></tr>
+      <tr><td>دخول 2</td><td>84 – 86 ج</td><td>50% عند تصحيح للدعم</td></tr>
+      <tr><td>هدف 1</td><td>98 ج</td><td>+8% – بيع 30%</td></tr>
+      <tr><td>هدف 2</td><td>105 ج</td><td>+16% – بيع 40%</td></tr>
+      <tr><td>هدف 3</td><td>115 ج</td><td>+27% – بيع المتبقي</td></tr>
+      <tr><td>وقف خسارة</td><td>82 ج</td><td>تحت MA50 (-9.5%)</td></tr>
+    </table>
+
+    <div class="grid3">
+      <div class="note"><b>قصير:</b> حيادي إيجابي – ثقة 60%</div>
+      <div class="ok"><b>متوسط:</b> إيجابي – مستهدف 105، ثقة 78%</div>
+      <div class="ok"><b>طويل:</b> إيجابي – تدفق نقدي قوي</div>
+    </div>
+
+    <div class="kvgrid">
+      <div class="kv"><span>القيمة العادلة (DCF + Yield)</span><b>100–108 ج</b></div>
+      <div class="kv"><span>هامش الأمان</span><b>10–18%</b></div>
+      <div class="kv"><span>نوع التداول</span><b>استثمار 70% / مضاربة 30%</b></div>
+      <div class="kv"><span>مستوى الثقة</span><b>78%</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== سهم 5 و 6 : طويل ===== -->
+<section id="long" class="section">
+  <div class="card long">
+    <div class="title-row">
+      <h3>5) 🏛️ استثمار طويل سنة+ – البنك التجاري الدولي (COMI / CIB) <span class="badge b-list">📌 من قائمتك</span></h3>
+      <div class="price">140.01 ج <span class="down" style="font-size:14px">▼ 1.47% أمس</span></div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h3>📌 بطاقة الفرصة</h3>
+        <div class="kv"><span>الفئة</span><b>🏛️ استثمار طويل سنة+</b></div>
+        <div class="kv"><span>المصدر</span><b>من قائمة مرشحيك</b></div>
+        <div class="kv"><span>المخاطرة</span><b class="up">منخفضة</b></div>
+        <div class="kv"><span>نسبة من رأس المال</span><b>20% – 25%</b></div>
+      </div>
+      <div>
+        <h3>🆔 التعريف</h3>
+        <div class="kv"><span>القطاع</span><b>البنوك (أكبر بنك قطاع خاص)</b></div>
+        <div class="kv"><span>القيمة السوقية</span><b>~469 مليار ج</b></div>
+        <div class="kv"><span>EPS (TTM)</span><b>18.05 ج</b></div>
+        <div class="kv"><span>P/E (TTM)</span><b>~7.7x</b></div>
+      </div>
+    </div>
+
+    <h3>💰 الوضع المالي (Q1 2026 vs Q1 2025)</h3>
+    <table>
+      <tr><th>المؤشر</th><th>Q1 2026</th><th>Q1 2025</th><th>التغير</th></tr>
+      <tr><td>صافي الربح</td><td>17.74 مليار</td><td>16.60 مليار</td><td class="up">+6.9%</td></tr>
+      <tr><td>الإيرادات المجمعة</td><td>31.2 مليار</td><td>27.1 مليار</td><td class="up">+15%</td></tr>
+      <tr><td>صافي دخل العائد</td><td>29.53 مليار</td><td>25.30 مليار</td><td class="up">+17%</td></tr>
+      <tr><td>EPS</td><td>4.65 ج</td><td>4.35 ج</td><td class="up">+6.9%</td></tr>
+      <tr><td>إجمالي الأصول</td><td>1.561 تريليون</td><td>1.436 تريليون</td><td class="up">+8.7%</td></tr>
+      <tr><td>محفظة القروض</td><td>587.4 مليار</td><td>541.4 مليار</td><td class="up">+8.5%</td></tr>
+      <tr><td>ودائع العملاء</td><td>1.21 تريليون</td><td>1.105 تريليون</td><td class="up">+9.5%</td></tr>
+      <tr><td>صافي هامش الفائدة</td><td>8.88%</td><td>9.12%</td><td class="down">-24bps</td></tr>
+      <tr><td>Dividend Yield</td><td colspan="2">4.35%</td><td class="neu">قوي</td></tr>
+    </table>
+
+    <h3>📊 التحليل الفني</h3>
+    <ul>
+      <li>الدعوم: 133.5 / 128 / 120 ج | المقاومات: 145 / 150 / 160 ج.</li>
+      <li>السهم في موجة صاعدة كبرى من قاع 70 ج (يوليو 2025) – ضعف السعر.</li>
+      <li>MA50 ≈ 130 ج (ترند صاعد).</li>
+      <li>RSI أسبوعي ~62 (إيجابي).</li>
+      <li>متوسط هدف المحللين 12 شهر: 161.35 ج (+16%).</li>
+    </ul>
+
+    <h3>🎯 خطة التداول</h3>
+    <table>
+      <tr><th>المرحلة</th><th>السعر</th><th>التفاصيل</th></tr>
+      <tr><td>دخول 1</td><td>140 – 142 ج</td><td>40% (الآن)</td></tr>
+      <tr><td>دخول 2</td><td>134 – 136 ج</td><td>40% عند تصحيح</td></tr>
+      <tr><td>دخول 3</td><td>128 – 130 ج</td><td>20% عند فرصة كبرى</td></tr>
+      <tr><td>هدف 1</td><td>155 ج</td><td>+11% – خلال 3 أشهر</td></tr>
+      <tr><td>هدف 2</td><td>170 ج</td><td>+21% – خلال 6-9 أشهر</td></tr>
+      <tr><td>هدف 3</td><td>185 ج</td><td>+32% – خلال 12 شهر</td></tr>
+      <tr><td>وقف خسارة</td><td>122 ج</td><td>إغلاق أسبوعي تحته (-13%)</td></tr>
+    </table>
+
+    <div class="grid3">
+      <div class="note"><b>قصير:</b> حيادي – ضغط بيع قيادي مؤقت</div>
+      <div class="ok"><b>متوسط:</b> إيجابي – مستهدف 155-170، ثقة 80%</div>
+      <div class="ok"><b>طويل:</b> إيجابي قوي – ميزة تنافسية، ثقة 88%</div>
+    </div>
+
+    <div class="kvgrid">
+      <div class="kv"><span>القيمة العادلة (P/E 9x × EPS 19)</span><b>171 ج</b></div>
+      <div class="kv"><span>هامش الأمان</span><b>22%</b></div>
+      <div class="kv"><span>نوع التداول</span><b>استثمار 90% / مضاربة 10%</b></div>
+      <div class="kv"><span>مستوى الثقة</span><b>85%</b></div>
+      <div class="kv"><span>D/E</span><b>منخفض جداً (بنك أصلاً)</b></div>
+      <div class="kv"><span>ROE تاريخي</span><b>25%+</b></div>
+    </div>
+
+    <div class="ok"><b>التوصية:</b> شراء تدريجي على 3 مراحل. سهم آمن نسبياً مع توزيعات نقدية ونمو مستقر. الحماية القوية من Q1 الإيجابي + التقييم الرخيص.</div>
+  </div>
+
+  <div class="card long">
+    <div class="title-row">
+      <h3>6) 🏛️ استثمار طويل سنة+ – مجموعة طلعت مصطفى القابضة (TMGH) <span class="badge b-new">🔍 اكتشاف جديد</span></h3>
+      <div class="price">97.39 ج <span class="up" style="font-size:14px">▲ 7.82% أسبوعي</span></div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <h3>📌 بطاقة الفرصة</h3>
+        <div class="kv"><span>الفئة</span><b>🏛️ استثمار طويل سنة+</b></div>
+        <div class="kv"><span>المصدر</span><b>اكتشاف جديد (أكبر شركة تطوير عقاري)</b></div>
+        <div class="kv"><span>المخاطرة</span><b class="neu">منخفضة-متوسطة</b></div>
+        <div class="kv"><span>نسبة من رأس المال</span><b>15% – 20%</b></div>
+      </div>
+      <div>
+        <h3>🆔 التعريف</h3>
+        <div class="kv"><span>القطاع</span><b>عقارات / تطوير عمراني وسياحي</b></div>
+        <div class="kv"><span>القيمة السوقية</span><b>~195 مليار ج</b></div>
+        <div class="kv"><span>القمة التاريخية</span><b>100.95 ج (19/4/2026)</b></div>
+        <div class="kv"><span>نطاق 52 أسبوع</span><b>50.02 – 100.95</b></div>
+      </div>
+    </div>
+
+    <h3>💰 الوضع المالي</h3>
+    <ul>
+      <li>صافي دخل آخر ربع: 3.91 مليار ج (مقابل 4.07 مليار سابقاً).</li>
+      <li>P/E ~ 13.5x | Dividend Yield ~0.38% (السهم نمو وليس توزيع).</li>
+      <li>تستثمر 788 مليون دولار في مشروع سياحي بجوار المتحف المصري الجديد.</li>
+      <li>اتفاقية لتطوير 1.87 مليون م² في أبوظبي.</li>
+      <li>توسعات عراقية (مدينة الرفيل الاقتصادية).</li>
+      <li>الأرباح القادمة في 3 يونيو 2026 – محفز قريب.</li>
+    </ul>
+
+    <h3>📊 التحليل الفني</h3>
+    <ul>
+      <li>السهم وصل للقمة التاريخية 100.95 ج ثم صحح إلى 97 ج.</li>
+      <li>الدعوم: 92 / 85 / 79 ج | المقاومات: 100 / 110 / 120 ج.</li>
+      <li>متوسط هدف المحللين: 126.32 ج (+30%) – تصنيف Strong Buy.</li>
+      <li>بيتا 1.40 | حجم تداول يومي ~2.5 مليون سهم.</li>
+      <li>توزيع كوبون قادم 0.25 ج (تاريخ انتهاء الحق 19/5/2026).</li>
+    </ul>
+
+    <h3>🎯 خطة التداول</h3>
+    <table>
+      <tr><th>المرحلة</th><th>السعر</th><th>التفاصيل</th></tr>
+      <tr><td>دخول 1</td><td>97 – 99 ج</td><td>40%</td></tr>
+      <tr><td>دخول 2</td><td>92 – 94 ج</td><td>40% عند تصحيح</td></tr>
+      <tr><td>دخول 3</td><td>85 – 88 ج</td><td>20% فرصة كبرى</td></tr>
+      <tr><td>هدف 1</td><td>110 ج</td><td>+13% – 3 شهور</td></tr>
+      <tr><td>هدف 2</td><td>120 ج</td><td>+23% – 6 شهور</td></tr>
+      <tr><td>هدف 3</td><td>130 ج</td><td>+33% – 12 شهر</td></tr>
+      <tr><td>وقف خسارة</td><td>84 ج</td><td>إغلاق أسبوعي (-14%)</td></tr>
+    </table>
+
+    <div class="grid3">
+      <div class="note"><b>قصير:</b> حيادي – بعد القمة التاريخية</div>
+      <div class="ok"><b>متوسط:</b> إيجابي – نتائج Q1 يونيو، ثقة 75%</div>
+      <div class="ok"><b>طويل:</b> إيجابي قوي – ميزة تنافسية، ثقة 82%</div>
+    </div>
+
+    <div class="kvgrid">
+      <div class="kv"><span>القيمة العادلة</span><b>120 – 130 ج</b></div>
+      <div class="kv"><span>هامش الأمان</span><b>23–33%</b></div>
+      <div class="kv"><span>نوع التداول</span><b>استثمار 80% / مضاربة 20%</b></div>
+      <div class="kv"><span>مستوى الثقة</span><b>80%</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= جدول المقارنة ============================= -->
+<section id="compare" class="section">
+  <h2>4) جدول المقارنة الشامل للأسهم الستة</h2>
+  <div style="overflow-x:auto">
+  <table>
+    <thead>
+      <tr>
+        <th>السهم</th>
+        <th>الفئة</th>
+        <th>السعر</th>
+        <th>الدخول</th>
+        <th>الهدف 2</th>
+        <th>وقف خسارة</th>
+        <th>الأفق</th>
+        <th>المخاطرة</th>
+        <th>نسبة المحفظة</th>
+        <th>الثقة</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>IDRE</td><td>🎰 صاروخ</td><td>47.98</td><td>47.5–48.5</td><td>56</td><td>39.5</td><td>أيام-أسبوعين</td><td>عالية جداً</td><td>3–5%</td><td>70%</td></tr>
+      <tr><td>PHDC</td><td>⚡ مضاربة</td><td>11.20</td><td>11.0–11.3</td><td>13.5</td><td>9.80</td><td>1–4 أسابيع</td><td>متوسطة</td><td>10–12%</td><td>78%</td></tr>
+      <tr><td>CANA</td><td>⚡ مضاربة</td><td>37.26</td><td>37.0–37.5</td><td>42</td><td>34</td><td>2–6 أسابيع</td><td>متوسطة</td><td>10%</td><td>75%</td></tr>
+      <tr><td>ABUK</td><td>📈 متوسط</td><td>90.66</td><td>89–91</td><td>105</td><td>82</td><td>3–6 أشهر</td><td>متوسطة منخفضة</td><td>15–20%</td><td>78%</td></tr>
+      <tr><td>COMI</td><td>🏛️ طويل</td><td>140.01</td><td>140–142</td><td>170</td><td>122</td><td>سنة+</td><td>منخفضة</td><td>20–25%</td><td>85%</td></tr>
+      <tr><td>TMGH</td><td>🏛️ طويل</td><td>97.39</td><td>97–99</td><td>120</td><td>84</td><td>سنة+</td><td>منخفضة-متوسطة</td><td>15–20%</td><td>80%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">إجمالي تخصيص رأس المال: 73-92% (الفائض 8-27% يبقى سيولة كاش للفرص).</p>
+</section>
+
+<!-- ============================= الأولويات ============================= -->
+<section id="priority" class="section">
+  <h2>5) ترتيب الأولويات – ما الذي يجب شراؤه أولاً؟</h2>
+  <ol>
+    <li><b>COMI (CIB)</b> – الأولوية القصوى. أكبر تخصيص، توزيعات + نمو + ميزة دفاعية. <span class="pill">20-25%</span></li>
+    <li><b>ABUK</b> – ثاني أكبر تخصيص. Dividend Yield 12%، عائد دولاري، نمو قطاعي. <span class="pill">15-20%</span></li>
+    <li><b>TMGH</b> – ثالث أكبر تخصيص. أكبر مطور عقاري، توسع إقليمي، نتائج قريبة. <span class="pill">15-20%</span></li>
+    <li><b>PHDC</b> – للمضاربة المتوسطة، اختراق فني واضح. <span class="pill">10-12%</span></li>
+    <li><b>CANA</b> – مكمل قطاعي للبنوك، تذبذب أقل من CIB. <span class="pill">10%</span></li>
+    <li><b>IDRE</b> – آخر الأولويات بأقل تخصيص لمخاطرته العالية. <span class="pill">3-5%</span></li>
+  </ol>
+  <div class="note">
+    <b>إستراتيجية الشراء:</b> ابدأ بـ COMI و ABUK و TMGH في جلسة الخميس 14/5، ثم أضف CANA و PHDC على مدار الأسبوع. اترك IDRE لارتداد فني (لا تشتري بأقصى ارتفاع يومي).
+  </div>
+</section>
+
+<!-- ============================= ملخص التنفيذ السريع ============================= -->
+<section id="executive" class="section">
+  <h2>6) ⏱️ ملخص لصانع القرار – تنفيذ في 5 دقائق</h2>
+  <ul>
+    <li>🏛️ <b>COMI (140.01 ج):</b> اشترِ 40% الآن، 40% عند 134-136، 20% عند 128-130. SL: 122. هدف 170 ج خلال 6 أشهر.</li>
+    <li>📈 <b>ABUK (90.66 ج):</b> اشترِ 50% عند 89-91، 50% عند 84-86. SL: 82. هدف 105 ج خلال 4-6 شهور. عائد توزيعات 12%.</li>
+    <li>🏛️ <b>TMGH (97.39 ج):</b> اشترِ 40% الآن، 40% عند 92-94. SL: 84. هدف 120 ج خلال 6 شهور. تنبه لكوبون 19/5.</li>
+    <li>⚡ <b>PHDC (11.20 ج):</b> اشترِ 60% الآن، 40% عند 10.5-10.7. SL: 9.80. هدف 13.5 ج خلال 4 أسابيع.</li>
+    <li>⚡ <b>CANA (37.26 ج):</b> اشترِ 60% الآن، 40% عند 35.5-36. SL: 34. هدف 42 ج خلال 4-6 أسابيع.</li>
+    <li>🎰 <b>IDRE (47.98 ج):</b> انتظر تأكيد إغلاق فوق 47 أو ارتداد لـ 44. SL: 39.5. هدف 56 ج خلال 2-3 أسابيع. لا تطارد.</li>
+  </ul>
+  <div class="warn">
+    <b>تذكير:</b> اجتماع البنك المركزي 21 مايو – قلل الرافعة المالية قبله، وانتظر القرار قبل تكوين أي مركز كامل في البنوك.
+  </div>
+</section>
+
+<!-- ============================= الأسهم المستبعدة ============================= -->
+<section id="rejected" class="section">
+  <h2>7) ❌ أسهم تم فحصها ولم يتم اختيارها</h2>
+  <table>
+    <tr><th>السهم</th><th>السعر</th><th>السبب</th><th>شروط الفرصة</th></tr>
+    <tr>
+      <td>إيسترن كومباني (EAST)</td>
+      <td>39.00 ج</td>
+      <td>قرب القمة التاريخية، إشارة فنية Strong Sell على Investing، تذبذب 5.12%</td>
+      <td>اختراق 42 بحجم قوي + نتائج مايو 2026 إيجابية</td>
+    </tr>
+    <tr>
+      <td>إعمار مصر (EMFD)</td>
+      <td>9.90 ج</td>
+      <td>قرب القمة التاريخية 10.58، تشبع شراء، Q1 لم يصدر بعد</td>
+      <td>تصحيح إلى 8.50-9.00 + ارتداد بحجم</td>
+    </tr>
+    <tr>
+      <td>مصر للأسواق الحرة (MFSC)</td>
+      <td>47.99 ج</td>
+      <td>تذبذب عنيف (نطاق يومي 45.55-57.76)، صعب تحديد وقف خسارة</td>
+      <td>هدوء التذبذب + تأكيد دعم 45</td>
+    </tr>
+    <tr>
+      <td>الإسكندرية للأدوية</td>
+      <td>1173 ج</td>
+      <td>سعر مرتفع جداً، حد سعري ±20% خطر، صعد 19.81% في جلسة</td>
+      <td>انتظار تصحيح 10-15%</td>
+    </tr>
+    <tr>
+      <td>القاهرة للخدمات التعليمية</td>
+      <td>~76 ج</td>
+      <td>تذبذب حاد، انعكاسات يومية متناقضة (-5% ثم +14% في أيام متتالية)</td>
+      <td>استقرار + اتجاه واضح</td>
+    </tr>
+    <tr>
+      <td>مصر للزيوت والصابون</td>
+      <td>~313 ج</td>
+      <td>تذبذب 4-7% يومياً بدون اتجاه واضح، سيولة محدودة</td>
+      <td>اتجاه أسبوعي + حجم</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ============================= المصطلحات ============================= -->
+<section id="glossary" class="section">
+  <h2>8) 📚 قاموس المصطلحات</h2>
+  <div class="grid2">
+    <div>
+      <div class="kv"><span><b>EGX30</b></span><span>مؤشر أكبر 30 شركة في البورصة المصرية</span></div>
+      <div class="kv"><span><b>EGX70 EWI</b></span><span>الشركات المتوسطة والصغيرة، أوزان متساوية</span></div>
+      <div class="kv"><span><b>P/E</b></span><span>مكرر الربحية = السعر ÷ ربح السهم</span></div>
+      <div class="kv"><span><b>P/B</b></span><span>السعر إلى القيمة الدفترية</span></div>
+      <div class="kv"><span><b>ROE</b></span><span>العائد على حقوق الملكية</span></div>
+      <div class="kv"><span><b>EPS</b></span><span>ربحية السهم</span></div>
+      <div class="kv"><span><b>NIM</b></span><span>هامش الفائدة الصافي للبنوك</span></div>
+      <div class="kv"><span><b>Dividend Yield</b></span><span>عائد التوزيعات النقدية السنوي</span></div>
+    </div>
+    <div>
+      <div class="kv"><span><b>RSI</b></span><span>مؤشر القوة النسبية (تشبع شراء/بيع)</span></div>
+      <div class="kv"><span><b>MACD</b></span><span>مؤشر تقارب وتباعد المتوسطات</span></div>
+      <div class="kv"><span><b>MA20 / MA50</b></span><span>المتوسط المتحرك 20 / 50 يوم</span></div>
+      <div class="kv"><span><b>دعم / مقاومة</b></span><span>مستويات سعر يتوقع الارتداد عندها</span></div>
+      <div class="kv"><span><b>Breakout</b></span><span>اختراق مقاومة بحجم تداول قوي</span></div>
+      <div class="kv"><span><b>SL (وقف خسارة)</b></span><span>سعر يتم البيع عنده لقطع الخسارة</span></div>
+      <div class="kv"><span><b>Block Trading</b></span><span>صفقات بحجم كبير خارج المقصورة</span></div>
+      <div class="kv"><span><b>D/E</b></span><span>نسبة الديون إلى حقوق الملكية</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="disclosure">
+🛑 <b>تنبيه مخاطر شامل:</b> الاستثمار في الأسهم ينطوي على مخاطر فقدان رأس المال. هذا التقرير مبني على بيانات منشورة حتى إغلاق 13/5/2026 وقد تتغير الظروف. القرارات النهائية تقع على عاتق المستثمر، ويُنصح بمراجعة وسيط مرخص أو مستشار مالي معتمد من الرقابة المالية المصرية. لا تستخدم رافعة مالية إلا بحدود تحملك للخسارة.
+</div>
+
+<footer>
+  <p>© 2026 تقرير تحليلي شامل للبورصة المصرية – الخميس 14 مايو 2026<br>
+  المصادر: EGX (البورصة الرسمية) | Investing.com Egypt | TradingView | Mubasher | Masrawy | Shorouk | Akhbar El Yom | Elwatannews | Almasryalyoum | Almal | Asharq Business (Bloomberg) | البنك المركزي المصري | الجهاز المركزي للإحصاء (CAPMAS) | El Aosboa | Alborsaa | Cairo24 | Amwal Alghad | Fintechgate</p>
+</footer>
+
+</div>
+
+<button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="أعلى الصفحة">▲</button>
+
+</body>
+</html>
